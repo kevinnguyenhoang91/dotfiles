@@ -1,0 +1,168 @@
+#
+# Tap
+#
+tap "homebrew/cask"
+tap "homebrew/cask-drivers"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "homebrew/boneyard"
+tap "homebrew/dev-tools"
+tap "homebrew/bundle"
+tap "homebrew/services"
+tap "khanhas/tap"
+tap "universal-ctags/universal-ctags"
+
+#
+# Web browsers
+#
+cask "google-chrome"
+cask "firefox"
+
+#
+# Terminal
+#
+cask "iterm2"
+brew "pkg-config", link: true
+brew "tmux"
+cask "ngrok"
+
+#
+# Shells
+#
+brew "bash"
+brew "bash-completion"
+brew "zsh"
+
+#
+# Passwords
+#
+brew "pass"
+cask "authy"
+cask "1password"
+
+#
+# Editors
+#
+brew "bat"
+brew "less"
+brew "most"
+brew "vim"
+brew "nvim"
+brew "emacs-plus"
+brew "aspell", args: ["with-lang=en"]
+
+#
+# Office
+#
+cask "libreoffice"
+
+#
+# Downloaders
+#
+brew "curl", link: true
+brew "httrack"
+brew "wget"
+
+#
+# Version control
+#
+brew "git"
+brew "git-lfs"
+brew "git-flow"
+cask "p4v"
+
+#
+# Graphics
+#
+cask "gimp"
+cask "blender"
+
+#
+# Fonts
+#
+cask "font-fira-code"
+cask "font-fira-mono-for-powerline"
+cask "font-fira-mono"
+cask "font-fira-sans"
+cask "font-firacode-nerd-font-mono"
+cask "font-firacode-nerd-font"
+cask "font-source-code-pro-for-powerline"
+cask "font-source-code-pro"
+cask "font-ubuntu-mono-derivative-powerline"
+cask "font-ubuntu"
+
+#
+# Swift
+#
+brew "sourcekitten"
+
+#
+# Tools
+#
+brew "make"
+brew "autoconf"
+brew "automake"
+brew "gettext"
+brew "openssl@1.1"
+brew "readline"
+brew "sqlite"
+brew "python"
+brew "cairo"
+brew "cmake"
+brew "coreutils"
+brew "eigen"
+brew "exercism"
+brew "fd"
+brew "fzf"
+brew "gcc@6"
+brew "geos"
+brew "libxml2"
+brew "libpq"
+brew "libtool"
+brew "gdal"
+brew "git"
+brew "gnupg"
+brew "graphviz"
+brew "htop"
+brew "hub"
+brew "hugo"
+brew "imagemagick@6", link: true
+brew "jq"
+brew "libidn"
+brew "libmikmod"
+brew "libuv"
+brew "libyaml"
+brew "mit-scheme"
+brew "ninja"
+brew "nnn"
+brew "portmidi"
+brew "python@2"
+brew "python3"
+brew "ripgrep"
+brew "ruby"
+brew "ruby-build"
+brew "sdl"
+brew "sdl2"
+brew "sdl_image"
+brew "sdl_mixer"
+brew "sdl_ttf"
+brew "stow"
+brew "tig"
+brew "tldr"
+brew "ttfautohint"
+brew "watchman"
+brew "zlib"
+brew "zplug"
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+cask "font-hack-nerd-font"
+brew "node"
+brew "yarn"
+brew "unzip"
+brew "p7zip"
+brew "unison"
+brew "rsync"
+brew "awk"
+brew "ed"
+cask "android-platform-tools"
+cask "android-sdk"

@@ -3,7 +3,7 @@
 [core]
   editor = $EDITOR
   excludesfile = ~/.gitignore
-  ignorecase = false
+  ignorecase = true
   abbrev = 12
 [alias]
   l  = log --graph --oneline --decorate
@@ -17,14 +17,17 @@
   colorMoved = zebra
 [push]
   default = current
+[pull]
+  rebase = true
+  autostash = true
 [merge]
   ff = only
 [commit]
   verbose = true
-  # template = ~/.gitmessage
+  template = ~/.gitmessage
 [fetch]
   prune = true
 [rebase]
-  autosquash = true
+  autosquash = false
 [pager]
   branch = false

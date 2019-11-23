@@ -1,8 +1,9 @@
-ZSH_THEME="zeit"
+ZSH_THEME="clean"
 
-plugins=(git docker-compose)
+plugins=(git docker-compose zsh-autosuggestions)
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:$PATH"
+export GEM_HOME="$HOME/.gem"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:$GEM_HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 export ZSH=~/.oh-my-zsh
@@ -10,6 +11,8 @@ export EDITOR=nvim
 export NVM_DIR="$HOME/.nvm"
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"'
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 [ -s "$ZSH/oh-my-zsh.sh" ] && . "$ZSH/oh-my-zsh.sh"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
@@ -64,3 +67,4 @@ inside_ssh(){
 #   connect_to_most_recent_tmux_session
 # fi
 # }}}
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -39,7 +39,6 @@ call minpac#add('tpope/vim-rails')
 call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-rhubarb')
 call minpac#add('tpope/vim-surround')
-call minpac#add('w0rp/ale')
 call minpac#add('wellle/targets.vim')
 call minpac#add('rstacruz/vim-closer')
 call minpac#add('ncm2/ncm2')
@@ -49,6 +48,26 @@ call minpac#add('ncm2/ncm2-path')
 call minpac#add('roxma/nvim-yarp')
 call minpac#add('christoomey/vim-tmux-navigator')
 call minpac#add('andreypopp/vim-colors-plain')
+
+" language checker
+call minpac#add('w0rp/ale')
+
+" swiftlang
+call minpac#add('Shougo/deoplete.nvim')
+call minpac#add('mitsuse/autocomplete-swift')
+call minpac#add('landaire/deoplete-swift')
+call minpac#add('kballard/vim-swift')
+call minpac#add('keith/swift.vim')
+call minpac#add('aciidb0mb3r/SwiftDoc.vim')
+call minpac#add('kentaroi/ultisnips-swift')
+
+" quickrun
+call minpac#add('thinca/vim-quickrun')
+
+" colorscheme
+call minpac#add('chriskempson/base16-vim')
+call minpac#add('morhetz/gruvbox')
+call minpac#add('ryanoasis/vim-devicons')
 endif "}}}
 
 " Define user commands for updating/cleaning the plugins.
@@ -202,3 +221,47 @@ hi! link ALEError DiffDelete
 hi! link ALEErrorSign DiffDelete
 hi! link ALEWarning DiffChange
 hi! link ALEWarningSign DiffChange
+
+" Move lines
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Swift IDE
+
+" ctags for swift -------------------------- {{{
+let g:tagbar_type_swift = {
+  \ 'ctagstype': 'swift',
+  \ 'kinds' : [
+    \ 'e:Enums',
+    \ 't:Typealiases',
+    \ 'p:Protocols',
+    \ 's:Structs',
+    \ 'c:Classes',
+    \ 'f:Functions',
+    \ 'v:Variables',
+    \ 'E:Extensions',
+    \ 'l:Constants',
+  \ ],
+  \ 'sort' : 0
+  \ }
+" }}}
+
+" Jump to the first placeholder by typing `<C-k>`.
+autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
+
+autocmd BufNewFile,BufRead *.swift set filetype=swift
+
+" CLighter Xcode --------------------------- {{{
+" Config for CLighter
+if has('nvim')
+    let g:clamp_autostart = 1
+    let g:clamp_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+else
+    let g:clighter8_autostart = 1
+    let g:clighter8_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+  endif
+" }}}
