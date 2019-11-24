@@ -8,6 +8,7 @@ if has('nvim')
   endif
   if executable('python3')
     let g:python3_host_prog = exepath('python3')
+    " echo exepath('python3')
   endif
   if executable('ruby')
     let g:ruby_host_prog = exepath('ruby')
@@ -48,26 +49,10 @@ call minpac#add('ncm2/ncm2-path')
 call minpac#add('roxma/nvim-yarp')
 call minpac#add('christoomey/vim-tmux-navigator')
 call minpac#add('andreypopp/vim-colors-plain')
-
-" language checker
 call minpac#add('w0rp/ale')
-
-" swiftlang
-call minpac#add('Shougo/deoplete.nvim')
-call minpac#add('mitsuse/autocomplete-swift')
-call minpac#add('landaire/deoplete-swift')
-call minpac#add('kballard/vim-swift')
-call minpac#add('keith/swift.vim')
-call minpac#add('aciidb0mb3r/SwiftDoc.vim')
-call minpac#add('kentaroi/ultisnips-swift')
-
-" quickrun
-call minpac#add('thinca/vim-quickrun')
-
-" colorscheme
-call minpac#add('chriskempson/base16-vim')
-call minpac#add('morhetz/gruvbox')
-call minpac#add('ryanoasis/vim-devicons')
+call minpac#add('rakr/vim-one')
+call minpac#add('sickill/vim-monokai')
+call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 endif "}}}
 
 " Define user commands for updating/cleaning the plugins.
@@ -102,6 +87,7 @@ set termguicolors
 set ttimeoutlen=0
 set wildignore+=tags,*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem,*.pyc,*.swp,*~,*/.DS_Store
 set wildmode=longest:full,list,full
+set number relativenumber
 
 " Safeguard
 if !exists("g:syntax_on")
@@ -110,7 +96,7 @@ endif
 
 " Colorscheme
 set background=dark
-colorscheme plain
+colorscheme monokai
 hi clear VertSplit
 hi VertSplit guifg=#191919
 hi! link PmenuSel TermCursor
@@ -133,7 +119,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>s <c-w>w
 nnoremap <leader>r :source ~/.config/nvim/init.vim<cr>
-nnoremap <silent><leader><cr> :let @/ = ""<cr>
+nnoremap <leader><cr> :let @/ = ""<cr>
 
 " Navigate properly when lines are wrapped
 nnoremap j gj
@@ -146,11 +132,17 @@ vnoremap <tab> %
 " NERDTree mapping and config
 noremap <leader>n :NERDTreeToggle<CR>
 noremap <leader>c :NERDTreeFind<CR>
+vmap ++ <plug>NERDCommenterToggle
+nmap ++ <plug>NERDCommenterToggle
 let NERDTreeShowHidden = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeHighlightCursorline = 0
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeIgnore = ['^\~$[[dir]]', '^\.o$[[file]]', '^\.pyc$[[file]]', '^\.DS_Store$[[file]]']
+
+
+" Highlight currently open buffer in NERDTree
+" autocmd BufEnter * call SyncTree() 
 
 " FZF
 nnoremap <leader>h :History<CR>
@@ -165,6 +157,9 @@ noremap <leader>rh <esc>:Rg<up><cr>
 " Vim-fugitive and vim-rhubarb
 noremap <silent> gb :Gblame<CR>
 noremap <silent> ghub :Gbrowse<CR>
+
+" ESC
+inoremap jk <ESC>
 
 " Signify config
 let g:signify_vcs_list = [ 'git' ]
@@ -230,38 +225,9 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" Swift IDE
-
-" ctags for swift -------------------------- {{{
-let g:tagbar_type_swift = {
-  \ 'ctagstype': 'swift',
-  \ 'kinds' : [
-    \ 'e:Enums',
-    \ 't:Typealiases',
-    \ 'p:Protocols',
-    \ 's:Structs',
-    \ 'c:Classes',
-    \ 'f:Functions',
-    \ 'v:Variables',
-    \ 'E:Extensions',
-    \ 'l:Constants',
-  \ ],
-  \ 'sort' : 0
-  \ }
-" }}}
-
-" Jump to the first placeholder by typing `<C-k>`.
-autocmd FileType swift imap <buffer> <C-k> <Plug>(autocomplete_swift_jump_to_placeholder)
-
-autocmd BufNewFile,BufRead *.swift set filetype=swift
-
-" CLighter Xcode --------------------------- {{{
-" Config for CLighter
-if has('nvim')
-    let g:clamp_autostart = 1
-    let g:clamp_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
-else
-    let g:clighter8_autostart = 1
-    let g:clighter8_libclang_file = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
-  endif
-" }}}
+" Toggle hybrid line number
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
