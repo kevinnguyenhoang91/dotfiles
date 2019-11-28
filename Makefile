@@ -23,3 +23,7 @@ unstow:
 	@stow -D -t ~/.config/nvim nvim
 	@stow -D -t ~/.ssh ssh
 	@stow -D -t ~/.config/alacritty alacritty
+
+.PHONY: brew_bundle
+brew_bundle:
+	cd macos && brew bundle

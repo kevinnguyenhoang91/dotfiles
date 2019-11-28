@@ -6,12 +6,11 @@ tap "homebrew/cask-drivers"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "homebrew/boneyard"
-tap "homebrew/dev-tools"
 tap "homebrew/bundle"
 tap "homebrew/services"
 tap "khanhas/tap"
 tap "universal-ctags/universal-ctags"
+tap "d12frosted/emacs-plus"
 
 #
 # Web browsers
@@ -50,12 +49,15 @@ brew "most"
 brew "vim"
 brew "nvim"
 brew "emacs-plus"
-brew "aspell", args: ["with-lang=en"]
+brew "aspell"
 
 #
 # Office
 #
 cask "libreoffice"
+cask "joplin"
+cask "dropbox"
+cask "setapp"
 
 #
 # Downloaders
@@ -71,7 +73,8 @@ brew "git"
 brew "git-lfs"
 brew "git-flow"
 cask "p4v"
-
+cask "sourcetree"
+cask "beyond-compare"
 #
 # Graphics
 #
@@ -113,7 +116,7 @@ brew "cmake"
 brew "coreutils"
 brew "eigen"
 brew "exercism"
-brew "fd"
+# brew "fd"
 brew "fzf"
 brew "gcc@6"
 brew "geos"
@@ -161,7 +164,7 @@ brew "yarn"
 brew "unzip"
 brew "p7zip"
 brew "unison"
-brew "rsync"
+# brew "rsync"
 brew "awk"
 brew "ed"
 cask "android-platform-tools"

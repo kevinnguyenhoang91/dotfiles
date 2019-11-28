@@ -27,7 +27,7 @@ export LANG=en_US.UTF-8
 alias v='nvim'
 alias vc='nvim ~/.config/nvim/init.vim'
 alias zb='z -b'
-alias find='fd'
+# alias find='fd'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=121'
 
