@@ -1,0 +1,13 @@
+build \
+    --xcode_version=11.2.1 \
+    --ios_simulator_device='iPhone 5s' \
+    --ios_simulator_version=10.3.1 \
+    --jobs 4
+
+#build --override_repository=build_bazel_rules_apple=/Users/khanh/Projects/rules_apple
+#build --override_repository=build_bazel_rules_swift=/Users/khanh/Projects/rules_swift
+#build --override_repository=tulsi=/Users/khanh/Projects/tulsi
+#build --override_repository=vinone_bazel_dependency_hub=/Users/khanh/Projects/vinone-bazel-hub
+
+
+
