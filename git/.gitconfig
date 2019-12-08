@@ -10,6 +10,7 @@
   ld = log --graph --pretty=format:'%C(yellow)%h%C(bold white red)%d%Creset %s %C(bold green)%cr %Creset%C(white)%an' --abbrev-commit --date=relative
   ll = log --stat --decorate --source -p
   branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+  tree = log --graph --decorate --pretty=format:'%C(yellow)%h %Cred%cr %Cblue(%an)%C(cyan)%d%Creset %s' --abbrev-commit --all
 [color]
   ui = auto
 [diff]
@@ -19,7 +20,6 @@
   default = current
 [pull]
   rebase = true
-  autostash = true
 [merge]
   ff = only
 [commit]
@@ -29,5 +29,6 @@
   prune = true
 [rebase]
   autosquash = false
+  autostash = true
 [pager]
   branch = false
