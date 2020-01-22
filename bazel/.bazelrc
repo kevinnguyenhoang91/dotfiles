@@ -1,13 +1,25 @@
 build \
-    --xcode_version=11.2.1 \
-    --ios_simulator_device='iPhone 5s' \
-    --ios_simulator_version=10.3.1 \
-    --jobs 4
+    --xcode_version=11.3 \
+    --ios_simulator_device='iPhone X' \
+    --ios_simulator_version=13.2 \
+    --jobs 6
 
-#build --override_repository=build_bazel_rules_apple=/Users/khanh/Projects/rules_apple
-#build --override_repository=build_bazel_rules_swift=/Users/khanh/Projects/rules_swift
-#build --override_repository=tulsi=/Users/khanh/Projects/tulsi
-#build --override_repository=vinone_bazel_dependency_hub=/Users/khanh/Projects/vinone-bazel-hub
+# build --override_repository=build_bazel_rules_apple=/Users/khanh/Projects/rules_apple
+# build --override_repository=build_bazel_rules_swift=/Users/khanh/Projects/rules_swift
+# build --override_repository=tulsi=/Users/khanh/Projects/tulsi
+# build --override_repository=vinone_bazel_dependency_hub=/Users/khanh/Projects/vinone-bazel-hub
+# build --override_repository=bazel_core=/Users/khanh/Projects/bazel-core
 
+# build --remote_http_cache=https://storage.googleapis.com/vinid-ios-bazel
+# build --google_credentials=/Users/khanh/.secret_key.json
+# build --disk_cache=
 
+# build --noincompatible_remap_main_repo
+# build --features=-swift.supports_library_evolution
+# build --features=-swift.enable_library_evolution
+# build --features=-swift.emit_swiftinterface
 
+# Assets
+# build \
+#     --define=apple.actool_filter_for_device_model='iPhone9,1' \
+#     --define=apple.actool_filter_for_device_os_version='13.3'
