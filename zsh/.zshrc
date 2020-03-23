@@ -13,6 +13,7 @@ export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"'
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export PATH="$PATH:$HOME/Projects/flutter/bin"
 
 [ -s "$ZSH/oh-my-zsh.sh" ] && . "$ZSH/oh-my-zsh.sh"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
