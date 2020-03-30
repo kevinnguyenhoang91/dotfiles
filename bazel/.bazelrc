@@ -1,7 +1,7 @@
 build \
-    --xcode_version=11.3 \
+    --xcode_version=11.4 \
     --ios_simulator_device='iPhone X' \
-    --ios_simulator_version=13.2 \
+    --ios_simulator_version=13.4 \
     --jobs 6
 
 # build --override_repository=build_bazel_rules_apple=/Users/khanh/Projects/rules_apple
