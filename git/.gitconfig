@@ -16,12 +16,14 @@
 [diff]
   algorithm = patience
   colorMoved = zebra
+	tool = bc4
 [push]
   default = current
 [pull]
   rebase = true
 [merge]
   ff = only
+	tool = bc4
 [commit]
   verbose = true
   template = ~/.gitmessage
@@ -39,3 +41,9 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[difftool "bc4"]
+	cmd = /usr/local/bin/bcomp $LOCAL $REMOTE
+	trustExitCode = true
+[mergetool "bc4"]
+	trustExitCode = true
+  cmd = /usr/local/bin/bcomp $LOCAL $REMOTE
