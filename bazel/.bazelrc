@@ -1,14 +1,17 @@
 build \
-    --xcode_version=11.4 \
-    --ios_simulator_device='iPhone X' \
-    --ios_simulator_version=13.4 \
-    --jobs 6
+    --xcode_version=11.5 \
+    --ios_simulator_device='iPhone 11 Pro Max' \
+    --ios_simulator_version=13.2 \
+    --action_env=TEST_RUNNER_OS=13.2
+    # --jobs 9
 
 # build --override_repository=build_bazel_rules_apple=/Users/khanh/Projects/rules_apple
 # build --override_repository=build_bazel_rules_swift=/Users/khanh/Projects/rules_swift
 # build --override_repository=tulsi=/Users/khanh/Projects/tulsi
 # build --override_repository=vinone_bazel_dependency_hub=/Users/khanh/Projects/vinone-bazel-hub
+# build --override_repository=GoogleWebRTC=/Users/khanh/Desktop/webrtc_ios
 # build --override_repository=bazel_core=/Users/khanh/Projects/bazel-core
+# build --override_repository=M3U8Kit=/Users/khanh/Projects/M3U8Parser
 
 # build --remote_http_cache=https://storage.googleapis.com/vinid-ios-bazel
 # build --google_credentials=/Users/khanh/.secret_key.json
@@ -23,3 +26,6 @@ build \
 # build \
 #     --define=apple.actool_filter_for_device_model='iPhone9,1' \
 #     --define=apple.actool_filter_for_device_os_version='13.3'
+
+# test --cache_test_results=false
+# build --override_repository=xctestrunner=/Users/khanh/Downloads/xctestrunner
