@@ -1,8 +1,8 @@
 build \
     --xcode_version=11.5 \
     --ios_simulator_device='iPhone 11 Pro Max' \
-    --ios_simulator_version=13.2 \
-    --action_env=TEST_RUNNER_OS=13.2
+    --ios_simulator_version=13.5 \
+    --action_env=TEST_RUNNER_OS=13.5
     # --jobs 9
 
 # build --override_repository=build_bazel_rules_apple=/Users/khanh/Projects/rules_apple
