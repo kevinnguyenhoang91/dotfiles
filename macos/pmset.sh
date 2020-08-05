@@ -3,7 +3,7 @@
 # Battery Power
 
 sudo pmset -b lidwake 0
-sudo pmset -b standbydelayhigh 30
+sudo pmset -b standbydelayhigh 60
 sudo pmset -b standbydelaylow 30
 sudo pmset -b standby 1
 sudo pmset -b proximitywake 0
@@ -23,7 +23,7 @@ sudo pmset -b disksleep 5
 
 # AC Adapter
 sudo pmset -a lidwake 0
-sudo pmset -a standbydelayhigh 60
+sudo pmset -a standbydelayhigh 300
 sudo pmset -a standbydelaylow 60
 sudo pmset -a standby 1
 sudo pmset -a proximitywake 0

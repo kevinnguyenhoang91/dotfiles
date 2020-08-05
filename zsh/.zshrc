@@ -3,7 +3,7 @@ ZSH_THEME="clean"
 plugins=(git docker-compose zsh-autosuggestions)
 
 export GEM_HOME="$HOME/.gem"
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:$GEM_HOME/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:$GEM_HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 export ZSH=~/.oh-my-zsh
