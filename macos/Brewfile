@@ -50,7 +50,7 @@ brew "vim"
 brew "nvim"
 brew "emacs-plus"
 brew "aspell"
-
+cask "visual-studio-code"
 #
 # Office
 #
@@ -70,9 +70,10 @@ brew "wget"
 # Version control
 #
 brew "git"
+brew "svn"
 brew "git-lfs"
 brew "git-flow"
-cask "p4v"
+#cask "p4v"
 cask "sourcetree"
 cask "beyond-compare"
 #
@@ -129,7 +130,7 @@ brew "graphviz"
 brew "htop"
 brew "hub"
 brew "hugo"
-brew "imagemagick@6", link: true
+#brew "imagemagick@6", link: true
 brew "jq"
 brew "libidn"
 brew "libmikmod"
@@ -165,6 +166,6 @@ brew "unison"
 # brew "rsync"
 brew "awk"
 brew "ed"
-cask "android-platform-tools"
-cask "android-sdk"
+#cask "android-platform-tools"
+#cask "android-sdk"
 brew "aria2"
