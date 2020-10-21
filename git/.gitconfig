@@ -16,14 +16,14 @@
 [diff]
 	algorithm = patience
 	colorMoved = zebra
-	tool = p4merge
+	tool = bc4
 [push]
 	default = current
 [pull]
 	rebase = true
 [merge]
 	ff = only
-	tool = p4merge
+	tool = bc4
 [commit]
 	verbose = true
 	template = ~/.gitmessage

@@ -14,6 +14,8 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH="$PATH:$HOME/Projects/flutter/bin"
+export JAVA_HOME=/usr/local/Cellar/openjdk/14.0.1
+export PATH="$HOME/.npm-global/bin:$PATH"
 
 [ -s "$ZSH/oh-my-zsh.sh" ] && . "$ZSH/oh-my-zsh.sh"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
@@ -91,3 +93,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# thefuck
+eval $(thefuck --alias)
