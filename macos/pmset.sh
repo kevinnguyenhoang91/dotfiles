@@ -11,7 +11,7 @@ sudo pmset -b ttyskeepawake 0
 sudo pmset -b highstandbythreshold 50
 sudo pmset -b powernap 0
 sudo pmset -b gpuswitch 2
-sudo pmset -b hibernatefile var/vm/sleepimage
+sudo pmset -b hibernatefile /var/vm/sleepimage
 sudo pmset -b hibernatemode 3
 sudo pmset -b displaysleep 3
 sudo pmset -b sleep 5
@@ -31,7 +31,7 @@ sudo pmset -a ttyskeepawake 0
 sudo pmset -a hibernatemode 3
 sudo pmset -a powernap 0
 sudo pmset -a gpuswitch 2
-sudo pmset -a hibernatefile var/vm/sleepimage
+sudo pmset -a hibernatefile /var/vm/sleepimage
 sudo pmset -a highstandbythreshold 50
 sudo pmset -a womp 0
 sudo pmset -a displaysleep 15
