@@ -4,10 +4,10 @@
 defaults write com.apple.Dock size-immutable -bool no; killall Dock
 
 # Remove the auto-hiding Dock delay
-defaults write com.apple.Dock autohide-delay -float 0.2
+defaults write com.apple.Dock autohide-delay -float 0.5
 
 # Remove the animation when hiding/showing the Dock
-defaults write com.apple.Dock autohide-time-modifier -float 0.2
+defaults write com.apple.Dock autohide-time-modifier -float 0.5
 
 # Set the icon size of Dock items
 defaults write com.apple.Dock tilesize -int 48
@@ -16,8 +16,8 @@ defaults write com.apple.Dock tilesize -int 48
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1 # normal minimum is 2 (30 ms)
-defaults write NSGlobalDomain InitialKeyRepeat -int 13 # normal minimum is 15 (225 ms)
+defaults write NSGlobalDomain KeyRepeat -int 2 # normal minimum is 2 (30 ms)
+defaults write NSGlobalDomain InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
 
 # Disable shadow in screenshots
 defaults write com.apple.screencapture disable-shadow -bool false
