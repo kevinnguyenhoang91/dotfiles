@@ -1,0 +1,113 @@
+.DS_Store
+.DS_Store?
+*.sw[nop]
+.Trashes
+.bundle
+.byebug_history
+.env
+tags
+tags.lock
+tags.temp
+!tags/
+tmp/**/*
+!tmp/cache/.keep
+*.pyc
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.log
+*.sql
+*.sqlite
+# OSX       taken from: https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+# ----------------------------------------------------------------------------------------------
+.DS_Store
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+Icon?
+# Tags      taken from: https://github.com/github/gitignore/blob/master/Global/Tags.gitignore
+# ----------------------------------------------------------------------------------------------
+# Ignore tags created by etags, ctags, gtags (GNU global) and cscope
+TAGS
+!TAGS/
+tags
+tags.lock
+tags.temp
+!tags/
+.tags
+.tags1
+gtags.files
+GTAGS
+GRTAGS
+GPATH
+cscope.files
+cscope.out
+cscope.in.out
+cscope.po.out
+# Vim       taken from: https://github.com/github/gitignore/blob/master/Global/vim.gitignore
+# ----------------------------------------------------------------------------------------------
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+# SASS
+# ----------------------------------------------------------------------------------------------
+.sass-cache
+# Python
+# ----------------------------------------------------------------------------------------------
+*.pyc
+# Bazel
+# ----------------------------------------------------------------------------------------------
+bazel-*
+tulsigen-*
+tulsi-workspace
+_idx_*
+# iOS - Xcode
+# ----------------------------------------------------------------------------------------------
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.moved-aside
+*.xcuserstate
+Carthage/Checkouts
+Carthage/Build
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+# Misc.
+# ----------------------------------------------------------------------------------------------
+*.sw[nop]
+.bundle
+.byebug_history
+.env
+db/*.sqlite3
+*.log
+rerun.txt
+tmp/**/*
+!tmp/cache/.keep
+nohup.out
+.idea
+.history
+.vscode/bookmarks.json
