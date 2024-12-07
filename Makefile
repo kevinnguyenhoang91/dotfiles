@@ -3,8 +3,8 @@ all: stow
 
 .PHONY: stow
 stow:
-	@stow -t ~ sample
+	@stow -t ~ tmux gitmux
 
 .PHONY: unstow
 unstow:
-	@stow -D -t ~ sample
+	@stow -D -t ~ tmux gitmux
