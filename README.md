@@ -1,4 +1,4 @@
-# **NAME_PLACEHOLDER** Dotfiles
+# **kevinnguyenhoang91's** Dotfiles
 
 ## Installation
 
