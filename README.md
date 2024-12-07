@@ -1,11 +1,11 @@
-# __NAME_PLACEHOLDER__ Dotfiles
+# **NAME_PLACEHOLDER** Dotfiles
 
 ## Installation
 
 Clone this project at `$HOME`:
 
 ```sh
-git clone https://github.com/kevinnguyenhoang91/__name_placeholder__.git "$HOME/dotfiles"
+git clone https://github.com/kevinnguyenhoang91/dotfiles.git "$HOME/dotfiles"
 cd dotfiles
 ```
 
