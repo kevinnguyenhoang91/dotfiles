@@ -25,7 +25,7 @@ make unstow
 
 ## Acknowledgement
 
-- [huyvohcmc/dotfiles's dotfiles](https://github.com/huyvohcmc/dotfiles)
+- [huyvohcmc’s dotfiles](https://github.com/huyvohcmc/dotfiles)
 
 ## License
 
