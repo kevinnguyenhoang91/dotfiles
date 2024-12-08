@@ -6,7 +6,7 @@ if ! command -v brew &> /dev/null; then
 fi
 
 # Install Homebrew packages
-cd brew && brew bundle 
+cd brew && brew bundle
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
