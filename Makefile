@@ -20,6 +20,9 @@ stow:
 	mkdir -p ~/.config/k9s
 	@stow -t ~/.config/k9s k9s
 
+	mkdir -p ~/Library/Application\ Support/lazygit
+	@stow -t ~/Library/Application\ Support/lazygit lazygit
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig p10k tmuxp
