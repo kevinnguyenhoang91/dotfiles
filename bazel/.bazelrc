@@ -1,0 +1,9 @@
+build \
+    --xcode_version=15.3 \
+    --ios_simulator_device='iPhone 15 Pro Max' \
+    --ios_simulator_version=17.4 \
+    --action_env=TEST_RUNNER_OS=17.4 \
+    --jobs=6 \
+    --disk_cache=~/.bazel_disk_cache \
+    --repository_cache=~/.bazel_repo_cache
+
