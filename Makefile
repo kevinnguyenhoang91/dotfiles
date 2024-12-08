@@ -27,6 +27,7 @@ unstow:
 	@stow -D -t ~/.config/nvim nvim
 	@stow -D -t ~/.ssh ssh
 	@stow -D -t ~/.ctags.d ctags
+	@stow -D -t ~/Library/Application\ Support/lazygit lazygit
 
 .PHONY: setup
 setup:
