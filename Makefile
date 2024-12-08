@@ -24,3 +24,7 @@ unstow:
 	@stow -D -t ~/.config/nvim nvim
 	@stow -D -t ~/.ssh ssh
 	@stow -D -t ~/.ctags.d ctags
+
+.PHONY: setup
+setup:
+	@./setup.sh
