@@ -16,4 +16,3 @@ unstow:
 	@stow -D -t ~ tmux gitmux git
 	@stow -D -t ~/.config/alacritty alacritty
 	@stow -D -t ~/.config/nvim nvim
-	@stow -D -t ~/.config/nvim_huyvohcmc nvim_huyvohcmc
