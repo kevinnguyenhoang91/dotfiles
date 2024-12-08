@@ -1,0 +1,9 @@
+tap "homebrew/bundle"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Platform built on V8 to build network applications
+brew "node", link: false
+# Platform built on V8 to build network applications
+brew "node@20", link: true
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
