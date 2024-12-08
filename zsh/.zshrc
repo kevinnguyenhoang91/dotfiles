@@ -1,6 +1,6 @@
 ZSH_THEME="random"
 
-plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting )
+plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases 1password argocd battery bazel autoenv branch brew colorize command-not-found direnv fzf kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode yarn zsh-navigation-tools encode64)
 
 export ZSH=~/.oh-my-zsh
 export TERM='xterm-256color'
