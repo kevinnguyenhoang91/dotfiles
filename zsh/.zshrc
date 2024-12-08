@@ -1,6 +1,6 @@
 ZSH_THEME="random"
 
-plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting )
 
 export ZSH=~/.oh-my-zsh
 export TERM='xterm-256color'

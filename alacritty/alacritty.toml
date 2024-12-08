@@ -94,7 +94,6 @@ key = "Key0"
 mods = "Alt"
 
 [window]
-decorations = "None"
 dynamic_padding = true
 startup_mode = "Maximized"
 option_as_alt = "Both"
@@ -107,7 +106,7 @@ style = "Block"
 unfocused_hollow = true
 
 [mouse]
-hide_when_typing = true
+hide_when_typing = false
 
 [terminal.shell]
 args = ["--login"]
