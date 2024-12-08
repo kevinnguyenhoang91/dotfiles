@@ -1,0 +1,5 @@
+[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Sourcekit-LSP
+export SWIFT_SDK="${HOME}/swift"
+export PATH="${SWIFT_SDK}/usr/bin:${PATH}"
