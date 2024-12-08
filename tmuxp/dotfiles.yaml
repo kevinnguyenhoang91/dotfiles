@@ -1,0 +1,31 @@
+session_name: dotfiles
+windows:
+- layout: dc01,240x62,0,0,22
+  options: {}
+  panes:
+  - focus: 'true'
+    shell_command: nvim
+  start_directory: /Volumes/DATA/Projects/kevinnguyenhoang91_dotfiles
+  window_name: nvim/macos_dotfiles
+- layout: dc02,240x62,0,0,23
+  options: {}
+  panes:
+  - focus: 'true'
+    shell_command: nvim
+  start_directory: /Volumes/DATA/Projects/dotfiles.worktrees/devcontainer_dotfiles
+  window_name: nvim/devcontainer_dotfiles
+- layout: dc03,240x62,0,0,24
+  options: {}
+  panes:
+  - focus: 'true'
+    shell_command: nvim
+  start_directory: /Volumes/DATA/Projects/dotfiles.worktrees/linux_dotfiles
+  window_name: nvim/linux_dotfiles
+- focus: 'true'
+  layout: dc04,240x62,0,0,25
+  options: {}
+  panes:
+  - focus: 'true'
+    shell_command: nvim
+  start_directory: /Volumes/DATA/Projects/dotfiles.worktrees/master_dotfiles
+  window_name: nvim/master_dotfiles

@@ -20,6 +20,9 @@ stow:
 	mkdir -p ~/.config/k9s
 	@stow -t ~/.config/k9s k9s
 
+	mkdir -p ~/Library/Application\ Support/lazygit
+	@stow -t ~/Library/Application\ Support/lazygit lazygit
+
 	mkdir -p ~/.agent-os
 	@stow -t ~/.agent-os agent-os
 
