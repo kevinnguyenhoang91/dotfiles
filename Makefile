@@ -17,6 +17,9 @@ stow:
 	mkdir -p ~/.ctags.d
 	@stow -t ~/.ctags.d ctags
 
+	mkdir -p ~/Library/Application\ Support/lazygit
+	@stow -t ~/Library/Application\ Support/lazygit lazygit
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig
