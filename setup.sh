@@ -19,13 +19,13 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 mkdir -p ~/.zsh
 git clone https://github.com/catppuccin/zsh-syntax-highlighting.git
-cp -RLf zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh ~/.zsh/
+cp -RLf zsh-syntax-highlighting/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh ~/.zsh/
 rm -rf zsh-syntax-highlighting
 
 # Xcode
 git clone https://github.com/catppuccin/xcode.git
 mkdir -p ~/Library/Developer/Xcode/UserData/FontAndColorThemes
-cp -RLf xcode/dist/Catppuccin\ Frappe.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes
+cp -RLf xcode/themes/Catppuccin\ Frappé.xccolortheme ~/Library/Developer/Xcode/UserData/FontAndColorThemes/
 rm -rf xcode
 
 # GPG
