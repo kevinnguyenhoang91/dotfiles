@@ -32,6 +32,9 @@ rm -rf xcode
 echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
 killall gpg-agent
 
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 # Free the Dock
 defaults write com.apple.Dock size-immutable -bool no
 
