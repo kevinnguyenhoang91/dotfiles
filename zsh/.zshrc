@@ -100,3 +100,8 @@ if [[ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]]; then . "${HOME}/google-clou
 
 # The next line enables shell command completion for gcloud.
 if [[ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f ${HOME}/.dart-cli-completion/zsh-config.zsh ]] && . ${HOME}/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
