@@ -9,6 +9,8 @@ git clone https://github.com/kevinnguyenhoang91/dotfiles.git "$HOME/dotfiles"
 cd dotfiles
 ```
 
+Install `stow` with your package manager or download it from the [GNU website](https://www.gnu.org/software/stow/).
+
 Create a backup of your existing dotfiles, remove them in `$HOME` and install the new ones using [stow](https://www.gnu.org/software/stow/):
 
 ```sh
