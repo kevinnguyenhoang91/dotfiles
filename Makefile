@@ -40,9 +40,6 @@ stow:
 	mkdir -p ~/.config/nvim
 	@stow -t ~/.config/nvim nvim
 
-	mkdir -p ~/.ssh
-	@stow -t ~/.ssh ssh
-
 	mkdir -p ~/.ctags.d
 	@stow -t ~/.ctags.d ctags
 
