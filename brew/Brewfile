@@ -291,6 +291,8 @@ cask "google-chrome"
 cask "google-cloud-sdk"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Open-source keystroke visualiser
+cask "keycastr"
 # Free and open-source media player
 cask "kodi"
 # Kubernetes IDE
