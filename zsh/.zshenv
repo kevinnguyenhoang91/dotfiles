@@ -14,7 +14,7 @@ export PATH="${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
 [ -f ~/.secrets ] && source ~/.secrets
 
 # Asdf
-. ${HOME}/.asdf/asdf.sh
+[[ -s "${HOME}/.asdf/asdf.sh" ]] && . ${HOME}/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # GOLANG
