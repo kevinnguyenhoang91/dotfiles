@@ -1,10 +1,11 @@
 ZSH_THEME="random"
+
+plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting)
+
 export ZSH=~/.oh-my-zsh
 export TERM='xterm-256color'
 [[ -s "${ZSH}/oh-my-zsh.sh" ]] && . "${ZSH}/oh-my-zsh.sh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=121'
-
-plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting)
 
 # History settings
 export HISTFILE=${HOME}/.zsh_history
