@@ -29,6 +29,9 @@ stow:
 	mkdir -p ~/.config/lazygit
 	@stow -t ~/.config/lazygit lazygit
 
+	mkdir -p ~/.config/lazygit
+	@stow -t ~/.config/lazygit lazygit
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig p10k
@@ -38,6 +41,7 @@ unstow:
 	@stow -D -t ~/.ctags.d ctags
 	@stow -D -t ~/.tmuxp tmuxp
 	@stow -D -t ~/.config/k9s k9s
+	@stow -D -t ~/.config/lazygit lazygit
 	@stow -D -t ~/.config/lazygit lazygit
 	@stow -D -t ~/.config/lazygit lazygit
 
