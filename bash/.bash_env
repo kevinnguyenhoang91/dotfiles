@@ -1,0 +1,2 @@
+
+[[ -s "${HOME}/.zshenv" ]] && . "${HOME}/.zshenv"
