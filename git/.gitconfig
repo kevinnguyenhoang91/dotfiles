@@ -17,7 +17,6 @@
 [commit]
 	verbose = true
 	template = ~/.gitmessage
-	gpgsign = true
 [diff]
 	renames = copies
 	algorithm = patience
@@ -46,8 +45,6 @@
 	autostash = true
 [init]
 	defaultBranch = master
-[gpg]
-	program = gpg
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
