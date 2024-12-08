@@ -20,6 +20,8 @@ brew "aria2"
 brew "aspell"
 # Automatic configure script builder
 brew "autoconf"
+# Per-project, per-directory shell environments
+brew "autoenv"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Text processing scripting language
