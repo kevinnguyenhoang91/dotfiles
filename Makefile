@@ -17,6 +17,9 @@ stow:
 	mkdir -p ~/.ctags.d
 	@stow -t ~/.ctags.d ctags
 
+	mkdir -p ~/.config/lazygit
+	@stow -t ~/.config/lazygit lazygit
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig
@@ -24,6 +27,7 @@ unstow:
 	@stow -D -t ~/.config/nvim nvim
 	@stow -D -t ~/.ssh ssh
 	@stow -D -t ~/.ctags.d ctags
+	@stow -D -t ~/.config/lazygit lazygit
 
 .PHONY: setup
 setup:
