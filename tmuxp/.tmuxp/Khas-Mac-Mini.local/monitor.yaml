@@ -1,0 +1,32 @@
+session_name: monitor
+start_directory: /Users/khanh
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
+windows:
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'khas-mac-mini.local (btop)'
+          - btop
+      - blank
+    start_directory: ./
+    window_name: khas-mac-mini.local
+  - focus: "true"
+    layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'rpi4.local (ssh/btop)'
+          - ssh khanh@rpi4.local -t btop
+      - shell_command:
+          - printf '\033]2;%s\033\\' 'rpi4.local (ssh)'
+          - ssh khanh@rpi4.local
+    start_directory: ./
+    window_name: rpi4.local

@@ -1,0 +1,58 @@
+session_name: frontend
+start_directory: /Volumes/DATA/Projects_GHN
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
+windows:
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./app-driver
+    window_name: app-driver
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./employeeapp
+    window_name: employeeapp
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'employeeapp (devcontainer)'
+          - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+    start_directory: ./app-driver
+    window_name: app-driver (devcontainer)
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'app-driver (devcontainer)'
+          - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+    start_directory: ./employeeapp
+    window_name: employeeapp (devcontainer)
+  - focus: "true"
+    layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./singleapp-web-download
+    window_name: singleapp-web-download
