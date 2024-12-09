@@ -90,6 +90,8 @@ brew "gh"
 brew "libidn"
 # Distributed revision control system
 brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
 # Extensions to follow Vincent Driessen's branching model
 brew "git-flow"
 # Git extension for versioning large files
