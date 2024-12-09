@@ -1,0 +1,31 @@
+session_name: backend
+windows:
+  - layout: b79f,240x62,0,0,2
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: nvim -c 'lua require("persistence").load()'
+    start_directory: /Volumes/DATA/Projects_GHN/unify-identity-service
+    window_name: nvim/unify-identity-service
+  - focus: "true"
+    layout: b7a0,240x62,0,0,3
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: nvim -c 'lua require("persistence").load()'
+    start_directory: /Volumes/DATA/Projects_GHN/gobase-library
+    window_name: nvim/gobase-library
+  - layout: b7a1,240x62,0,0,4
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: nvim -c 'lua require("persistence").load()'
+    start_directory: /Volumes/DATA/Projects_GHN/consumer-service
+    window_name: nvim/consumer-service
+  - layout: b7a2,240x62,0,0,5
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: nvim -c 'lua require("persistence").load()'
+    start_directory: /Volumes/DATA/Projects_GHN/chatbot-service
+    window_name: nvim/chatbot-service
