@@ -71,3 +71,5 @@ if command -v thefuck &> /dev/null; then
   eval "$(thefuck --alias)"
 fi
 
+# tmuxp
+export DISABLE_AUTO_TITLE='true'
