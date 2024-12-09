@@ -220,6 +220,8 @@ brew "tig"
 brew "tldr"
 # Terminal multiplexer
 brew "tmux"
+# Tmux session manager. Built on libtmux
+brew "tmuxp"
 # Auto-hinter for TrueType fonts
 brew "ttfautohint"
 # File synchronization tool
