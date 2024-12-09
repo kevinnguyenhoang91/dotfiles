@@ -45,15 +45,28 @@ zstyle ':completion:*' menu select
 [ -f ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh ] && source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 [ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
 
+tmuxpp() {
+  # Assumes all configs exist in directories named ~/.tmuxp/*.yaml
+  local config=$(fd --glob '*.yaml' ~/.tmuxp | fzf --prompt="tmuxp Saved Sessions > " --height=~50% --layout=reverse --border --exit-0)
+ 
+  # If I exit fzf without selecting a config, don't run tmuxp
+  [[ -z $config ]] && echo "No config selected" && return
+  
+  if command -v tmuxp &> /dev/null; then
+    tmuxp load -dy $config
+  fi
+}
 # tmux {{{
 connect_to_most_recent_tmux_session() {
+if command -v tmux &> /dev/null; then
   if _not_in_tmux; then
     if _any_tmux_sessions; then
       tmux attach -t "$(_most_recent_tmux_session)"
     else
-      tmux
+      tmuxpp
     fi
   fi
+fi
 }
 
 # Returns the name of the most recent tmux session, sorted by time the session
