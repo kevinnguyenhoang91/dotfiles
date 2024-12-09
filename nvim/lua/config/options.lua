@@ -12,3 +12,7 @@ vim.opt.incsearch = true
 vim.opt.cursorline = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shell = "/bin/zsh"
+
+-- Improve diff experience
+vim.opt.diffopt:append("algorithm:patience")
+vim.opt.diffopt:append("indent-heuristic")

@@ -7,6 +7,7 @@
 	tree = log --graph --decorate --pretty=format:'%C(yellow)%h %Cred%cr %Cblue(%an)%C(cyan)%d%Creset %s' --abbrev-commit --all
 	xclean = clean -fdx -e .history -e .bazelrc.local -e .provisioning_profile -e config.private.json
 [core]
+  pager = delta
 	editor = $EDITOR
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
@@ -20,12 +21,16 @@
 [diff]
 	renames = copies
 	algorithm = patience
+  tool = nvimdiff
 	colorMoved = zebra
 [include]
 	path = ~/.gitconfig.local
 [merge]
+  tool = nvimdiff
 	ff = true
 	conflictstyle = diff3
+[mergetool "nvimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [push]
 	default = current
 	followTags = true
@@ -50,3 +55,12 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[delta]
+  navigate = true
+  light = false
+  side-by-side = true
+  line-numbers = true
+  syntax-theme = gruvbox-dark
+  file-style = bold yellow ul
+  file-decoration-style = none
+  hunk-header-style = file line-number syntax
