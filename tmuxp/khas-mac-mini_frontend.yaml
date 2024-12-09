@@ -1,0 +1,38 @@
+session_name: frontend
+windows:
+  - layout: dc05,240x62,0,0,26
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: nvim -c 'lua require("persistence").load()'
+    start_directory: /Volumes/DATA/Projects_GHN/app-driver
+    window_name: nvim/app-driver
+  - layout: dc06,240x62,0,0,27
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: nvim -c 'lua require("persistence").load()'
+    start_directory: /Volumes/DATA/Projects_GHN/employeeapp
+    window_name: nvim/employeeapp
+  - layout: dc07,240x62,0,0,28
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: zsh
+    start_directory: /Volumes/DATA/Projects_GHN/app-driver
+    window_name: devcontainer/app-driver
+  - layout: dc08,240x62,0,0,29
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: zsh
+    start_directory: /Volumes/DATA/Projects_GHN/employeeapp
+    window_name: devcontainer/employeeapp
+  - focus: "true"
+    layout: 5c00,240x62,0,0,30
+    options: {}
+    panes:
+      - focus: "true"
+        shell_command: nvim -c 'lua require("persistence").load()'
+    start_directory: /Volumes/DATA/Projects_GHN/singleapp-web-download
+    window_name: nvim/singleapp-web-download
