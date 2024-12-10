@@ -23,4 +23,4 @@ rm -rf zsh-syntax-highlighting
 # Nerd Fonts
 mkdir -p "${HOME}/.local/share/fonts"
 curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
-getnf -i 'Noto,FiraMono,FiraCode'
+getnf -i 'Noto,FiraMono,FiraCode,Meslo'
