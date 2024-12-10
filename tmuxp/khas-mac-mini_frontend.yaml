@@ -6,28 +6,28 @@ windows:
       - focus: "true"
         shell_command: nvim -c 'lua require("persistence").load()'
     start_directory: /Volumes/DATA/Projects_GHN/app-driver
-    window_name: nvim/app-driver
+    window_name: app-driver
   - layout: dc06,240x62,0,0,27
     options: {}
     panes:
       - focus: "true"
         shell_command: nvim -c 'lua require("persistence").load()'
     start_directory: /Volumes/DATA/Projects_GHN/employeeapp
-    window_name: nvim/employeeapp
+    window_name: employeeapp
   - layout: dc07,240x62,0,0,28
     options: {}
     panes:
       - focus: "true"
-        shell_command: zsh
+        shell_command: clear && devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
     start_directory: /Volumes/DATA/Projects_GHN/app-driver
-    window_name: devcontainer/app-driver
+    window_name: app-driver (devcontainer)
   - layout: dc08,240x62,0,0,29
     options: {}
     panes:
       - focus: "true"
-        shell_command: zsh
+        shell_command: clear && devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
     start_directory: /Volumes/DATA/Projects_GHN/employeeapp
-    window_name: devcontainer/employeeapp
+    window_name: employeeapp (devcontainer)
   - focus: "true"
     layout: 5c00,240x62,0,0,30
     options: {}
@@ -35,4 +35,4 @@ windows:
       - focus: "true"
         shell_command: nvim -c 'lua require("persistence").load()'
     start_directory: /Volumes/DATA/Projects_GHN/singleapp-web-download
-    window_name: nvim/singleapp-web-download
+    window_name: singleapp-web-download
