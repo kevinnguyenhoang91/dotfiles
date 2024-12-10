@@ -22,6 +22,8 @@ git clone https://github.com/catppuccin/zsh-syntax-highlighting.git
 cp -RLf zsh-syntax-highlighting/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh ~/.zsh/
 rm -rf zsh-syntax-highlighting
 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 # Xcode
 git clone https://github.com/catppuccin/xcode.git
 mkdir -p ~/Library/Developer/Xcode/UserData/FontAndColorThemes
