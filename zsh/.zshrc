@@ -109,10 +109,10 @@ fi
 # }}}
 
 # NVM
-[[ -s "${NVM_DIR}/bash_completion" ]] && \. "${NVM_DIR}/bash_completion" # This loads nvm bash_completion
+[[ -s "${NVM_DIR}/bash_completion" ]] && . "${NVM_DIR}/bash_completion" # This loads nvm bash_completion
 
 # Platform specific
-[[ -s "${HOME}/.zplatform" ]] && \. "${HOME}/.zplatform"
+[[ -s "${HOME}/.zplatform" ]] && . "${HOME}/.zplatform"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [[ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
@@ -136,4 +136,4 @@ if command -v thefuck &> /dev/null; then
 fi
 
 # autoenv
-source /usr/local/opt/autoenv/activate.sh
+[[ -s "/usr/local/opt/autoenv/activate.sh" ]] && . /usr/local/opt/autoenv/activate.sh
