@@ -36,8 +36,8 @@ unstow:
 	@stow -D -t ~/.config/nvim nvim
 	@stow -D -t ~/.ssh ssh
 	@stow -D -t ~/.ctags.d ctags
-	@stow -D -t ~/.config/k9s k9s
 	@stow -D -t ~/Library/Application\ Support/lazygit lazygit
+	@stow -D -t ~/Library/Application\ Support/k9s k9s
 	@stow -D -t ~/.agent-os agent-os
 	@stow -D -t ~/.config/opencode opencode
 
