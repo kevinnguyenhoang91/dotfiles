@@ -3,7 +3,7 @@ all: stow
 
 .PHONY: stow
 stow:
-	@stow -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig
+	@stow -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig p10k
 
 	mkdir -p ~/.config/alacritty
 	@stow -t ~/.config/alacritty alacritty
@@ -22,7 +22,7 @@ stow:
 
 .PHONY: unstow
 unstow:
-	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig
+	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig p10k
 	@stow -D -t ~/.config/alacritty alacritty
 	@stow -D -t ~/.config/nvim nvim
 	@stow -D -t ~/.ssh ssh

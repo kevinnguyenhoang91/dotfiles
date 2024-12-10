@@ -1,4 +1,11 @@
-ZSH_THEME="random"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases 1password argocd battery bazel autoenv branch brew colorize command-not-found direnv fzf kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode yarn zsh-navigation-tools encode64)
 
@@ -137,3 +144,6 @@ fi
 
 # autoenv
 [[ -s "/usr/local/opt/autoenv/activate.sh" ]] && . /usr/local/opt/autoenv/activate.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
