@@ -40,7 +40,7 @@ TERM = "xterm-256color"
 size = 14.0
 
 [font.normal]
-family = "MesloLGS NF"
+family = "FiraMono Nerd Font"
 style = "Regular"
 
 [[keyboard.bindings]]
