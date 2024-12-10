@@ -1,10 +1,18 @@
 session_name: music
+start_directory: /Users/khanh
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
 windows:
   - focus: "true"
-    layout: b79e,240x62,0,0,1
-    options: {}
+    layout: main-horizontal
+    options:
+      main-pane-height: 67%
     panes:
       - focus: "true"
-        shell_command: /usr/local/bin/yt
-    start_directory: /Volumes/DATA/Projects/kevinnguyenhoang91_dotfiles
+        shell_command:
+          - printf '\033]2;%s\033\\' 'yewtube'
+          - /usr/local/bin/yt
+    start_directory: ./
     window_name: yewtube

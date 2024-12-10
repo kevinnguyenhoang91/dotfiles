@@ -1,38 +1,58 @@
 session_name: frontend
+start_directory: /Volumes/DATA/Projects_GHN
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
 windows:
-  - layout: dc05,240x62,0,0,26
-    options: {}
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
     panes:
       - focus: "true"
-        shell_command: nvim -c 'lua require("persistence").load()'
-    start_directory: /Volumes/DATA/Projects_GHN/app-driver
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./app-driver
     window_name: app-driver
-  - layout: dc06,240x62,0,0,27
-    options: {}
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
     panes:
       - focus: "true"
-        shell_command: nvim -c 'lua require("persistence").load()'
-    start_directory: /Volumes/DATA/Projects_GHN/employeeapp
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./employeeapp
     window_name: employeeapp
-  - layout: dc07,240x62,0,0,28
-    options: {}
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
     panes:
       - focus: "true"
-        shell_command: clear && devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
-    start_directory: /Volumes/DATA/Projects_GHN/app-driver
+        shell_command:
+          - printf '\033]2;%s\033\\' 'employeeapp (devcontainer)'
+          - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+    start_directory: ./app-driver
     window_name: app-driver (devcontainer)
-  - layout: dc08,240x62,0,0,29
-    options: {}
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
     panes:
       - focus: "true"
-        shell_command: clear && devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
-    start_directory: /Volumes/DATA/Projects_GHN/employeeapp
+        shell_command:
+          - printf '\033]2;%s\033\\' 'app-driver (devcontainer)'
+          - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+    start_directory: ./employeeapp
     window_name: employeeapp (devcontainer)
   - focus: "true"
-    layout: 5c00,240x62,0,0,30
-    options: {}
+    layout: main-horizontal
+    options:
+      main-pane-height: 67%
     panes:
       - focus: "true"
-        shell_command: nvim -c 'lua require("persistence").load()'
-    start_directory: /Volumes/DATA/Projects_GHN/singleapp-web-download
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./singleapp-web-download
     window_name: singleapp-web-download
