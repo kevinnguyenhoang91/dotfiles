@@ -20,6 +20,8 @@ git clone https://github.com/catppuccin/zsh-syntax-highlighting.git
 cp -RLf zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh ~/.zsh/
 rm -rf zsh-syntax-highlighting
 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 # Nerd Fonts
 mkdir -p "${HOME}/.local/share/fonts"
 curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
