@@ -37,7 +37,7 @@ foreground = "#c0caf5"
 TERM = "xterm-256color"
 
 [font]
-size = 14.0
+size = 13.0
 
 [font.normal]
 family = "FiraMono Nerd Font"
