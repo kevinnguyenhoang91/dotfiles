@@ -7,7 +7,7 @@ fi
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases 1password argocd battery bazel autoenv branch brew colorize command-not-found direnv fzf kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode yarn zsh-navigation-tools encode64)
+plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases 1password argocd battery bazel autoenv branch colorize command-not-found direnv fzf kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode yarn zsh-navigation-tools encode64)
 
 export ZSH=~/.oh-my-zsh
 export TERM='xterm-256color'
@@ -74,8 +74,8 @@ if command -v tmux &> /dev/null; then
   if _not_in_tmux; then
     if _any_tmux_sessions; then
       tmux attach -t "$(_most_recent_tmux_session)"
-    else
-      tmuxpp
+    # else
+      # tmuxpp
     fi
   fi
 fi
