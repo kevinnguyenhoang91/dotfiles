@@ -45,17 +45,22 @@ zstyle ':completion:*' menu select
 [ -f ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh ] && source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 [ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
 
+# tmuxp {{{
 tmuxpp() {
   # Assumes all configs exist in directories named ~/.tmuxp/*.yaml
-  local config=$(fd --glob '*.yaml' ~/.tmuxp | fzf --prompt="tmuxp Saved Sessions > " --height=~50% --layout=reverse --border --exit-0)
- 
+  local config=$(fd --glob '*.yaml' ~/.tmuxp | fzf --multi --prompt="tmuxp Saved Sessions > " --height=~50% --layout=reverse --border --exit-0 --print0)
+
   # If I exit fzf without selecting a config, don't run tmuxp
   [[ -z $config ]] && echo "No config selected" && return
-  
+  config=$(echo -n "$config" | tr '\0' ' ')
+  config=$(echo -n "$config" | sed 's/[[:space:]]*$//')
   if command -v tmuxp &> /dev/null; then
-    tmuxp load -dy $config
+    config_array=(${(s: :)config})
+    tmuxp load -dy "${config_array[@]}"
   fi
 }
+# }}}
+
 # tmux {{{
 connect_to_most_recent_tmux_session() {
 if command -v tmux &> /dev/null; then
