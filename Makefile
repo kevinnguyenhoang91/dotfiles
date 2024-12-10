@@ -17,8 +17,8 @@ stow:
 	mkdir -p ~/.ctags.d
 	@stow -t ~/.ctags.d ctags
 
-	mkdir -p ~/.config/k9s
-	@stow -t ~/.config/k9s k9s
+	mkdir -p ~/Library/Application\ Support/k9s
+	@stow -t ~/Library/Application\ Support/k9s k9s
 
 	mkdir -p ~/Library/Application\ Support/lazygit
 	@stow -t ~/Library/Application\ Support/lazygit lazygit
