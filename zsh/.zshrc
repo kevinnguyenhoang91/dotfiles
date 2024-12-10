@@ -119,3 +119,16 @@ if [[ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]]; then . "$HOME/google-
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f ${HOME}/.dart-cli-completion/zsh-config.zsh ]] && . ${HOME}/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+
+# direnv
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# thefuck
+if command -v thefuck &> /dev/null; then
+  eval "$(thefuck --alias)"
+fi
+
+# autoenv
+source /usr/local/opt/autoenv/activate.sh

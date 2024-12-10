@@ -61,15 +61,5 @@ export FLUTTER_VERSION="3.3"
 export PATH="${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${PATH}"
 export PATH="${HOME}/.pub-cache/bin:${PATH}"
 
-# direnv
-if command -v direnv &> /dev/null; then
-  eval "$(direnv hook zsh)"
-fi
-
-# thefuck
-if command -v thefuck &> /dev/null; then
-  eval "$(thefuck --alias)"
-fi
-
 # tmuxp
 export DISABLE_AUTO_TITLE='true'
