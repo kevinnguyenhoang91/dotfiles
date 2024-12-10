@@ -10,32 +10,32 @@ windows:
       - k9s --logoless --context gke_ghn-platforms_asia-southeast1_ghn-platforms-prod -A -c "argoproj.io/v1alpha1/applications /fe-mobile-platform" --headless
       - k9s --logoless --context fpt-k8s-stag-devops -A -c "dp" --headless
     start_directory: /Volumes/DATA/Projects_GHN/ghn-iac
-    window_name: nvim/ghn-iac
+    window_name: ghn-iac
   - layout: 5bff,240x62,0,0,10
     options: {}
     panes:
       - focus: "true"
         shell_command: nvim -c 'lua require("persistence").load()'
     start_directory: /Volumes/DATA/Projects_GHN/gitlab-ci-image
-    window_name: nvim/gitlab-ci-image
+    window_name: gitlab-ci-image
   - layout: 5c00,240x62,0,0,11
     options: {}
     panes:
       - focus: "true"
         shell_command: nvim -c 'lua require("persistence").load()'
     start_directory: /Volumes/DATA/Projects_GHN/gitlab-cicd
-    window_name: nvim/devops-gitlab-cicd
+    window_name: devops-gitlab-cicd
   - layout: 5c01,240x62,0,0,12
     options: {}
     panes:
       - focus: "true"
         shell_command: nvim -c 'lua require("persistence").load()'
     start_directory: /Volumes/DATA/Projects_GHN/platform-gitlab-cicd
-    window_name: nvim/platform-gitlab-cicd
+    window_name: platform-gitlab-cicd
   - layout: 5c02,240x62,0,0,13
     options: {}
     panes:
       - focus: "true"
-        shell_command: zsh
+        shell_command: clear && devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
     start_directory: /Volumes/DATA/Projects_GHN/ghn-iac
-    window_name: devcontainer/ghn-iac
+    window_name: ghn-iac (devcontainer)
