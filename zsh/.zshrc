@@ -54,8 +54,9 @@ zstyle ':completion:*' menu select
 
 # tmuxp {{{
 tmuxpp() {
+  local subdir=$1
   # Assumes all configs exist in directories named ~/.tmuxp/*.yaml
-  local config=$(fd --glob '*.yaml' ~/.tmuxp | fzf --multi --prompt="tmuxp Saved Sessions > " --height=~50% --layout=reverse --border --exit-0 --print0)
+  local config=$(fd --glob '*.yaml' ~/.tmuxp/${subdir} | fzf --multi --prompt="tmuxp Saved Sessions > " --height=~50% --layout=reverse --border --exit-0 --print0)
 
   # If I exit fzf without selecting a config, don't run tmuxp
   [[ -z $config ]] && echo "No config selected" && return
