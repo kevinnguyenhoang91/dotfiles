@@ -11,7 +11,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./unify-identity-service
     window_name: unify-identity-service
@@ -22,7 +21,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./gobase-library
     window_name: gobase-library
@@ -32,7 +30,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./consumer-service
     window_name: consumer-service
@@ -42,7 +39,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./chatbot-service
     window_name: chatbot-service
