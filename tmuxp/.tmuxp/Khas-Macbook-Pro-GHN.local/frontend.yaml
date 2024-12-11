@@ -11,7 +11,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./app-driver
     window_name: app-driver
@@ -21,7 +20,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./employeeapp
     window_name: employeeapp
@@ -31,7 +29,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'employeeapp (devcontainer)'
           - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
     start_directory: ./app-driver
     window_name: app-driver (devcontainer)
@@ -41,7 +38,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'app-driver (devcontainer)'
           - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
     start_directory: ./employeeapp
     window_name: employeeapp (devcontainer)
@@ -52,7 +48,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./singleapp-web-download
     window_name: singleapp-web-download

@@ -11,7 +11,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./kevinnguyenhoang91_dotfiles
     window_name: macos_dotfiles
@@ -22,7 +21,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./dotfiles.worktrees/devcontainer_dotfiles
     window_name: devcontainer_dotfiles
@@ -32,7 +30,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./dotfiles.worktrees/linux_dotfiles
     window_name: linux_dotfiles
@@ -42,7 +39,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./dotfiles.worktrees/master_dotfiles
     window_name: master_dotfiles
