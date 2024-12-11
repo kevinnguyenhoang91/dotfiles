@@ -73,7 +73,7 @@ export PATH="${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${PATH}"
 export PATH="${HOME}/.pub-cache/bin:${PATH}"
 
 # tmuxp
-export DISABLE_AUTO_TITLE='true'
+export DISABLE_AUTO_TITLE='false'
 
 # oh-my-zsh
 [[ -s "${ZSH}/oh-my-zsh.sh" ]] && . "${ZSH}/oh-my-zsh.sh"
