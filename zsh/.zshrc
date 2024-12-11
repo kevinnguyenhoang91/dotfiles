@@ -5,10 +5,74 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Global variables
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases 1password argocd battery bazel branch colorize command-not-found direnv fzf kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode yarn zsh-navigation-tools encode64)
 
 export ZSH=~/.oh-my-zsh
 export TERM='xterm-256color'
+
+# Aliases
+alias v='$EDITOR'
+alias lg='lazygit'
+alias ls='ls -G'
+alias ll='ls -lG'
+alias lsa='ls -lahG'
+
+# gpg
+export GPG_TTY=$(tty)
+
+# Common Paths
+export PATH="${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
+
+# Secrets
+[ -f ~/.secrets ] && source ~/.secrets
+
+# GOLANG
+export GOPATH="${HOME}/go"
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+export PATH="${GOPATH}/bin:${PATH}"
+
+# Rust
+export PATH="${HOME}/.cargo/bin:${PATH}"
+export PATH="/usr/local/opt/rust/bin:${PATH}"
+
+# FZF
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"'
+
+# Ruby
+export GEM_HOME="${HOME}/.gem"
+export PATH="${GEM_HOME}/bin:${PATH}"
+export PATH="${PATH}:${HOME}/.rvm/bin"
+
+# NodeJS
+export NPM_CONFIG_PREFIX="${HOME}/.npm-global"
+export PATH="${NPM_CONFIG_PREFIX}/bin:${PATH}"
+
+# Java
+export PATH="${JAVA_HOME}/bin:${PATH}"
+
+# NVM
+export NVM_DIR="${HOME}/.nvm"
+
+# ripgrep
+export RIPGREP_CONFIG_PATH="${HOME}/.rgrc"
+
+# LANG
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Flutter
+export FVM_HOME="${HOME}/fvm"
+export FLUTTER_VERSION="3.3"
+export PATH="${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${PATH}"
+export PATH="${HOME}/.pub-cache/bin:${PATH}"
+
+# tmuxp
+export DISABLE_AUTO_TITLE='true'
+
+# oh-my-zsh
 [[ -s "${ZSH}/oh-my-zsh.sh" ]] && . "${ZSH}/oh-my-zsh.sh"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=121'
 
@@ -144,73 +208,21 @@ fi
 # autoenv
 [[ -s "/usr/local/opt/autoenv/activate.sh" ]] && . /usr/local/opt/autoenv/activate.sh
 
-# Aliases
-alias v='$EDITOR'
-alias lg='lazygit'
-alias ls='ls -G'
-alias ll='ls -lG'
-alias lsa='ls -lahG'
-
-export GPG_TTY=$(tty)
-
-# PATH
-export PATH="${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
-
-# Secrets
-[ -f ~/.secrets ] && source ~/.secrets
-
 # Asdf
 [[ -s "${HOME}/.asdf/asdf.sh" ]] && . ${HOME}/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
-# GOLANG
-export GOPATH="${HOME}/go"
-export ASDF_GOLANG_MOD_VERSION_ENABLED=true
-export PATH="${GOPATH}/bin:${PATH}"
-
 # Rust
 [[ -s "${HOME}/.cargo/env" ]] && . "${HOME}/.cargo/env"
-export PATH="${HOME}/.cargo/bin:${PATH}"
-export PATH="/usr/local/opt/rust/bin:${PATH}"
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"'
 
 # Ruby
-export GEM_HOME="${HOME}/.gem"
-export PATH="${GEM_HOME}/bin:${PATH}"
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && . "${HOME}/.rvm/scripts/rvm"
-export PATH="${PATH}:${HOME}/.rvm/bin"
-
-# NodeJS
-export NPM_CONFIG_PREFIX="${HOME}/.npm-global"
-export PATH="${NPM_CONFIG_PREFIX}/bin:${PATH}"
-
-# Java
-export PATH="${JAVA_HOME}/bin:${PATH}"
 
 # NVM
-export NVM_DIR="${HOME}/.nvm"
 [[ -s "${NVM_DIR}/nvm.sh" ]] && . "${NVM_DIR}/nvm.sh"
-
-# ripgrep
-export RIPGREP_CONFIG_PATH="${HOME}/.rgrc"
-
-# LANG
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# Flutter
-export FVM_HOME="${HOME}/fvm"
-export FLUTTER_VERSION="3.3"
-export PATH="${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${PATH}"
-export PATH="${HOME}/.pub-cache/bin:${PATH}"
-
-# tmuxp
-export DISABLE_AUTO_TITLE='true'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases 1password argocd battery bazel branch colorize command-not-found direnv fzf kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode yarn zsh-navigation-tools encode64)
