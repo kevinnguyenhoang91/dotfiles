@@ -5,4 +5,4 @@ require("config.lazy")
 vim.cmd("colorscheme catppuccin-frappe")
 
 -- Open Neo-tree automatically when Neovim starts
-vim.cmd("autocmd VimEnter * Neotree")
+-- vim.cmd("autocmd VimEnter * Neotree")
