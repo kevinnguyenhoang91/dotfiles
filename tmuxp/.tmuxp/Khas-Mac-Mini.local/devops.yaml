@@ -10,16 +10,12 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
       - shell_command:
-          - printf '\033]2;%s\033\\' 'ghn-platforms-test (k9s)'
           - k9s --context gke_ghn-platforms_asia-southeast1_ghn-platforms-test -A -c "argoproj.io/v1alpha1/applications /fe-mobile-platform"
       - shell_command:
-          - printf '\033]2;%s\033\\' 'ghn-platforms-prod (k9s)'
           - k9s  --context gke_ghn-platforms_asia-southeast1_ghn-platforms-prod -A -c "argoproj.io/v1alpha1/applications /fe-mobile-platform"
       - shell_command:
-          - printf '\033]2;%s\033\\' 'fpt-k8s-stag-devops (k9s)'
           - k9s  --context fpt-k8s-stag-devops -A -c "dp"
     start_directory: ./ghn-iac
     window_name: ghn-iac
@@ -29,7 +25,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./gitlab-cicd
     window_name: devops-gitlab-cicd
@@ -39,7 +34,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./platform-gitlab-cicd
     window_name: platform-gitlab-cicd
@@ -49,7 +43,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./gitlab-ci-image
     window_name: gitlab-ci-image
@@ -59,7 +52,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'nvim'
           - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
     start_directory: ./ghn-iac
     window_name: ghn-iac (devcontainer)

@@ -12,7 +12,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'yewtube'
           - /usr/local/bin/yt
     start_directory: ./
     window_name: yewtube

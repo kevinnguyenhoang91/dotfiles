@@ -11,7 +11,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'khas-mac-mini.local (btop)'
           - btop
       - blank
     start_directory: ./
@@ -23,10 +22,8 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - printf '\033]2;%s\033\\' 'rpi4.local (ssh/btop)'
           - ssh khanh@rpi4.local -t btop
       - shell_command:
-          - printf '\033]2;%s\033\\' 'rpi4.local (ssh)'
           - ssh khanh@rpi4.local
     start_directory: ./
     window_name: rpi4.local
