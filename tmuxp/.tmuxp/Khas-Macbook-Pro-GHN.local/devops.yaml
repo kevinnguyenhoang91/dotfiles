@@ -48,12 +48,12 @@ windows:
   #   window_name: gitlab-ci-image
   #   options:
   #     main-pane-height: 67%
-  # - layout: main-horizontal
-  #   panes:
-  #     - focus: "true"
-  #       shell_command:
-  #         - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
-  #   start_directory: ./ghn-iac
-  #   window_name: ghn-iac (devcontainer)
-  #   options:
-  #     main-pane-height: 67%
+  - layout: main-horizontal
+    panes:
+      - focus: "true"
+        shell_command:
+          - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+    start_directory: ./ghn-iac
+    window_name: ghn-iac (devcontainer)
+    options:
+      main-pane-height: 67%
