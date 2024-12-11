@@ -1,7 +1,7 @@
 # $XDG_CONFIG_HOME/k9s/config.yaml
 k9s:
   # Enable periodic refresh of resource browser windows. Default false
-  liveViewAutoRefresh: true
+  liveViewAutoRefresh: false
   # The path to screen dump. Default: '%temp_dir%/k9s-screens-%username%' (k9s info)
   screenDumpDir: /tmp/dumps
   # Represents ui poll intervals. Default 2secs
@@ -11,7 +11,7 @@ k9s:
   # Indicates whether modification commands like delete/kill/edit are disabled. Default is false
   readOnly: true
   # Toggles whether k9s should exit when CTRL-C is pressed. When set to true, you will need to exit k9s via the :quit command. Default is false.
-  noExitOnCtrlC: false
+  noExitOnCtrlC: true
   #UI settings
   ui:
     # Enable mouse support. Default false
