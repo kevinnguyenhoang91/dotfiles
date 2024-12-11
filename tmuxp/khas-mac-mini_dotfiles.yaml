@@ -15,6 +15,7 @@ windows:
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./kevinnguyenhoang91_dotfiles
     window_name: macos_dotfiles
+    focus: true
   - layout: main-horizontal
     options:
       main-pane-height: 67%
@@ -35,8 +36,7 @@ windows:
           - nvim -c 'lua require("persistence").load()'
     start_directory: ./dotfiles.worktrees/linux_dotfiles
     window_name: linux_dotfiles
-  - focus: "true"
-    layout: main-horizontal
+  - layout: main-horizontal
     options:
       main-pane-height: 67%
     panes:
