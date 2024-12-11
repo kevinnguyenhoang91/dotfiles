@@ -26,6 +26,9 @@ export GPG_TTY=$(tty)
 # Common Paths
 export PATH="${HOME}/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
 
+# Homebrew
+export PATH="/opt/homebrew/bin:${PATH}"
+
 # Secrets
 [ -f ~/.secrets ] && source ~/.secrets
 
