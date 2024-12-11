@@ -7,6 +7,19 @@ fi
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# direnv
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+# thefuck
+if command -v thefuck &> /dev/null; then
+  eval "$(thefuck --alias)"
+fi
+
+# autoenv
+[[ -s "/usr/local/opt/autoenv/activate.sh" ]] && . /usr/local/opt/autoenv/activate.sh
+
 plugins=(git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases 1password argocd battery bazel branch colorize command-not-found direnv fzf kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode yarn zsh-navigation-tools encode64)
 
 export ZSH=~/.oh-my-zsh
@@ -132,19 +145,6 @@ if [[ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]]; then . "$HOME/google-
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f ${HOME}/.dart-cli-completion/zsh-config.zsh ]] && . ${HOME}/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
-
-# direnv
-if command -v direnv &> /dev/null; then
-  eval "$(direnv hook zsh)"
-fi
-
-# thefuck
-if command -v thefuck &> /dev/null; then
-  eval "$(thefuck --alias)"
-fi
-
-# autoenv
-[[ -s "/usr/local/opt/autoenv/activate.sh" ]] && . /usr/local/opt/autoenv/activate.sh
 
 # Aliases
 alias v='$EDITOR'
