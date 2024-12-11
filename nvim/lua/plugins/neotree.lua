@@ -10,5 +10,15 @@ return {
     window = {
       position = "right",
     },
+    filesystem = {
+      filtered_items = {
+        hide_dotfiles = false,
+        hide_gitignore = false,
+        never_show = {
+          ".DS_Store",
+          "thumbs.db",
+        },
+      },
+    },
   },
 }
