@@ -1,0 +1,48 @@
+session_name: dotfiles
+start_directory: /Volumes/DATA/Projects
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
+windows:
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./kevinnguyenhoang91_dotfiles
+    window_name: macos_dotfiles
+    focus: true
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./dotfiles.worktrees/devcontainer_dotfiles
+    window_name: devcontainer_dotfiles
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./dotfiles.worktrees/linux_dotfiles
+    window_name: linux_dotfiles
+  - layout: main-horizontal
+    options:
+      main-pane-height: 67%
+    panes:
+      - focus: "true"
+        shell_command:
+          - printf '\033]2;%s\033\\' 'nvim'
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./dotfiles.worktrees/master_dotfiles
+    window_name: master_dotfiles
