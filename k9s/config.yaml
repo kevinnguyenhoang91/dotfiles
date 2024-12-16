@@ -22,6 +22,7 @@ k9s:
     logoless: true
     # Set to true to hide K9s crumbs. Default false
     crumbsless: false
+    # Toggles icons display as not all terminal support these chars.
     noIcons: false
     # Toggles reactive UI. This option provide for watching on disk artifacts changes and update the UI live Defaults to false.
     reactive: true
@@ -29,12 +30,8 @@ k9s:
     skin: catppuccin-frappe # => assumes the file skins/dracula.yaml is present in the  $XDG_DATA_HOME/k9s/skins directory
     # Allows to set certain views default fullscreen mode. (yaml, helm history, describe, value_extender, details, logs) Default false
     defaultsToFullScreen: false
-  # Toggles icons display as not all terminal support these chars.
-  noIcons: false
   # Toggles whether k9s should check for the latest revision from the Github repository releases. Default is false.
   skipLatestRevCheck: false
-  # When altering kubeconfig or using multiple kube configs, k9s will clean up clusters configurations that are no longer in use. Setting this flag to true will keep k9s from cleaning up inactive cluster configs. Defaults to false.
-  keepMissingClusters: false
   # Logs configuration
   logger:
     # Defines the number of lines to return. Default 100
