@@ -57,3 +57,21 @@ windows:
     window_name: ghn-iac (devcontainer)
     options:
       main-pane-height: 67%
+  - layout: main-horizontal
+    panes:
+      - focus: "true"
+        shell_command:
+          - gcloud compute ssh --zone "asia-southeast1-b" "gitlab-backup-v1-20241219-045315" --project "ghn-tech"
+    start_directory: ./
+    window_name: SSH Gitlab GHN cloned
+    options:
+      main-pane-height: 67%
+  - layout: main-horizontal
+    panes:
+      - focus: "true"
+        shell_command:
+          - gcloud compute ssh --zone "asia-southeast1-b" "ghnex-gitlab" --project "ghn-tech"
+    start_directory: ./
+    window_name: SSH Gitlab GHN cloned
+    options:
+      main-pane-height: 67%
