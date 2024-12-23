@@ -12,6 +12,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - /usr/local/bin/yt
+          - /opt/homebrew/bin/yt
     start_directory: ./
     window_name: yewtube
