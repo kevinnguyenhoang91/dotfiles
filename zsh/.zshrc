@@ -144,3 +144,8 @@ fpath=(${ASDF_DIR}/completions $fpath)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# atuin
+if command -v atuin &> /dev/null; then
+  eval "$(atuin init zsh)"
+fi
