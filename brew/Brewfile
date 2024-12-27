@@ -342,3 +342,5 @@ cask "visual-studio-code"
 cask "warp"
 # App wrapper for music.youtube.com
 cask "yt-music"
+# Lazydocker
+brew "lazydocker"
