@@ -41,6 +41,7 @@ plugins=(
 # Aliases
 alias v='$EDITOR'
 alias lg='lazygit'
+alias lzd='lazydocker'
 alias ls='ls -G'
 alias ll='ls -lG'
 alias lsa='ls -lahG'
