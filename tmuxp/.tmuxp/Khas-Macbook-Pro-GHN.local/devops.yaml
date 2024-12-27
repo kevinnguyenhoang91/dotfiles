@@ -92,9 +92,11 @@ windows:
         shell_command:
           - nvim -c 'lua require("persistence").load()'
       - shell_command:
-          - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh -c "echo 'y' | yarn install && yarn dev"
+          - docker ps --format "{{.ID}} {{.Image}}" | grep "vsc-ghn-backstage" | awk '{print $1}' | xargs docker stop && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh -c "echo 'y' | yarn install && yarn dev"
       - shell_command:
-          - devcontainer exec --workspace-folder . zsh
+          - read "response?Enter devcontainer's shell? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . zsh
+      - shell_command:
+          - read "response?Enter devcontainer's shell? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . zsh
     start_directory: ./ghn-backstage
     window_name: ghn-backstage
     options:
