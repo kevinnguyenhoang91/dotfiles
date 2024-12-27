@@ -23,6 +23,9 @@ stow:
 	mkdir -p ~/Library/Application\ Support/lazygit
 	@stow -t ~/Library/Application\ Support/lazygit lazygit
 
+	mkdir -p ~/Library/Application\ Support/lazydocker
+	@stow -t ~/Library/Application\ Support/lazydocker lazydocker
+	
 	mkdir -p ~/.agent-os
 	@stow -t ~/.agent-os agent-os
 
@@ -38,6 +41,7 @@ unstow:
 	@stow -D -t ~/.ctags.d ctags
 	@stow -D -t ~/Library/Application\ Support/lazygit lazygit
 	@stow -D -t ~/Library/Application\ Support/k9s k9s
+	@stow -D -t ~/Library/Application\ Support/lazydocker lazydocker
 	@stow -D -t ~/.agent-os agent-os
 	@stow -D -t ~/.config/opencode opencode
 
