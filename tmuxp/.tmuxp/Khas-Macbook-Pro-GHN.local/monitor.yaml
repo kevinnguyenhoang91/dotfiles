@@ -7,23 +7,23 @@ start_directory: /Users/khanh
 windows:
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
           - btop
       - blank
     start_directory: ./
-    window_name: khas-mac-mini.local
+    window_name: khas-macbook-pro-ghn.local
   - focus: "true"
     layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
-          - ssh khanh@rpi4.local -t btop
+          - ssh khanh@rpi4.tail70eb.ts.net -t btop
       - shell_command:
-          - ssh khanh@rpi4.local
+          - ssh khanh@rpi4.tail70eb.ts.net
     start_directory: ./
-    window_name: rpi4.local
+    window_name: rpi4.tail70eb.ts.net
