@@ -23,6 +23,9 @@ stow:
 	mkdir -p ~/Library/Application\ Support/lazygit
 	@stow -t ~/Library/Application\ Support/lazygit lazygit
 
+	mkdir -p ~/Library/Application\ Support/lazydocker
+	@stow -t ~/Library/Application\ Support/lazydocker lazydocker
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig brew iterm p10k tmuxp
@@ -32,6 +35,7 @@ unstow:
 	@stow -D -t ~/.ctags.d ctags
 	@stow -D -t ~/Library/Application\ Support/lazygit lazygit
 	@stow -D -t ~/Library/Application\ Support/k9s k9s
+	@stow -D -t ~/Library/Application\ Support/lazydocker lazydocker
 
 .PHONY: setup
 setup:
