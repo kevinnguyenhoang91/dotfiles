@@ -344,3 +344,5 @@ cask "warp"
 cask "yt-music"
 # Lazydocker
 brew "lazydocker"
+# atuin
+# brew "atuin"
