@@ -1,5 +1,5 @@
 session_name: backend
-start_directory: /Volumes/DATA/Projects_GHN
+start_directory: /Users/khanh/Projects
 # before_script: ./scripts/poetry-before-script.sh
 # shell_command_before:
 #   - poetry install --no-interaction --no-ansi --quiet
@@ -7,7 +7,7 @@ start_directory: /Volumes/DATA/Projects_GHN
 windows:
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
@@ -17,7 +17,7 @@ windows:
   - focus: "true"
     layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
@@ -26,7 +26,7 @@ windows:
     window_name: gobase-library
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
@@ -35,7 +35,7 @@ windows:
     window_name: consumer-service
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
