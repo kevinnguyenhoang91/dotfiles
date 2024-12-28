@@ -7,7 +7,7 @@ start_directory: /Users/khanh
 windows:
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
@@ -18,7 +18,7 @@ windows:
   - focus: "true"
     layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
