@@ -1,9 +1,35 @@
 tap "homebrew/bundle"
+# Improved shell history for zsh, bash, fish and nushell
+brew "atuin"
+# Per-project, per-directory shell environments
+brew "autoenv"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Lazier way to manage everything docker
+brew "lazydocker"
 # Simple terminal UI for git commands
 brew "lazygit"
+# Powerful, lightweight programming language
+brew "lua"
+# Package manager for the Lua programming language
+brew "luarocks"
 # Platform built on V8 to build network applications
 brew "node", link: false
 # Platform built on V8 to build network applications
-brew "node@20", link: true
+brew "node@20"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Programmatically correct mistyped console commands
+brew "thefuck"
+# Tmux session manager. Built on libtmux
+brew "tmuxp"
