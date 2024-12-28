@@ -7,17 +7,17 @@ start_directory: /Volumes/DATA/Projects
 windows:
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
           - nvim -c 'lua require("persistence").load()'
-    start_directory: ./kevinnguyenhoang91_dotfiles
+    start_directory: ./dotfiles
     window_name: macos_dotfiles
     focus: true
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
@@ -26,7 +26,7 @@ windows:
     window_name: devcontainer_dotfiles
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
@@ -35,7 +35,7 @@ windows:
     window_name: linux_dotfiles
   - layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
