@@ -26,3 +26,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 mkdir -p "${HOME}/.local/share/fonts"
 curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
 getnf -i 'Noto,FiraMono,FiraCode,Meslo'
+
+# atuin
+if command -v atuin &> dev/null; then
+  eval "$(atuin init zsh)"
+fi
