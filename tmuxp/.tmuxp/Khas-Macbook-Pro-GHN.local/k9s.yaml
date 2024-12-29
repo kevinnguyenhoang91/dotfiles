@@ -1,4 +1,4 @@
-session_name: devops
+session_name: k9s
 start_directory: /Users/khanh/Projects
 # before_script: ./scripts/poetry-before-script.sh
 # shell_command_before:
