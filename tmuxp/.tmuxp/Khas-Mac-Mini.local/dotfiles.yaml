@@ -12,7 +12,7 @@ windows:
       - focus: "true"
         shell_command:
           - nvim -c 'lua require("persistence").load()'
-    start_directory: ./dotfiles
+    start_directory: ./kevinnguyenhoang91_dotfiles
     window_name: macos_dotfiles
     focus: true
   - layout: main-horizontal
