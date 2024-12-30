@@ -15,8 +15,8 @@ windows:
           - k9s --context gke_ghn-platforms_asia-southeast1_ghn-platforms-test -A -c "argoproj.io/v1alpha1/applications /fe-mobile-platform"
       - shell_command:
           - k9s  --context fpt-k8s-stag-devops -A -c "dp"
-    start_directory: ./ghn-iac
-    window_name: ghn-iac
+    start_directory: ./
+    window_name: k9s
     # options:
     #   main-pane-height: 75%
   # - layout: main-horizontal
