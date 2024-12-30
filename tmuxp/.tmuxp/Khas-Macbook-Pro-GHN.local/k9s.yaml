@@ -6,7 +6,7 @@ start_directory: /Users/khanh/Projects
 #   - source $(poetry env info -p)/bin/activate; reset
 windows:
   - focus: "true"
-    layout: main-horizontal
+    layout: even-vertical
     panes:
       - focus: "true"
         shell_command:
@@ -17,8 +17,8 @@ windows:
           - k9s  --context fpt-k8s-stag-devops -A -c "dp"
     start_directory: ./ghn-iac
     window_name: ghn-iac
-    options:
-      main-pane-height: 75%
+    # options:
+    #   main-pane-height: 75%
   # - layout: main-horizontal
   #   panes:
   #     - focus: "true"
