@@ -90,7 +90,7 @@ windows:
       - shell_command:
           - read "response?Enter devcontainer's shell? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . zsh
       - shell_command:
-          - read "response?Enter devcontainer's shell? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . zsh
+          - lzd
     start_directory: ./ghn-backstage
     window_name: ghn-backstage
     options:
