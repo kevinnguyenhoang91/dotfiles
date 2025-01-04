@@ -16,3 +16,4 @@ vim.opt.shell = "/bin/zsh"
 -- Improve diff experience
 vim.opt.diffopt:append("algorithm:patience")
 vim.opt.diffopt:append("indent-heuristic")
+vim.o.updatetime = 30000 -- Set the timeout to 0.5 minutes (300000 milliseconds)
