@@ -23,28 +23,22 @@ return {
       },
     },
   },
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   config = function()
-  --     require("copilot").setup({
-  --       panel = {
-  --         enabled = false,
-  --       },
-  --       suggestion = {
-  --         enabled = false,
-  --       },
-  --       filetypes = {
-  --         yaml = true,
-  --         markdown = false,
-  --         help = false,
-  --         gitcommit = false,
-  --         gitrebase = false,
-  --         hgcommit = false,
-  --         svn = false,
-  --         cvs = false,
-  --         ["."] = true,
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        filetypes = {
+          yaml = true,
+          markdown = false,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = true,
+        },
+      })
+    end,
+  },
 }
