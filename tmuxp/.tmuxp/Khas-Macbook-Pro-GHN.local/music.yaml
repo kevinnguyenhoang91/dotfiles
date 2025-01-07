@@ -12,6 +12,6 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - /opt/homebrew/bin/yt
+          - read "response?Enter yewtube? (y/n) " && [[ "$response" == [Yy] ]] && /opt/homebrew/bin/yt
     start_directory: ./
     window_name: yewtube

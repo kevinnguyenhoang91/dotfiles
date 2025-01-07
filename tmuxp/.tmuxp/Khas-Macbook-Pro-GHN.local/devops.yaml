@@ -57,18 +57,18 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - gcloud compute ssh --zone "asia-southeast1-b" "gitlab-backup-v1-20241219-045315" --project "ghn-tech"
+          - read "response?Enter SSH? (y/n) " && [[ "$response" == [Yy] ]] && gcloud compute ssh --zone "asia-southeast1-b" "gitlab-backup-v1-20241219-045315" --project "ghn-tech"
     start_directory: ./
-    window_name: SSH Gitlab GHN cloned
+    window_name: SSH Gitlab GHN backup
     options:
       main-pane-height: 75%
   - layout: main-horizontal
     panes:
       - focus: "true"
         shell_command:
-          - gcloud compute ssh --zone "asia-southeast1-b" "ghnex-gitlab" --project "ghn-tech"
+          - read "response?Enter SSH? (y/n) " && [[ "$response" == [Yy] ]] && gcloud compute ssh --zone "asia-southeast1-b" "ghnex-gitlab" --project "ghn-tech"
     start_directory: ./
-    window_name: SSH Gitlab GHN cloned
+    window_name: SSH Gitlab GHN production
     options:
       main-pane-height: 75%
   # - layout: main-horizontal
@@ -86,7 +86,7 @@ windows:
         shell_command:
           - nvim -c 'lua require("persistence").load()'
       - shell_command:
-          - docker ps --format "{{.ID}} {{.Image}}" | grep "vsc-ghn-backstage" | awk '{print $1}' | xargs docker stop && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh -c "echo 'y' | yarn install && yarn dev"
+          - read "response?Stop and start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && docker ps --format "{{.ID}} {{.Image}}" | grep "vsc-ghn-backstage" | awk '{print $1}' | xargs docker stop && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh -c "echo 'y' | yarn install && yarn dev"
       - shell_command:
           - read "response?Enter devcontainer's shell? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . zsh
       - shell_command:
