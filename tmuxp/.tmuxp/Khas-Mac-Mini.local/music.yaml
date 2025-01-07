@@ -8,10 +8,10 @@ windows:
   - focus: "true"
     layout: main-horizontal
     options:
-      main-pane-height: 67%
+      main-pane-height: 75%
     panes:
       - focus: "true"
         shell_command:
-          - /usr/local/bin/yt
+          - read "response?Enter yewtube? (y/n) " && [[ "$response" == [Yy] ]] && /usr/local/bin/yt
     start_directory: ./
     window_name: yewtube
