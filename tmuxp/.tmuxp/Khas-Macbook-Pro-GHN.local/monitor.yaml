@@ -22,8 +22,8 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - ssh khanh@rpi4.tail70eb.ts.net -t btop
+          - read "response?Enter ssh rpi4.tail70eb.ts.net (botp)? (y/n) " && [[ "$response" == [Yy] ]] && ssh khanh@rpi4.tail70eb.ts.net -t btop
       - shell_command:
-          - ssh khanh@rpi4.tail70eb.ts.net
+          - read "response?Enter ssh rpi4.tail70eb.ts.net? (y/n) " && [[ "$response" == [Yy] ]] && ssh khanh@rpi4.tail70eb.ts.net
     start_directory: ./
     window_name: rpi4.tail70eb.ts.net
