@@ -1,3 +1,13 @@
-
 Host *
 	IdentityAgent ~/.1password/agent.sock
+
+# DevSpace Start app.backstage.devspace
+Host app.backstage.devspace
+  HostName localhost
+  LogLevel error
+  Port 11867
+  IdentityFile "/Users/khanh/.devspace/ssh/id_devspace_ecdsa"
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  User devspace
+# DevSpace End app.backstage.devspace
