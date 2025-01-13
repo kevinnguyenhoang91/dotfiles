@@ -29,7 +29,7 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . zshdevcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+          - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
     start_directory: ./app-driver
     window_name: app-driver (devcontainer)
   - layout: main-horizontal
@@ -38,7 +38,7 @@ windows:
     panes:
       - focus: "true"
         shell_command:
-          - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . zshdevcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+          - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
     start_directory: ./employeeapp
     window_name: employeeapp (devcontainer)
   - focus: "true"
