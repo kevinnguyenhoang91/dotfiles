@@ -12,7 +12,7 @@ windows:
         shell_command:
           - nvim -c 'lua require("persistence").load()'
       - shell_command:
-          - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+          - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
     start_directory: ./ghn-iac
     window_name: ghn-iac
     options:
@@ -48,7 +48,7 @@ windows:
   #   panes:
   #     - focus: "true"
   #       shell_command:
-  #         - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+  #         - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
   #   start_directory: ./ghn-iac
   #   window_name: ghn-iac (devcontainer)
   #   options:
@@ -75,7 +75,7 @@ windows:
   #   panes:
   #     - focus: "true"
   #       shell_command:
-  #         - devcontainer up --workspace-folder . --dotfiles-repository https://github.com/matheusfvesco/devcontainers-dotfiles.git && devcontainer exec --workspace-folder . zsh
+  #         - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
   #   start_directory: ./ghn-backstage
   #   window_name: ghn-backstage (devcontainer)
   #   options:
