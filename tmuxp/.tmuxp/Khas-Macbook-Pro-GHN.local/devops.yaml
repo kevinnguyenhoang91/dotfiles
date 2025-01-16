@@ -86,9 +86,9 @@ windows:
         shell_command:
           - nvim -c 'lua require("persistence").load()'
       - shell_command:
-          - read "response?Stop and start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && docker ps --format "{{.ID}} {{.Image}}" | grep "vsc-ghn-backstage" | awk '{print $1}' | xargs docker stop && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh -c "echo 'y' | yarn install && yarn dev"
+          - read "response?Stop and start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && docker ps --format "{{.ID}} {{.Image}}" | grep "vsc-ghn-backstage" | awk '{print $1}' | xargs docker stop && devcontainer up --workspace-folder . --overrideConfig .devcontainer/devcontainer.cli.json && devcontainer exec --workspace-folder . --overrideConfig .devcontainer/devcontainer.cli.json zsh -c "echo 'y' | yarn install && yarn dev"
       - shell_command:
-          - read "response?Enter devcontainer's shell? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . zsh
+          - read "response?Enter devcontainer's shell? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer exec --workspace-folder . --overrideConfig .devcontainer/devcontainer.cli.json zsh
       - shell_command:
           - lzd
     start_directory: ./ghn-backstage
