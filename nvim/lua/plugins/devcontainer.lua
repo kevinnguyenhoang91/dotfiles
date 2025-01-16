@@ -1,6 +1,6 @@
 return {
   {
-    "https://codeberg.org/esensar/nvim-dev-container",
+    "esensar/nvim-dev-container",
     config = function()
       require("devcontainer").setup({
         container_runtime = "docker",
