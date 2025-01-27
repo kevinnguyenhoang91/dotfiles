@@ -16,19 +16,19 @@ brew "lazydocker"
 # Simple terminal UI for git commands
 brew "lazygit"
 # Powerful, lightweight programming language
-brew "lua"
+# brew "lua"
 # Package manager for the Lua programming language
-brew "luarocks"
+# brew "luarocks"
 # Platform built on V8 to build network applications
-brew "node", link: false
+brew "node"
 # Platform built on V8 to build network applications
-brew "node@20"
+# brew "node@20"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Powerful, clean, object-oriented scripting language
-brew "ruby"
+# brew "ruby"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
-brew "stow"
+# brew "stow"
 # Programmatically correct mistyped console commands
 brew "thefuck"
 # Tmux session manager. Built on libtmux
