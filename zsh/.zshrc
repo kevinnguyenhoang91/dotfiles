@@ -45,6 +45,8 @@ alias lzd='lazydocker'
 alias ls='ls -G'
 alias ll='ls -lG'
 alias lsa='ls -lahG'
+alias nvim='nvim -c "lua require\"persistence\".load()"'
+alias nv='nvim -c "lua require\"persistence\".load()"'
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"'
