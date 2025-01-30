@@ -36,3 +36,16 @@ unstow:
 .PHONY: setup
 setup:
 	@./setup.sh
+
+.PHONY: devcontainer
+stow:
+	@stow -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh tig
+
+	mkdir -p ~/.config/nvim
+	@stow -t ~/.config/nvim nvim
+
+	mkdir -p ~/.ctags.d
+	@stow -t ~/.ctags.d ctags
+
+	mkdir -p ~/.config/lazygit
+	@stow -t ~/.config/lazygit lazygit
