@@ -45,7 +45,6 @@ alias lzd='lazydocker'
 alias ls='ls -G'
 alias ll='ls -lG'
 alias lsa='ls -lahG'
-alias nvim='nvim -c "lua require\"persistence\".load()"'
 alias nv='nvim -c "lua require\"persistence\".load()"'
 
 # FZF
@@ -68,7 +67,7 @@ zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 
 # Moving around line
-bindkey '^A' beginning-of-line '^E' end-of-line '^F' backward-kill-word '^W' forward-word
+bindkey '^A' beginning-of-line '^E' end-of-line '^W' forward-word '^F' backward-kill-word
 
 # Completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
