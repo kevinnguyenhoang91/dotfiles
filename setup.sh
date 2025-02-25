@@ -31,3 +31,6 @@ getnf -i 'Noto,FiraMono,FiraCode,Meslo'
 if command -v atuin &> dev/null; then
   eval "$(atuin init zsh)"
 fi
+
+# superfile
+bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
