@@ -37,6 +37,9 @@ killall gpg-agent
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# superfile
+bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"
+
 # Free the Dock
 defaults write com.apple.Dock size-immutable -bool no
 
