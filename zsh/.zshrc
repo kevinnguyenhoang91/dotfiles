@@ -68,7 +68,7 @@ zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 
 # Moving around line
-bindkey '^A' beginning-of-line '^E' end-of-line '^W' backward-kill-word
+bindkey '^A' beginning-of-line '^E' end-of-line '^F' backward-kill-word '^W' forward-word
 
 # Completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
