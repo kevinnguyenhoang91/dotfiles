@@ -35,8 +35,11 @@
     os_icon                 # os identifier
     dir                     # current directory
     vcs                     # git status
+    battery
+    wifi
     # =========================[ Line #2 ]=========================
     newline                 # \n
+    newline
     prompt_char             # prompt symbol
   )
 
@@ -47,8 +50,8 @@
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     status                  # exit code of the last command
-    command_execution_time  # duration of the last command
-    background_jobs         # presence of background jobs
+    # command_execution_time  # duration of the last command
+    # background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
@@ -97,7 +100,7 @@
     nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     chezmoi_shell           # chezmoi shell (https://www.chezmoi.io/)
     vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
-    vpn_ip                  # virtual private network indicator
+    # vpn_ip                  # virtual private network indicator
     load                    # CPU load
     disk_usage              # disk usage
     ram                     # free RAM
@@ -106,15 +109,15 @@
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
-    cpu_arch                # CPU architecture
+    # cpu_arch                # CPU architecture
     time                    # current time
     # =========================[ Line #2 ]=========================
     newline                 # \n
     ip                    # ip address and bandwidth usage for a specified network interface
     public_ip             # public IP address
     proxy                 # system-wide http/https/ftp proxy
-    battery               # internal battery
-    wifi                  # wifi speed
+    # battery               # internal battery
+    # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
   )
 
