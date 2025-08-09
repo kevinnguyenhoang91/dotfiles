@@ -9,6 +9,7 @@ if ! command -v brew &> /dev/null; then
 fi
 
 # Install Homebrew packages
+eval "$(/opt/homebrew/bin/brew shellenv)"
 cd brew && brew bundle
 cd "${HOME}"
 

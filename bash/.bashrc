@@ -46,3 +46,8 @@ fi
 
 # Platform specific
 [[ -s "${HOME}/.bash_platform" ]] && \. "${HOME}/.bash_platform"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/khanh/.lmstudio/bin"
+# End of LM Studio CLI section
+
