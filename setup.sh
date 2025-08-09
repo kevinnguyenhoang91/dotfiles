@@ -7,6 +7,7 @@ fi
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Install Homebrew packages
+eval "$(/opt/homebrew/bin/brew shellenv)"
 cd brew && brew bundle
 cd "$HOME"
 

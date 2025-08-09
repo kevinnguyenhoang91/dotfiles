@@ -14,3 +14,4 @@ tags.temp
 tmp/**/*
 !tmp/cache/.keep
 *.pyc
+.secrets.zsh

@@ -6,7 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Global variables
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="random"
 export ZSH=~/.oh-my-zsh
 export TERM='xterm-256color'
 export GPG_TTY=$(tty)
@@ -156,3 +157,12 @@ fpath=(/Users/khanh/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/khanh/.lmstudio/bin"
+# End of LM Studio CLI section
+
+if [ -f "$HOME/.secrets.zsh" ]; then source "$HOME/.secrets.zsh"; fi
