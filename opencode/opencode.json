@@ -16,6 +16,9 @@
 				},
 				"llama3.1:latest": {
 					"name": "llama3.1"
+				},
+				"qwen3-coder:latest": {
+					"name": "qwen3-coder"
 				}
 			}
 		}
