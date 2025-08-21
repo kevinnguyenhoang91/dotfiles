@@ -1,16 +1,16 @@
 ---
-description: Product Planning Rules for Agent OS
+description: Product Planning Rules for DevOps Engineer Tools
 globs:
 alwaysApply: false
 version: 4.0
 encoding: UTF-8
 ---
 
-# Product Planning Rules
+# DevOps Product Planning Rules
 
 ## Overview
 
-Generate product docs for new projects: mission, tech-stack and roadmap files for AI agent consumption.
+Generate product docs for new DevOps projects: mission, tech-stack and roadmap files for AI agent consumption.
 
 <pre_flight_check>
   EXECUTE: @.agent-os/instructions/meta/pre-flight.md
@@ -22,7 +22,7 @@ Generate product docs for new projects: mission, tech-stack and roadmap files fo
 
 ### Step 1: Gather User Input
 
-Use the context-fetcher subagent to collect all required inp duts from the user including main idea, key features (minimum 3), target users (minimum 1), and tech stack preferences with blocking validation before proceeding.
+Use the context-fetcher subagent to collect all required inputs from the user including main idea, key features (minimum 3), target users (minimum 1), and tech stack preferences with blocking validation before proceeding.
 
 <data_sources>
   <primary>user_direct_input</primary>
@@ -35,10 +35,10 @@ Use the context-fetcher subagent to collect all required inp duts from the user 
 
 <error_template>
   Please provide the following missing information:
-  1. Main idea for the product
+  1. Main idea for the DevOps product/tool
   2. List of key features (minimum 3)
   3. Target users and use cases (minimum 1)
-  4. Tech stack preferences
+  4. Tech stack preferences (e.g., CI/CD, cloud, infra-as-code)
   5. Has the new application been initialized yet and we're inside the project folder? (yes/no)
 </error_template>
 
@@ -69,7 +69,7 @@ Use the file-creator subagent to create the file: .agent-os/product/mission.md a
 
 <file_template>
   <header>
-    # Product Mission
+    # DevOps Product Mission
   </header>
   <required_sections>
     - Pitch
@@ -84,7 +84,7 @@ Use the file-creator subagent to create the file: .agent-os/product/mission.md a
   <template>
     ## Pitch
 
-    [PRODUCT_NAME] is a [PRODUCT_TYPE] that helps [TARGET_USERS] [SOLVE_PROBLEM] by providing [KEY_VALUE_PROPOSITION].
+    [PRODUCT_NAME] is a [DEVOPS_TOOL_TYPE] that helps [TARGET_USERS] [SOLVE_DEVOPS_PROBLEM] by providing [KEY_VALUE_PROPOSITION].
   </template>
   <constraints>
     - length: 1-2 sentences
@@ -103,15 +103,15 @@ Use the file-creator subagent to create the file: .agent-os/product/mission.md a
 
     ### User Personas
 
-    **[USER_TYPE]** ([AGE_RANGE])
-    - **Role:** [JOB_TITLE]
-    - **Context:** [BUSINESS_CONTEXT]
+    **[USER_TYPE]** ([EXPERIENCE_LEVEL])
+    - **Role:** [DEVOPS_ROLE]
+    - **Context:** [INFRA_CONTEXT]
     - **Pain Points:** [PAIN_POINT_1], [PAIN_POINT_2]
     - **Goals:** [GOAL_1], [GOAL_2]
   </template>
   <schema>
     - name: string
-    - age_range: "XX-XX years old"
+    - experience_level: "Junior/Mid/Senior"
     - role: string
     - context: string
     - pain_points: array[string]
@@ -123,7 +123,7 @@ Use the file-creator subagent to create the file: .agent-os/product/mission.md a
   <template>
     ## The Problem
 
-    ### [PROBLEM_TITLE]
+    ### [DEVOPS_PROBLEM_TITLE]
 
     [PROBLEM_DESCRIPTION]. [QUANTIFIABLE_IMPACT].
 
@@ -132,7 +132,7 @@ Use the file-creator subagent to create the file: .agent-os/product/mission.md a
   <constraints>
     - problems: 2-4
     - description: 1-3 sentences
-    - impact: include metrics
+    - impact: include metrics (e.g., deployment speed, downtime reduction)
     - solution: 1 sentence
   </constraints>
 </section>
@@ -147,7 +147,7 @@ Use the file-creator subagent to create the file: .agent-os/product/mission.md a
   </template>
   <constraints>
     - count: 2-3
-    - focus: competitive advantages
+    - focus: competitive advantages (e.g., automation, reliability, scalability)
     - evidence: required
   </constraints>
 </section>
@@ -160,13 +160,13 @@ Use the file-creator subagent to create the file: .agent-os/product/mission.md a
 
     - **[FEATURE_NAME]:** [USER_BENEFIT_DESCRIPTION]
 
-    ### Collaboration Features
+    ### Collaboration & Automation Features
 
     - **[FEATURE_NAME]:** [USER_BENEFIT_DESCRIPTION]
   </template>
   <constraints>
     - total: 8-10 features
-    - grouping: by category
+    - grouping: by category (e.g., CI/CD, monitoring, infra-as-code)
     - description: user-benefit focused
   </constraints>
 </section>
@@ -181,19 +181,19 @@ Use the file-creator subagent to create the file: .agent-os/product/tech-stack.m
 
 <file_template>
   <header>
-    # Technical Stack
+    # DevOps Technical Stack
   </header>
 </file_template>
 
 <required_items>
-  - application_framework: string + version
-  - database_system: string
-  - javascript_framework: string
-  - import_strategy: ["importmaps", "node"]
-  - css_framework: string + version
-  - ui_component_library: string
-  - fonts_provider: string
-  - icon_library: string
+  - ci_cd_platform: string + version
+  - infrastructure_as_code: string
+  - cloud_provider: string
+  - monitoring_tool: string
+  - container_orchestration: string
+  - scripting_language: string
+  - configuration_management: string
+  - artifact_repository: string
   - application_hosting: string
   - database_hosting: string
   - asset_hosting: string
@@ -224,12 +224,11 @@ Use the file-creator subagent to create the file: .agent-os/product/tech-stack.m
 </data_resolution>
 
 <missing_items_template>
-  Please provide the following technical stack details:
+  Please provide the following DevOps technical stack details:
   [NUMBERED_LIST_OF_MISSING_ITEMS]
 
   You can respond with the technology choice or "n/a" for each item.
 </missing_items_template>
-
 
 </step>
 
@@ -243,7 +242,7 @@ Use the following template:
 
 <file_template>
   <header>
-    # Product Mission (Lite)
+    # DevOps Product Mission (Lite)
   </header>
 </file_template>
 
@@ -266,9 +265,9 @@ Use the following template:
 </content_template>
 
 <example>
-  TaskFlow is a project management tool that helps remote teams coordinate work efficiently by providing real-time collaboration and automated workflow tracking.
+  DeployFlow is a CI/CD automation platform that helps DevOps teams streamline deployments and improve reliability by providing integrated pipeline management and real-time monitoring.
 
-  TaskFlow serves distributed software teams who need seamless task coordination across time zones. Unlike traditional project management tools, TaskFlow automatically syncs with development workflows and provides intelligent task prioritization based on team capacity and dependencies.
+  DeployFlow serves cloud-native DevOps engineers who need fast, secure, and observable deployment workflows. Unlike legacy CI/CD tools, DeployFlow offers built-in infrastructure-as-code support and automated rollback for failed releases.
 </example>
 
 </step>
@@ -281,7 +280,7 @@ Use the file-creator subagent to create the following file: .agent-os/product/ro
 
 <file_template>
   <header>
-    # Product Roadmap
+    # DevOps Product Roadmap
   </header>
 </file_template>
 
@@ -305,11 +304,11 @@ Use the file-creator subagent to create the following file: .agent-os/product/ro
 </phase_structure>
 
 <phase_guidelines>
-  - Phase 1: Core MVP functionality
-  - Phase 2: Key differentiators
-  - Phase 3: Scale and polish
-  - Phase 4: Advanced features
-  - Phase 5: Enterprise features
+  - Phase 1: Core MVP functionality (e.g., basic CI/CD, infra-as-code)
+  - Phase 2: Key differentiators (e.g., advanced automation, monitoring)
+  - Phase 3: Scale and polish (e.g., integrations, performance)
+  - Phase 4: Advanced features (e.g., security, compliance)
+  - Phase 5: Enterprise features (e.g., multi-cloud, RBAC)
 </phase_guidelines>
 
 <effort_scale>
@@ -326,4 +325,5 @@ Use the file-creator subagent to create the following file: .agent-os/product/ro
 
 <post_flight_check>
   EXECUTE: @.agent-os/instructions/meta/post-flight.md
+</post_flight_check>
 </post_flight_check>

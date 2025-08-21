@@ -1,5 +1,5 @@
 ---
-description: Spec Creation Rules for Agent OS
+description: Spec Creation Rules for Agent OS (DevOps Engineering)
 globs:
 alwaysApply: false
 version: 1.1
@@ -10,7 +10,7 @@ encoding: UTF-8
 
 ## Overview
 
-Generate detailed feature specifications aligned with product roadmap and mission.
+Generate detailed DevOps feature specifications aligned with the product roadmap and operational excellence mission.
 
 <pre_flight_check>
   EXECUTE: @.agent-os/instructions/meta/pre-flight.md
@@ -22,22 +22,22 @@ Generate detailed feature specifications aligned with product roadmap and missio
 
 ### Step 1: Spec Initiation
 
-Use the context-fetcher subagent to identify spec initiation method by either finding the next uncompleted roadmap item when user asks "what's next?" or accepting a specific spec idea from the user.
+Use the context-fetcher subagent to identify DevOps spec initiation method by either finding the next uncompleted roadmap item (e.g., "what's next for DevOps?") or accepting a specific DevOps improvement idea from the user.
 
 <option_a_flow>
   <trigger_phrases>
-    - "what's next?"
+    - "what's next for DevOps?"
   </trigger_phrases>
   <actions>
     1. CHECK @.agent-os/product/roadmap.md
-    2. FIND next uncompleted item
+    2. FIND next uncompleted DevOps item
     3. SUGGEST item to user
     4. WAIT for approval
   </actions>
 </option_a_flow>
 
 <option_b_flow>
-  <trigger>user describes specific spec idea</trigger>
+  <trigger>user describes specific DevOps spec idea</trigger>
   <accept>any format, length, or detail level</accept>
   <proceed>to context gathering</proceed>
 </option_b_flow>
@@ -48,7 +48,7 @@ Use the context-fetcher subagent to identify spec initiation method by either fi
 
 ### Step 2: Context Gathering (Conditional)
 
-Use the context-fetcher subagent to read @.agent-os/product/mission-lite.md and @.agent-os/product/tech-stack.md only if not already in context to ensure minimal context for spec alignment.
+Use the context-fetcher subagent to read @.agent-os/product/mission-lite.md and @.agent-os/product/tech-stack.md only if not already in context to ensure minimal context for DevOps spec alignment.
 
 <conditional_logic>
   IF both mission-lite.md AND tech-stack.md already read in current context:
@@ -62,8 +62,8 @@ Use the context-fetcher subagent to read @.agent-os/product/mission-lite.md and 
 </conditional_logic>
 
 <context_analysis>
-  <mission_lite>core product purpose and value</mission_lite>
-  <tech_stack>technical requirements</tech_stack>
+  <mission_lite>core product purpose and operational value</mission_lite>
+  <tech_stack>DevOps technical requirements</tech_stack>
 </context_analysis>
 
 </step>
@@ -72,17 +72,17 @@ Use the context-fetcher subagent to read @.agent-os/product/mission-lite.md and 
 
 ### Step 3: Requirements Clarification
 
-Use the context-fetcher subagent to clarify scope boundaries and technical considerations by asking numbered questions as needed to ensure clear requirements before proceeding.
+Use the context-fetcher subagent to clarify DevOps scope boundaries and technical considerations by asking numbered questions as needed to ensure clear requirements before proceeding.
 
 <clarification_areas>
   <scope>
-    - in_scope: what is included
+    - in_scope: what is included (e.g., CI/CD, monitoring, infrastructure automation)
     - out_of_scope: what is excluded (optional)
   </scope>
   <technical>
-    - functionality specifics
-    - UI/UX requirements
-    - integration points
+    - automation specifics
+    - infrastructure requirements
+    - integration points (e.g., cloud providers, deployment tools)
   </technical>
 </clarification_areas>
 
@@ -127,9 +127,9 @@ Use kebab-case for spec name. Maximum 5 words in name.
 </folder_naming>
 
 <example_names>
-  - 2025-03-15-password-reset-flow
-  - 2025-03-16-user-profile-dashboard
-  - 2025-03-17-api-rate-limiting
+  - 2025-03-15-ci-cd-pipeline-upgrade
+  - 2025-03-16-infrastructure-as-code-refactor
+  - 2025-03-17-monitoring-alerts-setup
 </example_names>
 
 </step>
@@ -142,7 +142,7 @@ Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spe
 
 <file_template>
   <header>
-    # Spec Requirements Document
+    # DevOps Spec Requirements Document
 
     > Spec: [SPEC_NAME]
     > Created: [CURRENT_DATE]
@@ -164,10 +164,10 @@ Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spe
   </template>
   <constraints>
     - length: 1-2 sentences
-    - content: goal and objective
+    - content: DevOps goal and objective
   </constraints>
   <example>
-    Implement a secure password reset functionality that allows users to regain account access through email verification. This feature will reduce support ticket volume and improve user experience by providing self-service account recovery.
+    Implement an automated CI/CD pipeline to streamline deployments and improve release reliability. This will reduce manual errors and accelerate delivery of new features.
   </example>
 </section>
 
@@ -183,9 +183,16 @@ Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spe
   </template>
   <constraints>
     - count: 1-3 stories
-    - include: workflow and problem solved
+    - include: workflow and operational problem solved
     - format: title + story + details
   </constraints>
+  <example>
+    ### Reliable Deployments
+
+    As a DevOps Engineer, I want automated deployment pipelines, so that releases are consistent and require minimal manual intervention.
+
+    The workflow includes code commit triggers, automated testing, and deployment to staging and production environments.
+  </example>
 </section>
 
 <section name="spec_scope">
@@ -196,10 +203,14 @@ Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spe
     2. **[FEATURE_NAME]** - [ONE_SENTENCE_DESCRIPTION]
   </template>
   <constraints>
-    - count: 1-5 features
+    - count: 1-5 DevOps features
     - format: numbered list
     - description: one sentence each
   </constraints>
+  <example>
+    1. **CI/CD Pipeline Automation** - Automate build, test, and deployment steps for all services.
+    2. **Monitoring Integration** - Add alerting for failed deployments and system health.
+  </example>
 </section>
 
 <section name="out_of_scope">
@@ -209,7 +220,11 @@ Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spe
     - [EXCLUDED_FUNCTIONALITY_1]
     - [EXCLUDED_FUNCTIONALITY_2]
   </template>
-  <purpose>explicitly exclude functionalities</purpose>
+  <purpose>explicitly exclude non-DevOps functionalities</purpose>
+  <example>
+    - Manual deployment steps
+    - UI feature development
+  </example>
 </section>
 
 <section name="expected_deliverable">
@@ -221,8 +236,12 @@ Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spe
   </template>
   <constraints>
     - count: 1-3 expectations
-    - focus: browser-testable outcomes
+    - focus: infrastructure or pipeline-testable outcomes
   </constraints>
+  <example>
+    1. Automated deployment runs successfully for all services.
+    2. Monitoring alerts trigger on failed deployments.
+  </example>
 </section>
 
 </step>
@@ -231,11 +250,11 @@ Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spe
 
 ### Step 7: Create spec-lite.md
 
-Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spec-name/spec-lite.md for the purpose of establishing a condensed spec for efficient AI context usage.
+Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spec-name/spec-lite.md for the purpose of establishing a condensed DevOps spec for efficient AI context usage.
 
 <file_template>
   <header>
-    # Spec Summary (Lite)
+    # DevOps Spec Summary (Lite)
   </header>
 </file_template>
 
@@ -243,16 +262,16 @@ Use the file-creator subagent to create the file: .agent-os/specs/YYYY-MM-DD-spe
   <spec_summary>
     - source: Step 6 spec.md overview section
     - length: 1-3 sentences
-    - content: core goal and objective of the feature
+    - content: core DevOps goal and objective of the feature
   </spec_summary>
 </content_structure>
 
 <content_template>
-  [1-3_SENTENCES_SUMMARIZING_SPEC_GOAL_AND_OBJECTIVE]
+  [1-3_SENTENCES_SUMMARIZING_DEVOPS_SPEC_GOAL_AND_OBJECTIVE]
 </content_template>
 
 <example>
-  Implement secure password reset via email verification to reduce support tickets and enable self-service account recovery. Users can request a reset link, receive a time-limited token via email, and set a new password following security best practices.
+  Automate CI/CD pipeline to ensure reliable, fast deployments and reduce manual errors. Integrate monitoring to alert on failures and improve operational visibility.
 </example>
 
 </step>
@@ -265,21 +284,21 @@ Use the file-creator subagent to create the file: sub-specs/technical-spec.md us
 
 <file_template>
   <header>
-    # Technical Specification
+    # DevOps Technical Specification
 
-    This is the technical specification for the spec detailed in @.agent-os/specs/YYYY-MM-DD-spec-name/spec.md
+    This is the technical specification for the DevOps spec detailed in @.agent-os/specs/YYYY-MM-DD-spec-name/spec.md
   </header>
 </file_template>
 
 <spec_sections>
   <technical_requirements>
-    - functionality details
-    - UI/UX specifications
-    - integration requirements
-    - performance criteria
+    - automation details
+    - infrastructure specifications
+    - integration requirements (e.g., cloud, monitoring, CI/CD tools)
+    - performance and reliability criteria
   </technical_requirements>
   <external_dependencies_conditional>
-    - only include if new dependencies needed
+    - only include if new DevOps tools/packages needed
     - new libraries/packages
     - justification for each
     - version requirements
@@ -289,14 +308,14 @@ Use the file-creator subagent to create the file: sub-specs/technical-spec.md us
 <example_template>
   ## Technical Requirements
 
-  - [SPECIFIC_TECHNICAL_REQUIREMENT]
-  - [SPECIFIC_TECHNICAL_REQUIREMENT]
+  - Use GitHub Actions for CI/CD automation.
+  - Integrate Prometheus for monitoring and alerting.
 
   ## External Dependencies (Conditional)
 
   [ONLY_IF_NEW_DEPENDENCIES_NEEDED]
-  - **[LIBRARY_NAME]** - [PURPOSE]
-  - **Justification:** [REASON_FOR_INCLUSION]
+  - **Terraform** - Infrastructure as code management.
+  - **Justification:** Enables reproducible infrastructure deployments.
 </example_template>
 
 <conditional_logic>
@@ -312,7 +331,7 @@ Use the file-creator subagent to create the file: sub-specs/technical-spec.md us
 
 ### Step 9: Create Database Schema (Conditional)
 
-Use the file-creator subagent to create the file: sub-specs/database-schema.md ONLY IF database changes needed for this task.
+Use the file-creator subagent to create the file: sub-specs/database-schema.md ONLY IF infrastructure database changes needed for this DevOps task.
 
 <decision_tree>
   IF spec_requires_database_changes:
@@ -325,7 +344,7 @@ Use the file-creator subagent to create the file: sub-specs/database-schema.md O
   <header>
     # Database Schema
 
-    This is the database schema implementation for the spec detailed in @.agent-os/specs/YYYY-MM-DD-spec-name/spec.md
+    This is the database schema implementation for the DevOps spec detailed in @.agent-os/specs/YYYY-MM-DD-spec-name/spec.md
   </header>
 </file_template>
 
@@ -354,7 +373,7 @@ Use the file-creator subagent to create the file: sub-specs/database-schema.md O
 
 ### Step 10: Create API Specification (Conditional)
 
-Use the file-creator subagent to create file: sub-specs/api-spec.md ONLY IF API changes needed.
+Use the file-creator subagent to create file: sub-specs/api-spec.md ONLY IF API changes needed for DevOps automation or integration.
 
 <decision_tree>
   IF spec_requires_api_changes:
@@ -367,7 +386,7 @@ Use the file-creator subagent to create file: sub-specs/api-spec.md ONLY IF API 
   <header>
     # API Specification
 
-    This is the API specification for the spec detailed in @.agent-os/specs/YYYY-MM-DD-spec-name/spec.md
+    This is the API specification for the DevOps spec detailed in @.agent-os/specs/YYYY-MM-DD-spec-name/spec.md
   </header>
 </file_template>
 
@@ -385,7 +404,7 @@ Use the file-creator subagent to create file: sub-specs/api-spec.md ONLY IF API 
   </controllers>
   <purpose>
     - endpoint rationale
-    - integration with features
+    - integration with DevOps automation
   </purpose>
 </api_sections>
 
@@ -409,7 +428,7 @@ Use the file-creator subagent to create file: sub-specs/api-spec.md ONLY IF API 
 Request user review of spec.md and all sub-specs files, waiting for approval or revision requests.
 
 <review_request>
-  I've created the spec documentation:
+  I've created the DevOps spec documentation:
 
   - Spec Requirements: @.agent-os/specs/YYYY-MM-DD-spec-name/spec.md
   - Spec Summary: @.agent-os/specs/YYYY-MM-DD-spec-name/spec-lite.md
@@ -418,7 +437,7 @@ Request user review of spec.md and all sub-specs files, waiting for approval or 
 
   Please review and let me know if any changes are needed.
 
-  When you're ready, run the /create-tasks command to have me build the tasks checklist from this spec.
+  When you're ready, run the /create-tasks command to have me build the DevOps tasks checklist from this spec.
 </review_request>
 
 </step>

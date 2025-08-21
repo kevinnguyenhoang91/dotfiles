@@ -16,9 +16,9 @@ project_types:
     instructions: ~/.agent-os/instructions
     standards: ~/.agent-os/standards
 
-  backstage_project_type:
-    instructions: ~/.agent-os/backstage_project_type/instructions
-    standards: ~/.agent-os/backstage_project_type/standards
+  devops_project_type:
+    instructions: ~/.agent-os/devops_project_type/instructions
+    standards: ~/.agent-os/devops_project_type/standards
 
   # type_a:
   #   instructions: ~/.agent-os/project_types/type_a/instructions

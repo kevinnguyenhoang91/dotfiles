@@ -1,16 +1,16 @@
 ---
-description: Rules to initiate execution of a set of tasks using Agent OS
+description: Rules to initiate execution of a set of DevOps engineering tasks using Agent OS
 globs:
 alwaysApply: false
 version: 1.0
 encoding: UTF-8
 ---
 
-# Task Execution Rules
+# DevOps Task Execution Rules
 
 ## Overview
 
-Initiate execution of one or more tasks for a given spec.
+Initiate execution of one or more DevOps engineering tasks for a given project specification.
 
 <pre_flight_check>
   EXECUTE: @.agent-os/instructions/meta/pre-flight.md
@@ -22,16 +22,16 @@ Initiate execution of one or more tasks for a given spec.
 
 ### Step 1: Task Assignment
 
-Identify which tasks to execute from the spec (using spec_srd_reference file path and optional specific_tasks array), defaulting to the next uncompleted parent task if not specified.
+Identify which DevOps tasks to execute from the spec (using spec_srd_reference file path and optional specific_tasks array), defaulting to the next uncompleted parent task if not specified. Typical tasks include CI/CD pipeline setup, infrastructure provisioning, environment configuration, monitoring integration, and automation scripting.
 
 <task_selection>
-  <explicit>user specifies exact task(s)</explicit>
-  <implicit>find next uncompleted task in tasks.md</implicit>
+  <explicit>user specifies exact DevOps task(s) (e.g., "setup CI pipeline", "deploy staging environment")</explicit>
+  <implicit>find next uncompleted DevOps task in tasks.md</implicit>
 </task_selection>
 
 <instructions>
-  ACTION: Identify task(s) to execute
-  DEFAULT: Select next uncompleted parent task if not specified
+  ACTION: Identify DevOps task(s) to execute
+  DEFAULT: Select next uncompleted parent DevOps task if not specified
   CONFIRM: Task selection with user
 </instructions>
 
@@ -41,39 +41,38 @@ Identify which tasks to execute from the spec (using spec_srd_reference file pat
 
 ### Step 2: Context Analysis
 
-Use the context-fetcher subagent to gather minimal context for task understanding by always loading spec tasks.md, and conditionally loading @.agent-os/product/mission-lite.md, spec-lite.md, and sub-specs/technical-spec.md if not already in context.
+Use the context-fetcher subagent to gather minimal context for DevOps task understanding by always loading spec tasks.md, and conditionally loading @.agent-os/product/mission-lite.md, spec-lite.md, and sub-specs/technical-spec.md if not already in context. Focus on environment requirements, infrastructure details, deployment targets, and automation needs.
 
 <instructions>
   ACTION: Use context-fetcher subagent to:
     - REQUEST: "Get product pitch from mission-lite.md"
     - REQUEST: "Get spec summary from spec-lite.md"
-    - REQUEST: "Get technical approach from technical-spec.md"
+    - REQUEST: "Get infrastructure and deployment details from technical-spec.md"
   PROCESS: Returned information
 </instructions>
 
-
 <context_gathering>
   <essential_docs>
-    - tasks.md for task breakdown
+    - tasks.md for DevOps task breakdown
   </essential_docs>
   <conditional_docs>
     - mission-lite.md for product alignment
     - spec-lite.md for feature summary
-    - technical-spec.md for implementation details
+    - technical-spec.md for infrastructure and deployment details
   </conditional_docs>
 </context_gathering>
 
 </step>
 
-<step number="3" name="development_server_check">
+<step number="3" name="environment_server_check">
 
-### Step 3: Check for Development Server
+### Step 3: Check for Running Environments
 
-Check for any running development server and ask user permission to shut it down if found to prevent port conflicts.
+Check for any running development, staging, or production environments and ask user permission to shut down or redeploy if found to prevent conflicts (e.g., port, resource, or deployment collisions).
 
 <server_check_flow>
   <if_running>
-    ASK user to shut down
+    ASK user to shut down or redeploy
     WAIT for response
   </if_running>
   <if_not_running>
@@ -82,14 +81,14 @@ Check for any running development server and ask user permission to shut it down
 </server_check_flow>
 
 <user_prompt>
-  A development server is currently running.
-  Should I shut it down before proceeding? (yes/no)
+  An environment (development/staging/production) is currently running.
+  Should I shut it down or redeploy before proceeding? (yes/no)
 </user_prompt>
 
 <instructions>
-  ACTION: Check for running local development server
-  CONDITIONAL: Ask permission only if server is running
-  PROCEED: Immediately if no server detected
+  ACTION: Check for running environments or services
+  CONDITIONAL: Ask permission only if environment is running
+  PROCEED: Immediately if no environment detected
 </instructions>
 
 </step>
@@ -98,7 +97,7 @@ Check for any running development server and ask user permission to shut it down
 
 ### Step 4: Git Branch Management
 
-Use the git-workflow subagent to manage git branches to ensure proper isolation by creating or switching to the appropriate branch for the spec.
+Use the git-workflow subagent to manage git branches to ensure proper isolation by creating or switching to the appropriate branch for the DevOps spec. This ensures infrastructure-as-code changes, pipeline configs, and automation scripts are tracked and isolated.
 
 <instructions>
   ACTION: Use git-workflow subagent
@@ -113,8 +112,8 @@ Use the git-workflow subagent to manage git branches to ensure proper isolation 
   <source>spec folder name</source>
   <format>exclude date prefix</format>
   <example>
-    - folder: 2025-03-15-password-reset
-    - branch: password-reset
+    - folder: 2025-03-15-ci-pipeline
+    - branch: ci-pipeline
   </example>
 </branch_naming>
 
@@ -122,9 +121,9 @@ Use the git-workflow subagent to manage git branches to ensure proper isolation 
 
 <step number="5" name="task_execution_loop">
 
-### Step 5: Task Execution Loop
+### Step 5: DevOps Task Execution Loop
 
-Execute all assigned parent tasks and their subtasks using @.agent-os/instructions/core/execute-task.md instructions, continuing until all tasks are complete.
+Execute all assigned parent DevOps tasks and their subtasks using @.agent-os/instructions/core/execute-task.md instructions, continuing until all tasks are complete. Typical tasks include provisioning infrastructure, configuring CI/CD, deploying environments, and setting up monitoring.
 
 <execution_flow>
   LOAD @.agent-os/instructions/core/execute-task.md ONCE
@@ -140,11 +139,11 @@ Execute all assigned parent tasks and their subtasks using @.agent-os/instructio
 
 <loop_logic>
   <continue_conditions>
-    - More unfinished parent tasks exist
+    - More unfinished parent DevOps tasks exist
     - User has not requested stop
   </continue_conditions>
   <exit_conditions>
-    - All assigned tasks marked complete
+    - All assigned DevOps tasks marked complete
     - User requests early termination
     - Blocking issue prevents continuation
   </exit_conditions>
@@ -152,7 +151,7 @@ Execute all assigned parent tasks and their subtasks using @.agent-os/instructio
 
 <task_status_check>
   AFTER each task execution:
-    CHECK tasks.md for remaining tasks
+    CHECK tasks.md for remaining DevOps tasks
     IF all assigned tasks complete:
       PROCEED to next step
     ELSE:
@@ -161,10 +160,10 @@ Execute all assigned parent tasks and their subtasks using @.agent-os/instructio
 
 <instructions>
   ACTION: Load execute-task.md instructions once at start
-  REUSE: Same instructions for each parent task iteration
-  LOOP: Through all assigned parent tasks
+  REUSE: Same instructions for each parent DevOps task iteration
+  LOOP: Through all assigned parent DevOps tasks
   UPDATE: Task status after each completion
-  VERIFY: All tasks complete before proceeding
+  VERIFY: All DevOps tasks complete before proceeding
   HANDLE: Blocking issues appropriately
 </instructions>
 
@@ -172,9 +171,9 @@ Execute all assigned parent tasks and their subtasks using @.agent-os/instructio
 
 <step number="6" name="complete_tasks">
 
-### Step 6: Run the task completion steps
+### Step 6: Run the DevOps task completion steps
 
-After all tasks in tasks.md have been implemented, use @.agent-os/instructions/core/complete-tasks.md to run our series of steps we always run when finishing and delivering a new feature.
+After all DevOps tasks in tasks.md have been implemented, use @.agent-os/instructions/core/complete-tasks.md to run our series of steps we always run when finishing and delivering a new infrastructure or automation feature.
 
 <instructions>
   LOAD: @.agent-os/instructions/core/complete-tasks.md once
@@ -187,4 +186,5 @@ After all tasks in tasks.md have been implemented, use @.agent-os/instructions/c
 
 <post_flight_check>
   EXECUTE: @.agent-os/instructions/meta/post-flight.md
+</post_flight_check>
 </post_flight_check>

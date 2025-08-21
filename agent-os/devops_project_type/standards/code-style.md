@@ -1,8 +1,8 @@
-# Code Style Guide
+# DevOps Code Style Guide
 
 ## Context
 
-Global code style rules for Agent OS projects.
+Global code style rules for Agent OS DevOps engineering projects.
 
 <conditional-block context-check="general-formatting">
 IF this General Formatting section already read in current context:
@@ -15,30 +15,30 @@ ELSE:
 
 ### Indentation
 - Use 2 spaces for indentation (never tabs)
-- Maintain consistent indentation throughout files
-- Align nested structures for readability
+- Maintain consistent indentation throughout scripts, config files, and manifests
+- Align nested structures for readability (e.g., YAML, JSON, shell scripts)
 
 ### Naming Conventions
-- **Methods and Variables**: Use snake_case (e.g., `user_profile`, `calculate_total`)
-- **Classes and Modules**: Use PascalCase (e.g., `UserProfile`, `PaymentProcessor`)
-- **Constants**: Use UPPER_SNAKE_CASE (e.g., `MAX_RETRY_COUNT`)
+- **Scripts and Variables**: Use snake_case (e.g., `deploy_app`, `backup_database`)
+- **Resources and Modules**: Use PascalCase (e.g., `AppServer`, `DatabaseBackup`)
+- **Constants and Environment Variables**: Use UPPER_SNAKE_CASE (e.g., `MAX_RETRY_COUNT`, `DB_HOST`)
 
 ### String Formatting
-- Use single quotes for strings: `'Hello World'`
+- Use single quotes for strings in shell scripts: `'Hello World'`
 - Use double quotes only when interpolation is needed
-- Use template literals for multi-line strings or complex interpolation
+- Use template literals or heredocs for multi-line strings or complex interpolation (where supported)
 
 ### Code Comments
-- Add brief comments above non-obvious business logic
-- Document complex algorithms or calculations
-- Explain the "why" behind implementation choices
+- Add brief comments above non-obvious automation logic or infrastructure steps
+- Document complex deployment flows or configuration logic
+- Explain the "why" behind implementation choices, especially for infrastructure-as-code
 - Never remove existing comments unless removing the associated code
 - Update comments when modifying code to maintain accuracy
 - Keep comments concise and relevant
 </conditional-block>
 
 <conditional-block task-condition="html-css-tailwind" context-check="html-css-style">
-IF current task involves writing or updating HTML, CSS, or TailwindCSS:
+IF current task involves writing or updating HTML, CSS, or TailwindCSS (e.g., for dashboards or UIs in DevOps tools):
   IF html-style.md AND css-style.md already in context:
     SKIP: Re-reading these files
     NOTE: "Using HTML/CSS style guides already in context"
@@ -55,11 +55,11 @@ IF current task involves writing or updating HTML, CSS, or TailwindCSS:
         - @.agent-os/standards/code-style/css-style.md (if not in context)
     </context_fetcher_strategy>
 ELSE:
-  SKIP: HTML/CSS style guides not relevant to current task
+  SKIP: HTML/CSS style guides not relevant to current DevOps task
 </conditional-block>
 
 <conditional-block task-condition="javascript" context-check="javascript-style">
-IF current task involves writing or updating JavaScript:
+IF current task involves writing or updating JavaScript (e.g., for DevOps automation, dashboards, or CLI tools):
   IF javascript-style.md already in context:
     SKIP: Re-reading this file
     NOTE: "Using JavaScript style guide already in context"
@@ -73,5 +73,5 @@ IF current task involves writing or updating JavaScript:
         READ: @.agent-os/standards/code-style/javascript-style.md
     </context_fetcher_strategy>
 ELSE:
-  SKIP: JavaScript style guide not relevant to current task
+  SKIP: JavaScript style guide not relevant to current DevOps task
 </conditional-block>

@@ -1,31 +1,29 @@
-# Tech Stack
+# DevOps Tech Stack
 
 ## Context
 
-Global tech stack defaults for Agent OS projects, overridable in project-specific `.agent-os/product/tech-stack.md`.
+Global DevOps tech stack defaults for Agent OS projects, overridable in project-specific `.agent-os/product/tech-stack.md`.
 
-- App Framework: Ruby on Rails 8.0+
-- Language: Ruby 3.2+
-- Primary Database: PostgreSQL 17+
-- ORM: Active Record
-- JavaScript Framework: React latest stable
-- Build Tool: Vite
-- Import Strategy: Node.js modules
-- Package Manager: npm
-- Node Version: 22 LTS
-- CSS Framework: TailwindCSS 4.0+
-- UI Components: Instrumental Components latest
-- UI Installation: Via development gems group
-- Font Provider: Google Fonts
-- Font Loading: Self-hosted for performance
-- Icons: Lucide React components
-- Application Hosting: Digital Ocean App Platform/Droplets
-- Hosting Region: Primary region based on user base
-- Database Hosting: Digital Ocean Managed PostgreSQL
-- Database Backups: Daily automated
+- Infrastructure as Code: Terraform, Ansible
+- Containerization: Docker, Docker Compose
+- Orchestration: Kubernetes (Digital Ocean Kubernetes Service)
+- CI/CD Platform: GitHub Actions
+- CI/CD Trigger: Push to main/staging branches
+- Automated Testing: Integrated with CI/CD pipelines
+- Monitoring & Logging: Prometheus, Grafana, Loki
+- Secrets Management: HashiCorp Vault, environment variables
+- Configuration Management: Ansible, dotenv files
+- Cloud Provider: Digital Ocean (App Platform, Droplets, Managed PostgreSQL)
+- Database Backups: Daily automated, managed via cloud provider
 - Asset Storage: Amazon S3
 - CDN: CloudFront
 - Asset Access: Private with signed URLs
+- Security: Automated vulnerability scanning, dependency updates
+- Networking: VPC, firewall rules, load balancers
+- Deployment Strategy: Blue/Green or Rolling deployments
+- Production Environment: main branch
+- Staging Environment: staging branch
+- Documentation: Markdown, diagrams via Mermaid
 - CI/CD Platform: GitHub Actions
 - CI/CD Trigger: Push to main/staging branches
 - Tests: Run before deployment
