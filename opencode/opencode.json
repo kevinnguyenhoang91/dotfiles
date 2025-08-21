@@ -1,29 +1,29 @@
 {
-	"$schema": "https://opencode.ai/config.json",
+  "$schema": "https://opencode.ai/config.json",
   "provider": {
-		"ollama": {
-			"npm": "@ai-sdk/openai-compatible",
-			"name": "Ollama (local)",
-			"options": {
-				"baseURL": "http://localhost:11434/v1"
-			},
-			"models": {
-				"gemma3:latest": {
-					"name": "gemma3"
-				},
-				"deepseek-r1:7b": {
-					"name": "deepseek-r1"
-				},
-				"llama3.1:latest": {
-					"name": "llama3.1"
-				},
-				"qwen3-coder:latest": {
-					"name": "qwen3-coder"
-				}
-			}
-		}
-	},
-	"mcp": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "gemma3:latest": {
+          "name": "gemma3"
+        },
+        "deepseek-r1:7b": {
+          "name": "deepseek-r1"
+        },
+        "llama3.1:latest": {
+          "name": "llama3.1"
+        },
+        "qwen3-coder:latest": {
+          "name": "qwen3-coder"
+        }
+      }
+    }
+  },
+  "mcp": {
     "mcp-shell-server": {
       "type": "local",
       "command": ["uvx", "mcp-shell-server"],
@@ -31,6 +31,14 @@
       "environment": {
         "ALLOW_COMMANDS": "ls,cat,pwd,grep,wc,touch,find,rm,echo,head,tail,chmod,chown,mkdir,rmdir,cp,mv,ln,ps,kill"
       }
+    },
+    "@crunchloop/mcp-devcontainers": {
+      "command": [
+        "npx",
+        "@crunchloop/mcp-devcontainers"
+      ],
+      "environment": {},
+      "type": "local"
     }
   }
 }
