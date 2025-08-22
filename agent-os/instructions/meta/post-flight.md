@@ -8,18 +8,10 @@ encoding: UTF-8
 
 # Post-Flight Rules
 
-- Verify that all builds complete successfully and without errors.
+After completing all steps in a process_flow, always review your work and verify:
 
-- Run automated tests and ensure all pass before marking the deployment as complete.
+- Every numbered step has read, executed, and delivered according to its instructions.
 
-- Remove temporary files, build artifacts, and caches that are no longer needed.
+- All steps that specified a subagent should be used, did in fact delegate those tasks to the specified subagent.  IF they did not, see why the subagent was not used and report your findings to the user.
 
-- Update documentation to reflect any changes made during the development cycle.
-
-- Confirm that version numbers and changelogs are updated appropriately.
-
-- Ensure code is committed and pushed to the correct repository branch.
-
-- Review and close any related issues or tickets in the project management system.
-
-- Notify relevant stakeholders of completion and provide summary of changes.
+- IF you notice a step wasn't executed according to it's instructions, report your findings and explain which part of the instructions were misread or skipped and why.
