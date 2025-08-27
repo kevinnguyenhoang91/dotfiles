@@ -17,8 +17,8 @@
         "llama3.1:latest": {
           "name": "llama3.1"
         },
-        "qwen3-coder:latest": {
-          "name": "qwen3-coder"
+        "hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:UD-Q4_K_XL": {
+          "name": "hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:UD-Q4_K_XL"
         }
       }
     }
@@ -39,6 +39,14 @@
       ],
       "environment": {},
       "type": "local"
+    },
+    "mcpbook_nodejs": {
+      "type": "local",
+      "command": ["node", "/Users/khanh/mcpbook/dist/index.js"],
+      "enabled": true,
+      "environment": {
+        "GITBOOK_URL": "https://nodejs.org/docs/latest/api/"
+      }
     }
   }
 }
