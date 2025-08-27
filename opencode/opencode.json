@@ -32,7 +32,7 @@
         "ALLOW_COMMANDS": "ls,cat,pwd,grep,wc,touch,find,rm,echo,head,tail,chmod,chown,mkdir,rmdir,cp,mv,ln,ps,kill"
       }
     },
-    "@crunchloop/mcp-devcontainers": {
+    "mcp-devcontainers": {
       "command": [
         "npx",
         "@crunchloop/mcp-devcontainers"
