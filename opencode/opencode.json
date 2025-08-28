@@ -37,13 +37,14 @@
         "npx",
         "@crunchloop/mcp-devcontainers"
       ],
+      "enabled": true,
       "environment": {},
       "type": "local"
     },
     "mcpbook_nodejs": {
       "type": "local",
       "command": ["node", "/Users/khanh/mcpbook/dist/index.js"],
-      "enabled": true,
+      "enabled": false,
       "environment": {
         "GITBOOK_URL": "https://nodejs.org/docs/latest/api/"
       }

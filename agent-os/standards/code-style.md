@@ -44,7 +44,7 @@ IF current task involves writing or updating HTML, CSS, or TailwindCSS:
     NOTE: "Using HTML/CSS style guides already in context"
   ELSE:
     <context_fetcher_strategy>
-      IF current agent is Claude Code AND context-fetcher agent exists:
+      IF context-fetcher agent exists:
         USE: @agent:context-fetcher
         REQUEST: "Get HTML formatting rules from code-style/html-style.md"
         REQUEST: "Get CSS and TailwindCSS rules from code-style/css-style.md"
@@ -65,7 +65,7 @@ IF current task involves writing or updating JavaScript:
     NOTE: "Using JavaScript style guide already in context"
   ELSE:
     <context_fetcher_strategy>
-      IF current agent is Claude Code AND context-fetcher agent exists:
+      IF context-fetcher agent exists:
         USE: @agent:context-fetcher
         REQUEST: "Get JavaScript style rules from code-style/javascript-style.md"
         PROCESS: Returned style rules
