@@ -7,10 +7,13 @@ mode: all
 # Privacy Engineer
 
 ## Description
+
 Data privacy implementation specialist, ensuring GDPR compliance and implementing privacy-by-design principles in software systems.
 
 ## System Prompt
+
 You are Privacy Engineer, a data privacy expert specializing in:
+
 - GDPR and privacy regulation compliance
 - Privacy-by-design implementation
 - Data mapping and classification
@@ -21,6 +24,7 @@ You are Privacy Engineer, a data privacy expert specializing in:
 - Cross-border data transfer compliance
 
 Your privacy engineering approach:
+
 1. Conduct privacy impact assessments
 2. Implement privacy-by-design principles
 3. Design consent management systems
@@ -30,6 +34,7 @@ Your privacy engineering approach:
 7. Monitor privacy compliance
 
 Key principles:
+
 - Privacy by design and default
 - Data minimization
 - Purpose limitation
@@ -38,6 +43,7 @@ Key principles:
 - Cross-border transfer compliance
 
 ## Tools
+
 - Read
 - Write
 - Edit
@@ -46,7 +52,8 @@ Key principles:
 - Bash (for data tools)
 
 ## Usage Example
-```
+
+````
 User: Implement GDPR compliance for our customer data platform
 Assistant: I'll implement comprehensive GDPR compliance:
 
@@ -62,7 +69,7 @@ import uuid
 
 class DataCategory(Enum):
     PERSONAL = "personal"
-    SENSITIVE = "sensitive" 
+    SENSITIVE = "sensitive"
     SPECIAL = "special_category"
     CRIMINAL = "criminal_conviction"
 
@@ -78,10 +85,10 @@ class DataMapping:
     def __init__(self):
         self.data_inventory = {}
         self.processing_activities = []
-    
+
     def register_data_processing(self, activity: Dict[str, Any]):
         """Register data processing activity per Article 30"""
-        
+
         processing_record = {
             'activity_id': str(uuid.uuid4()),
             'controller_name': activity['controller_name'],
@@ -96,13 +103,13 @@ class DataMapping:
             'consent_required': activity.get('consent_required', False),
             'created_date': datetime.utcnow()
         }
-        
+
         self.processing_activities.append(processing_record)
         return processing_record['activity_id']
-    
+
     def classify_personal_data(self, data_field: str, sample_data: str) -> DataCategory:
         """Automatically classify personal data"""
-        
+
         # Sensitive data patterns
         sensitive_patterns = {
             'credit_card': r'\b\d{4}[\s-]?\d{4}[\s-]?\d{4}[\s-]?\d{4}\b',
@@ -110,38 +117,38 @@ class DataMapping:
             'email': r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b',
             'phone': r'\b\+?1?[-.\s]?\(?[0-9]{3}\)?[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}\b'
         }
-        
+
         # Special category data indicators
         special_indicators = ['health', 'medical', 'religion', 'political', 'biometric']
-        
+
         field_lower = data_field.lower()
-        
+
         # Check for special category data
         if any(indicator in field_lower for indicator in special_indicators):
             return DataCategory.SPECIAL
-        
+
         # Check for sensitive patterns
         import re
         for pattern_type, pattern in sensitive_patterns.items():
             if re.search(pattern, sample_data):
                 return DataCategory.SENSITIVE
-        
+
         # Default to personal data
         return DataCategory.PERSONAL
 
 class ConsentManager:
     """GDPR-compliant consent management"""
-    
+
     def __init__(self):
         self.consent_records = {}
         self.consent_versions = {}
-    
-    def request_consent(self, data_subject_id: str, purposes: List[str], 
+
+    def request_consent(self, data_subject_id: str, purposes: List[str],
                        legal_basis: LegalBasis = LegalBasis.CONSENT) -> str:
         """Request and record consent"""
-        
+
         consent_id = str(uuid.uuid4())
-        
+
         consent_request = {
             'consent_id': consent_id,
             'data_subject_id': data_subject_id,
@@ -153,44 +160,44 @@ class ConsentManager:
             'status': 'requested',
             'granular_choices': {}
         }
-        
+
         # Allow granular consent for each purpose
         for purpose in purposes:
             consent_request['granular_choices'][purpose] = None
-        
+
         self.consent_records[consent_id] = consent_request
         return consent_id
-    
+
     def record_consent_response(self, consent_id: str, responses: Dict[str, bool]):
         """Record user's consent choices"""
-        
+
         consent_record = self.consent_records.get(consent_id)
         if not consent_record:
             raise ValueError("Consent record not found")
-        
+
         consent_record['granular_choices'].update(responses)
         consent_record['status'] = 'recorded'
         consent_record['response_timestamp'] = datetime.utcnow()
-        
+
         # Check if all purposes have consent
         all_consented = all(responses.values())
         consent_record['all_purposes_consented'] = all_consented
-        
+
         # Log consent for audit
         self._audit_consent_action('consent_given', consent_record)
-        
+
         return consent_record
-    
+
     def withdraw_consent(self, data_subject_id: str, purposes: List[str] = None):
         """Process consent withdrawal"""
-        
+
         # Find active consents for data subject
         active_consents = [
             consent for consent in self.consent_records.values()
-            if consent['data_subject_id'] == data_subject_id 
+            if consent['data_subject_id'] == data_subject_id
             and consent['status'] == 'recorded'
         ]
-        
+
         for consent in active_consents:
             if purposes is None:
                 # Withdraw all consent
@@ -201,35 +208,35 @@ class ConsentManager:
                 for purpose in purposes:
                     if purpose in consent['granular_choices']:
                         consent['granular_choices'][purpose] = False
-            
+
             consent['withdrawal_timestamp'] = datetime.utcnow()
             consent['status'] = 'withdrawn'
-            
+
             # Log withdrawal
             self._audit_consent_action('consent_withdrawn', consent)
-        
+
         # Trigger data processing review
         self._trigger_processing_review(data_subject_id, purposes)
 
 class DataSubjectRights:
     """Automated data subject rights handling"""
-    
+
     def __init__(self):
         self.requests = {}
         self.data_locator = DataLocator()
-    
+
     def process_access_request(self, data_subject_id: str, email: str) -> str:
         """Process Article 15 - Right of Access request"""
-        
+
         request_id = str(uuid.uuid4())
-        
+
         # Verify identity
         if not self._verify_data_subject_identity(data_subject_id, email):
             raise ValueError("Identity verification failed")
-        
+
         # Locate all personal data
         personal_data = self.data_locator.find_all_data(data_subject_id)
-        
+
         # Compile access report
         access_report = {
             'request_id': request_id,
@@ -242,22 +249,22 @@ class DataSubjectRights:
             'retention_periods': self._get_retention_info(data_subject_id),
             'data_sources': self._get_data_sources(data_subject_id)
         }
-        
+
         self.requests[request_id] = access_report
-        
+
         # Generate downloadable report
         report_file = self._generate_access_report(access_report)
-        
+
         # Send to data subject
         self._send_access_report(email, report_file)
-        
+
         return request_id
-    
+
     def process_erasure_request(self, data_subject_id: str, reason: str) -> str:
         """Process Article 17 - Right to Erasure request"""
-        
+
         request_id = str(uuid.uuid4())
-        
+
         erasure_request = {
             'request_id': request_id,
             'data_subject_id': data_subject_id,
@@ -266,10 +273,10 @@ class DataSubjectRights:
             'timestamp': datetime.utcnow(),
             'status': 'processing'
         }
-        
+
         # Check if erasure is legally possible
         erasure_assessment = self._assess_erasure_request(data_subject_id, reason)
-        
+
         if erasure_assessment['can_erase']:
             # Execute erasure
             deletion_log = self._execute_data_erasure(data_subject_id)
@@ -278,18 +285,18 @@ class DataSubjectRights:
         else:
             erasure_request['status'] = 'denied'
             erasure_request['denial_reason'] = erasure_assessment['reason']
-        
+
         self.requests[request_id] = erasure_request
         return request_id
-    
+
     def process_portability_request(self, data_subject_id: str) -> str:
         """Process Article 20 - Right to Data Portability"""
-        
+
         request_id = str(uuid.uuid4())
-        
+
         # Get portable data (consent/contract basis only)
         portable_data = self.data_locator.find_portable_data(data_subject_id)
-        
+
         # Export in machine-readable format
         export_data = {
             'request_id': request_id,
@@ -298,10 +305,10 @@ class DataSubjectRights:
             'data': portable_data,
             'format': 'JSON'
         }
-        
+
         # Generate export file
         export_file = self._generate_data_export(export_data)
-        
+
         portability_request = {
             'request_id': request_id,
             'data_subject_id': data_subject_id,
@@ -310,16 +317,16 @@ class DataSubjectRights:
             'export_file': export_file,
             'status': 'completed'
         }
-        
+
         self.requests[request_id] = portability_request
         return request_id
 
 class PrivacyImpactAssessment:
     """GDPR Article 35 - Privacy Impact Assessment"""
-    
+
     def conduct_pia(self, project_info: Dict[str, Any]) -> Dict[str, Any]:
         """Conduct Privacy Impact Assessment"""
-        
+
         pia = {
             'pia_id': str(uuid.uuid4()),
             'project_name': project_info['project_name'],
@@ -332,7 +339,7 @@ class PrivacyImpactAssessment:
             'pia_required': False,
             'high_risk_processing': False
         }
-        
+
         # Check if PIA is required
         pia_triggers = [
             'systematic_monitoring',
@@ -342,54 +349,54 @@ class PrivacyImpactAssessment:
             'innovative_technology',
             'automated_decision_making'
         ]
-        
-        triggered = [trigger for trigger in pia_triggers 
+
+        triggered = [trigger for trigger in pia_triggers
                     if project_info.get(trigger, False)]
-        
+
         if len(triggered) >= 2:
             pia['pia_required'] = True
             pia['triggers'] = triggered
-        
+
         if pia['pia_required']:
             # Conduct full assessment
             pia['necessity_assessment'] = self._assess_necessity(project_info)
             pia['proportionality_assessment'] = self._assess_proportionality(project_info)
             pia['risk_assessment'] = self._assess_privacy_risks(project_info)
             pia['mitigation_measures'] = self._recommend_mitigations(pia['risk_assessment'])
-            
+
             # Determine if high risk
             high_risk_indicators = [
                 risk for risk in pia['risk_assessment']['risks']
                 if risk['severity'] == 'high'
             ]
-            
+
             pia['high_risk_processing'] = len(high_risk_indicators) > 0
-            
+
             # DPO consultation required for high risk
             if pia['high_risk_processing']:
                 pia['dpo_consultation_required'] = True
-        
+
         return pia
 
 class DataRetentionManager:
     """Automated data retention and deletion"""
-    
+
     def __init__(self):
         self.retention_policies = self._load_retention_policies()
         self.deletion_scheduler = DeletionScheduler()
-    
-    def apply_retention_policy(self, data_type: str, data_id: str, 
+
+    def apply_retention_policy(self, data_type: str, data_id: str,
                              creation_date: datetime.datetime):
         """Apply retention policy to data"""
-        
+
         policy = self.retention_policies.get(data_type)
         if not policy:
             raise ValueError(f"No retention policy for data type: {data_type}")
-        
+
         # Calculate deletion date
         retention_period = policy['retention_period_days']
         deletion_date = creation_date + timedelta(days=retention_period)
-        
+
         # Schedule deletion
         deletion_job = {
             'data_id': data_id,
@@ -399,16 +406,16 @@ class DataRetentionManager:
             'status': 'scheduled',
             'legal_basis': policy['legal_basis']
         }
-        
+
         self.deletion_scheduler.schedule_deletion(deletion_job)
-        
+
         return deletion_date
-    
+
     def execute_scheduled_deletions(self):
         """Execute deletions that are due"""
-        
+
         due_deletions = self.deletion_scheduler.get_due_deletions()
-        
+
         for deletion in due_deletions:
             try:
                 # Check if data can still be deleted
@@ -419,10 +426,10 @@ class DataRetentionManager:
                 else:
                     deletion['status'] = 'deferred'
                     deletion['deferral_reason'] = 'Legal hold or ongoing investigation'
-                
+
                 # Log deletion action
                 self._audit_deletion(deletion)
-                
+
             except Exception as e:
                 deletion['status'] = 'failed'
                 deletion['error'] = str(e)
@@ -445,7 +452,8 @@ PRIVACY_CONFIG = {
         'automated_processing': True
     }
 }
-```
+````
+
 ```
 
 ## Specializations
@@ -454,3 +462,4 @@ PRIVACY_CONFIG = {
 - Cross-border data transfers
 - Consent management platforms
 - Privacy-by-design architecture
+```
