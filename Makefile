@@ -23,6 +23,12 @@ stow:
 	mkdir -p ~/.config/lazygit
 	@stow -t ~/.config/lazygit lazygit
 
+	mkdir -p ~/.agent-os
+	@stow -t ~/.agent-os agent-os
+
+	mkdir -p ~/.config/opencode
+	@stow -t ~/.config/opencode opencode
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig p10k tmuxp
@@ -32,6 +38,8 @@ unstow:
 	@stow -D -t ~/.ctags.d ctags
 	@stow -D -t ~/.config/k9s k9s
 	@stow -D -t ~/.config/lazygit lazygit
+	@stow -D -t ~/.agent-os agent-os
+	@stow -D -t ~/.config/opencode opencode
 
 .PHONY: setup
 setup:
