@@ -1,0 +1,50 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	"provider": {
+		"ollama": {
+			"npm": "@ai-sdk/openai-compatible",
+			"name": "Ollama (local)",
+			"options": {
+				"baseURL": "http://localhost:11434/v1"
+			},
+			"models": {
+				"gemma3:latest": {
+					"name": "gemma3"
+				},
+				"deepseek-r1:7b": {
+					"name": "deepseek-r1"
+				},
+				"llama3.1:latest": {
+					"name": "llama3.1"
+				},
+				"hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:UD-Q4_K_XL": {
+					"name": "hf.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF:UD-Q4_K_XL"
+				}
+			}
+		}
+	},
+	"mcp": {
+		"mcp-shell-server": {
+			"type": "local",
+			"command": ["uvx", "mcp-shell-server"],
+			"enabled": true,
+			"environment": {
+				"ALLOW_COMMANDS": "ls,cat,pwd,grep,wc,touch,find,rm,echo,head,tail,chmod,chown,mkdir,rmdir,cp,mv,ln,ps,kill"
+			}
+		},
+		"mcp-devcontainers": {
+			"command": ["npx", "-y", "@crunchloop/mcp-devcontainers"],
+			"enabled": true,
+			"environment": {},
+			"type": "local"
+		},
+		"mcpbook_nodejs": {
+			"type": "local",
+			"command": ["node", "/Users/khanh/mcpbook/dist/index.js"],
+			"enabled": false,
+			"environment": {
+				"GITBOOK_URL": "https://nodejs.org/docs/latest/api/"
+			}
+		}
+	}
+}
