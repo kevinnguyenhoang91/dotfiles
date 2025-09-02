@@ -26,25 +26,52 @@
 	"mcp": {
 		"mcp-shell-server": {
 			"type": "local",
-			"command": ["uvx", "mcp-shell-server"],
+			"command": [
+				"uvx",
+				"mcp-shell-server"
+			],
 			"enabled": true,
 			"environment": {
 				"ALLOW_COMMANDS": "ls,cat,pwd,grep,wc,touch,find,rm,echo,head,tail,chmod,chown,mkdir,rmdir,cp,mv,ln,ps,kill"
 			}
 		},
 		"mcp-devcontainers": {
-			"command": ["npx", "-y", "@crunchloop/mcp-devcontainers"],
+			"command": [
+				"npx",
+				"-y",
+				"@crunchloop/mcp-devcontainers"
+			],
 			"enabled": true,
 			"environment": {},
 			"type": "local"
 		},
 		"mcpbook_nodejs": {
 			"type": "local",
-			"command": ["node", "/Users/khanh/mcpbook/dist/index.js"],
+			"command": [
+				"node",
+				"/Users/khanh/mcpbook/dist/index.js"
+			],
 			"enabled": false,
 			"environment": {
 				"GITBOOK_URL": "https://nodejs.org/docs/latest/api/"
 			}
-		}
+		},
+		"context7": {
+			"type": "remote",
+			"url": "https://mcp.context7.com/mcp",
+			"headers": {
+				"CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+			},
+			"enabled": true
+		},
+		"sequential-thinking": {
+			"type": "local",
+			"enabled": true,
+			"command": [
+				"npx",
+				"-y",
+				"@modelcontextprotocol/server-sequential-thinking"
+			]
+		},
 	}
 }
