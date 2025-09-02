@@ -32,7 +32,9 @@ The `Makefile` provides the following targets:
 
 *   `make stow`: Symlinks the configuration files to the appropriate locations in the user's home directory.
 *   `make unstow`: Removes the symlinks.
-*   `make setup`: Runs the `setup.sh` script, which likely installs dependencies.
+*   `make setup`: Runs the `setup.sh` script for quick dependency installation.
+*   **Enhanced Setup**: `./setup-enhanced.sh` - Intelligent, interactive setup with progress tracking and system detection.
+*   **Legacy Setup**: `./setup.sh` - Original automated setup script.
 
 ## Development Conventions
 

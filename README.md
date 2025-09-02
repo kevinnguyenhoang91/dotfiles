@@ -54,11 +54,23 @@ This dotfiles repository provides a complete development environment setup, opti
    cd "$HOME/dotfiles"
    ```
 
-2. **Run the automated setup:**
+2. **Run the enhanced automated setup:**
+   ```bash
+   ./setup-enhanced.sh
+   ```
+   This intelligent setup script provides:
+   - **System Detection** - Automatically detects your OS and existing tools
+   - **Interactive Configuration** - Choose what to install with guided menus
+   - **Progress Tracking** - Real-time progress bars and status updates
+   - **Smart Installation** - Idempotent operations that can be safely re-run
+   - **Comprehensive Logging** - Detailed logs with timestamps and context
+   - **Error Recovery** - Robust error handling with specific error codes
+   
+   **Quick setup (original script):**
    ```bash
    ./setup.sh
    ```
-   This script will:
+   This legacy script will:
    - Install Homebrew (if not present)
    - Install all required packages from `Brewfile`
    - Set up Oh My Zsh with plugins
@@ -74,6 +86,35 @@ This dotfiles repository provides a complete development environment setup, opti
    - Launch tmux and press `Ctrl-b + I` to install plugins
    - Open Neovim (`nvim`) for automatic plugin installation
    - Restart your terminal
+
+### Setup Script Options
+
+**Enhanced Setup (Recommended):**
+```bash
+./setup-enhanced.sh           # Interactive setup with all features
+./setup-enhanced.sh --minimal # Minimal setup without optional tools
+./setup-enhanced.sh --verbose # Verbose output with detailed logging
+./setup-enhanced.sh --dry-run # Preview what would be installed
+```
+
+**Legacy Setup:**
+```bash
+./setup.sh                   # Original automated setup
+```
+
+### Advanced Setup Features
+
+The enhanced setup script (`setup-enhanced.sh`) includes:
+
+- **🔍 System Detection** - Automatically identifies OS, architecture, and existing tools
+- **📋 Interactive Menus** - Choose components with intuitive selection interface
+- **📊 Progress Tracking** - Real-time progress bars and status indicators
+- **🔄 Idempotent Operations** - Safe to re-run without side effects
+- **📝 Comprehensive Logging** - Detailed logs saved to `.cache/setup.log`
+- **⚠️ Error Recovery** - Graceful error handling with specific error codes
+- **💾 State Management** - Resume interrupted installations from where you left off
+- **🎯 Component Selection** - Install only what you need (core, development, optional)
+- **✅ Health Checks** - Post-installation validation and troubleshooting guidance
 
 ### Manual Installation Options
 
