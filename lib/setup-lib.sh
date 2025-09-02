@@ -507,6 +507,648 @@ cleanup_temp_files() {
     find "$PROJECT_ROOT" -name "*.tmp" -type f -delete 2>/dev/null || true
 }
 
+# Interactive Configuration System
+#######################################
+
+#######################################
+# Display the main interactive menu
+# Outputs:
+#   Formatted menu with options
+#######################################
+show_main_menu() {
+    echo ""
+    echo "┌─────────────────────────────────────────────┐"
+    echo "│              Main Setup Menu               │"
+    echo "├─────────────────────────────────────────────┤"
+    echo "│                                             │"
+    echo "│  1) Full Installation (Recommended)        │"
+    echo "│  2) Custom Component Selection             │"
+    echo "│  3) Minimal Installation                   │"
+    echo "│  4) Resume Previous Installation           │"
+    echo "│  5) View Current Configuration             │"
+    echo "│                                             │"
+    echo "│  h) Help & Documentation                   │"
+    echo "│  q) Quit                                   │"
+    echo "│                                             │"
+    echo "└─────────────────────────────────────────────┘"
+    echo ""
+}
+
+#######################################
+# Display the component selection menu
+# Outputs:
+#   Formatted component selection interface
+#######################################
+show_component_selection_menu() {
+    echo ""
+    echo "┌─────────────────────────────────────────────┐"
+    echo "│           Component Selection              │"
+    echo "├─────────────────────────────────────────────┤"
+    echo "│                                             │"
+    echo "│  Shell & Terminal:                         │"
+    echo "│    • Zsh with Oh My Zsh                    │"
+    echo "│    • Powerlevel10k theme                   │"
+    echo "│    • Alacritty terminal                    │"
+    echo "│    • tmux with custom config               │"
+    echo "│                                             │"
+    echo "│  Development Tools:                        │"
+    echo "│    • Neovim with LazyVim                   │"
+    echo "│    • Homebrew package manager              │"
+    echo "│    • Node.js & development tools           │"
+    echo "│    • Python & pip packages                │"
+    echo "│                                             │"
+    echo "│  Git & Version Control:                    │"
+    echo "│    • Git configuration                     │"
+    echo "│    • GitHub CLI                           │"
+    echo "│    • Lazygit terminal UI                   │"
+    echo "│                                             │"
+    echo "│  Optional Components:                      │"
+    echo "│    • Docker & container tools              │"
+    echo "│    • Kubernetes tools                      │"
+    echo "│    • Additional CLI utilities              │"
+    echo "│                                             │"
+    echo "└─────────────────────────────────────────────┘"
+    echo ""
+}
+
+#######################################
+# Validate menu choice input
+# Arguments:
+#   $1 - User input choice
+# Returns:
+#   0 for valid choice, 1 for invalid
+#######################################
+validate_menu_choice() {
+    local choice="$1"
+    
+    case "$choice" in
+        [1-5]|h|H|q|Q) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+#######################################
+# Get user menu choice with validation
+# Returns:
+#   Valid menu choice via stdout
+#######################################
+get_menu_choice() {
+    local choice
+    local prompt="Enter your choice: "
+    
+    while true; do
+        read -p "$prompt" -r choice
+        
+        if validate_menu_choice "$choice"; then
+            echo "$choice"
+            return 0
+        else
+            echo "❌ Invalid choice. Please select 1-5, h (help), or q (quit)."
+            echo ""
+        fi
+    done
+}
+
+#######################################
+# Handle main menu selection
+# Arguments:
+#   $1 - Menu choice
+# Returns:
+#   0 on success, 1 on quit, 2 on error
+#######################################
+handle_menu_selection() {
+    local choice="$1"
+    
+    case "$choice" in
+        1)
+            log_info "Selected: Full Installation"
+            start_full_installation
+            ;;
+        2)
+            log_info "Selected: Custom Component Selection"
+            start_custom_installation
+            ;;
+        3)
+            log_info "Selected: Minimal Installation"
+            start_minimal_installation
+            ;;
+        4)
+            log_info "Selected: Resume Previous Installation"
+            resume_installation
+            ;;
+        5)
+            log_info "Selected: View Current Configuration"
+            show_current_configuration
+            ;;
+        h|H)
+            show_help_documentation
+            ;;
+        q|Q)
+            log_info "Setup cancelled by user"
+            return 1
+            ;;
+        *)
+            log_error "Invalid menu choice: $choice"
+            return 2
+            ;;
+    esac
+    
+    return 0
+}
+
+#######################################
+# Display interactive configuration menu
+# Returns:
+#   0 on successful selection, 1 on quit
+#######################################
+interactive_menu() {
+    local choice
+    
+    log_info "Starting interactive configuration menu"
+    
+    while true; do
+        clear
+        echo "🚀 Enhanced Dotfiles Setup"
+        echo "=========================="
+        
+        show_main_menu
+        choice=$(get_menu_choice)
+        
+        if handle_menu_selection "$choice"; then
+            # Successful operation, continue or exit based on choice
+            case "$choice" in
+                [1-5]) return 0 ;;  # Installation choices return success
+                q|Q) return 1 ;;    # Quit returns 1
+            esac
+        elif [[ $? -eq 1 ]]; then
+            # User quit
+            return 1
+        else
+            # Error occurred, show message and continue menu
+            echo ""
+            echo "Press Enter to continue..."
+            read -r
+        fi
+    done
+}
+
+# User Input Validation Functions
+#######################################
+
+#######################################
+# Validate yes/no input
+# Arguments:
+#   $1 - User input
+# Returns:
+#   0 for yes, 1 for no, 2 for invalid
+#######################################
+validate_yes_no_input() {
+    local input="$1"
+    
+    case "${input,,}" in  # Convert to lowercase
+        y|yes) return 0 ;;
+        n|no) return 1 ;;
+        *) return 2 ;;
+    esac
+}
+
+#######################################
+# Get user confirmation with validation
+# Arguments:
+#   $1 - Prompt message (optional)
+#   $2 - Default choice (y/n, optional)
+# Returns:
+#   0 for yes, 1 for no
+#######################################
+get_user_confirmation() {
+    local prompt="${1:-Continue?}"
+    local default="${2:-n}"
+    local response
+    local display_default
+    
+    # Format default display
+    case "${default,,}" in
+        y|yes) display_default="Y/n" ;;
+        n|no) display_default="y/N" ;;
+        *) display_default="y/n" ;;
+    esac
+    
+    while true; do
+        read -p "$prompt ($display_default): " -r response
+        
+        # Use default if empty
+        if [[ -z "$response" ]]; then
+            response="$default"
+        fi
+        
+        validate_yes_no_input "$response"
+        local result=$?
+        
+        case $result in
+            0) return 0 ;;  # Yes
+            1) return 1 ;;  # No
+            2) echo "Please answer yes (y) or no (n)." ;;
+        esac
+    done
+}
+
+#######################################
+# Validate configuration key format
+# Arguments:
+#   $1 - Configuration key
+# Returns:
+#   0 for valid, 1 for invalid
+#######################################
+validate_config_key() {
+    local key="$1"
+    
+    # Key must be non-empty, alphanumeric with underscores, max 50 chars
+    if [[ -n "$key" && "$key" =~ ^[a-zA-Z][a-zA-Z0-9_]{1,49}$ ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+#######################################
+# Validate component category
+# Arguments:
+#   $1 - Component category
+# Returns:
+#   0 for valid, 1 for invalid
+#######################################
+validate_component_category() {
+    local category="$1"
+    
+    case "$category" in
+        shell|editor|git|development|all|minimal) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# Component Selection Functions
+#######################################
+
+#######################################
+# Save component selection to file
+# Arguments:
+#   $1 - Config file path
+#   $@ - Component names (remaining arguments)
+# Returns:
+#   0 on success, 1 on failure
+#######################################
+save_component_selection() {
+    local config_file="$1"
+    shift
+    local components=("$@")
+    
+    if [[ ${#components[@]} -eq 0 ]]; then
+        log_error "No components provided to save"
+        return 1
+    fi
+    
+    # Create directory if needed
+    mkdir -p "$(dirname "$config_file")"
+    
+    # Save components, one per line
+    printf '%s\n' "${components[@]}" > "$config_file" || {
+        log_error "Failed to save component selection to: $config_file"
+        return 1
+    }
+    
+    log_debug "Saved ${#components[@]} components to: $config_file"
+    return 0
+}
+
+#######################################
+# Load component selection from file
+# Arguments:
+#   $1 - Config file path
+# Outputs:
+#   Component names, one per line
+# Returns:
+#   0 on success, 1 on failure
+#######################################
+load_component_selection() {
+    local config_file="$1"
+    
+    if [[ ! -f "$config_file" ]]; then
+        log_error "Component selection file not found: $config_file"
+        return 1
+    fi
+    
+    # Read components from file
+    while IFS= read -r component; do
+        if [[ -n "$component" ]]; then
+            echo "$component"
+        fi
+    done < "$config_file"
+    
+    return 0
+}
+
+# Configuration Management Functions
+#######################################
+
+#######################################
+# Load configuration defaults from file
+# Arguments:
+#   $1 - Defaults file path
+# Returns:
+#   0 on success, 1 on failure
+#######################################
+load_config_defaults() {
+    local defaults_file="$1"
+    
+    if [[ ! -f "$defaults_file" ]]; then
+        log_warn "Defaults file not found: $defaults_file"
+        return 1
+    fi
+    
+    # Source the defaults file to set environment variables
+    while IFS='=' read -r key value; do
+        # Skip empty lines and comments
+        [[ -z "$key" || "$key" =~ ^[[:space:]]*# ]] && continue
+        
+        # Validate key format
+        if validate_config_key "$key"; then
+            # Export as CONFIG_ prefixed environment variable
+            export "CONFIG_${key^^}"="$value"
+            log_debug "Loaded config default: CONFIG_${key^^}=$value"
+        else
+            log_warn "Invalid config key format: $key"
+        fi
+    done < "$defaults_file"
+    
+    return 0
+}
+
+#######################################
+# Save user preferences to associative array file
+# Arguments:
+#   $1 - Preferences file path
+#   $2 - Associative array name (passed by reference)
+# Returns:
+#   0 on success, 1 on failure
+#######################################
+save_user_preferences() {
+    local prefs_file="$1"
+    local -n prefs_array=$2
+    
+    # Create directory if needed
+    mkdir -p "$(dirname "$prefs_file")"
+    
+    # Save preferences in key=value format
+    {
+        echo "# User preferences saved on $(date -Iseconds)"
+        for key in "${!prefs_array[@]}"; do
+            echo "${key}=${prefs_array[$key]}"
+        done
+    } > "$prefs_file" || {
+        log_error "Failed to save user preferences to: $prefs_file"
+        return 1
+    }
+    
+    log_debug "Saved ${#prefs_array[@]} preferences to: $prefs_file"
+    return 0
+}
+
+#######################################
+# Load user preferences into associative array
+# Arguments:
+#   $1 - Preferences file path
+#   $2 - Associative array name (passed by reference)
+# Returns:
+#   0 on success, 1 on failure
+#######################################
+load_user_preferences() {
+    local prefs_file="$1"
+    local -n load_prefs_array=$2
+    
+    if [[ ! -f "$prefs_file" ]]; then
+        log_warn "Preferences file not found: $prefs_file"
+        return 1
+    fi
+    
+    # Load preferences from file
+    while IFS='=' read -r key value; do
+        # Skip empty lines and comments
+        [[ -z "$key" || "$key" =~ ^[[:space:]]*# ]] && continue
+        
+        # Store in associative array
+        load_prefs_array["$key"]="$value"
+        log_debug "Loaded preference: $key=$value"
+    done < "$prefs_file"
+    
+    return 0
+}
+
+# Installation State Management
+#######################################
+
+#######################################
+# Mark a component as completed
+# Arguments:
+#   $1 - Component name
+# Returns:
+#   0 on success, 1 on failure
+#######################################
+mark_component_completed() {
+    local component="$1"
+    local state_dir="${SETUP_STATE_DIR:-${CACHE_DIR}/state}"
+    local state_file="${state_dir}/.${component}_completed"
+    
+    mkdir -p "$state_dir"
+    
+    if touch "$state_file"; then
+        log_debug "Marked component completed: $component"
+        return 0
+    else
+        log_error "Failed to mark component completed: $component"
+        return 1
+    fi
+}
+
+#######################################
+# Check if a component is completed
+# Arguments:
+#   $1 - Component name
+# Returns:
+#   0 if completed, 1 if not completed
+#######################################
+is_component_completed() {
+    local component="$1"
+    local state_dir="${SETUP_STATE_DIR:-${CACHE_DIR}/state}"
+    local state_file="${state_dir}/.${component}_completed"
+    
+    [[ -f "$state_file" ]]
+}
+
+#######################################
+# Get list of incomplete components
+# Arguments:
+#   $1 - Array name containing all components (passed by reference)
+# Outputs:
+#   Incomplete component names, one per line
+# Returns:
+#   0 on success
+#######################################
+get_incomplete_components() {
+    local -n all_components_array=$1
+    
+    for component in "${all_components_array[@]}"; do
+        if ! is_component_completed "$component"; then
+            echo "$component"
+        fi
+    done
+    
+    return 0
+}
+
+# Resume/Checkpoint Functions
+#######################################
+
+#######################################
+# Save installation checkpoint
+# Arguments:
+#   $1 - Checkpoint file path
+#   $2 - Associative array name with checkpoint data (passed by reference)
+# Returns:
+#   0 on success, 1 on failure
+#######################################
+save_installation_checkpoint() {
+    local checkpoint_file="$1"
+    local -n checkpoint_data=$2
+    
+    # Create directory if needed
+    mkdir -p "$(dirname "$checkpoint_file")"
+    
+    # Save checkpoint data
+    {
+        echo "# Installation checkpoint saved on $(date -Iseconds)"
+        for key in "${!checkpoint_data[@]}"; do
+            echo "${key}=${checkpoint_data[$key]}"
+        done
+    } > "$checkpoint_file" || {
+        log_error "Failed to save installation checkpoint to: $checkpoint_file"
+        return 1
+    }
+    
+    log_info "Installation checkpoint saved to: $checkpoint_file"
+    return 0
+}
+
+#######################################
+# Load installation checkpoint
+# Arguments:
+#   $1 - Checkpoint file path
+#   $2 - Associative array name to load data into (passed by reference)
+# Returns:
+#   0 on success, 1 on failure
+#######################################
+load_installation_checkpoint() {
+    local checkpoint_file="$1"
+    local -n load_checkpoint_data=$2
+    
+    if [[ ! -f "$checkpoint_file" ]]; then
+        log_error "Checkpoint file not found: $checkpoint_file"
+        return 1
+    fi
+    
+    # Load checkpoint data
+    while IFS='=' read -r key value; do
+        # Skip empty lines and comments
+        [[ -z "$key" || "$key" =~ ^[[:space:]]*# ]] && continue
+        
+        # Store in associative array
+        load_checkpoint_data["$key"]="$value"
+        log_debug "Loaded checkpoint data: $key=$value"
+    done < "$checkpoint_file"
+    
+    log_info "Installation checkpoint loaded from: $checkpoint_file"
+    return 0
+}
+
+#######################################
+# Check if installation can be resumed
+# Arguments:
+#   $1 - Checkpoint file path
+# Returns:
+#   0 if can resume, 1 if cannot
+#######################################
+can_resume_installation() {
+    local checkpoint_file="$1"
+    
+    # File must exist and be readable
+    if [[ ! -f "$checkpoint_file" || ! -r "$checkpoint_file" ]]; then
+        return 1
+    fi
+    
+    # File must contain required checkpoint data
+    if grep -q "current_step=" "$checkpoint_file" && 
+       grep -q "timestamp=" "$checkpoint_file"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Placeholder Installation Functions (to be implemented in subsequent tasks)
+#######################################
+
+start_full_installation() {
+    log_info "Full installation mode selected"
+    echo "🚀 Starting full installation..."
+    # Implementation will be added in subsequent tasks
+}
+
+start_custom_installation() {
+    log_info "Custom installation mode selected"
+    echo "🎯 Starting custom component selection..."
+    # Implementation will be added in subsequent tasks
+}
+
+start_minimal_installation() {
+    log_info "Minimal installation mode selected"
+    echo "⚡ Starting minimal installation..."
+    # Implementation will be added in subsequent tasks
+}
+
+resume_installation() {
+    log_info "Resume installation mode selected"
+    echo "🔄 Checking for previous installation..."
+    # Implementation will be added in subsequent tasks
+}
+
+show_current_configuration() {
+    log_info "Displaying current configuration"
+    echo "📋 Current Configuration:"
+    echo "OS: $(detect_os)"
+    echo "Package Manager: $(detect_package_manager)"
+    # More details will be added in subsequent tasks
+}
+
+show_help_documentation() {
+    echo ""
+    echo "📖 Help & Documentation"
+    echo "======================="
+    echo ""
+    echo "This setup script configures a comprehensive development environment"
+    echo "with modern tools and configurations optimized for productivity."
+    echo ""
+    echo "Installation Options:"
+    echo "  1) Full Installation    - Complete setup with all components"
+    echo "  2) Custom Selection     - Choose specific components to install"
+    echo "  3) Minimal Installation - Essential tools only"
+    echo "  4) Resume Installation  - Continue from previous checkpoint"
+    echo "  5) View Configuration   - Show current system status"
+    echo ""
+    echo "For more information, visit: https://github.com/kevinnguyenhoang91/dotfiles"
+    echo ""
+    echo "Press Enter to return to menu..."
+    read -r
+}
+
 # Initialize library
 #######################################
 
