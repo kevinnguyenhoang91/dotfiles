@@ -227,10 +227,17 @@ test_idempotent_operations() {
         return 1
     fi
     
-    # Test operation state tracking
-    local test_operation="test_op"
+    # Test operation state tracking with unique operation name
+    local test_operation="test_idempotent_ops_$(date +%s%N)"
     
-    # Initially should not be completed
+    # Force clean state for this specific operation
+    if [[ -f "$STATE_FILE" ]]; then
+        # Remove any existing entry for this operation
+        grep -v "^COMPLETED_${test_operation}=" "$STATE_FILE" > "${STATE_FILE}.tmp" 2>/dev/null || true
+        mv "${STATE_FILE}.tmp" "$STATE_FILE" 2>/dev/null || true
+    fi
+    
+    # Ensure operation starts clean (should not be completed initially)
     if is_operation_completed "$test_operation"; then
         echo "ERROR: Operation incorrectly marked as completed"
         return 1
@@ -242,6 +249,15 @@ test_idempotent_operations() {
     # Should now be completed
     if ! is_operation_completed "$test_operation"; then
         echo "ERROR: Operation not properly marked as completed"
+        return 1
+    fi
+    
+    # Test reset functionality
+    reset_operation_state "$test_operation"
+    
+    # Should not be completed after reset
+    if is_operation_completed "$test_operation"; then
+        echo "ERROR: Operation not properly reset"
         return 1
     fi
     
@@ -313,6 +329,13 @@ setup_test_environment() {
     # Set test environment variables
     export TEST_MODE="true"
     export TEST_DIR="$TEMP_TEST_DIR"
+    
+    # Completely clean up any existing state to ensure clean tests
+    local state_file="${PROJECT_ROOT}/.cache/setup_state.conf"
+    if [[ -f "$state_file" ]]; then
+        rm -f "$state_file"
+    fi
+    mkdir -p "${PROJECT_ROOT}/.cache"
 }
 
 #######################################
