@@ -7,7 +7,7 @@
 
 # Global variables
 # ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_THEME="random"
+ZSH_THEME="af-magic"
 export ZSH=~/.oh-my-zsh
 export TERM='xterm-256color'
 export GPG_TTY=$(tty)
@@ -26,6 +26,7 @@ export HISTFILE=${HOME}/.zsh_history
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 export HISTTIMEFORMAT="[%F %T] "
+export EDITOR='nvim'
 
 # Paths
 export PATH="${HOME}/.local/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:${GOPATH}/bin:${HOME}/.cargo/bin:/usr/local/opt/rust/bin:${GEM_HOME}/bin:${NPM_CONFIG_PREFIX}/bin:${JAVA_HOME}/bin:${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${HOME}/.pub-cache/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
@@ -153,9 +154,9 @@ if command -v atuin &> /dev/null; then
 fi
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/khanh/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
+# fpath=(/Users/khanh/.docker/completions $fpath)
+# autoload -Uz compinit
+# compinit
 # End of Docker CLI completions
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
@@ -172,3 +173,6 @@ if [ -f '/home/user/google-cloud-sdk/path.zsh.inc' ]; then . '/home/user/google-
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/user/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/user/google-cloud-sdk/completion.zsh.inc'; fi
+
+# opencode
+export PATH=/home/user/.opencode/bin:$PATH
