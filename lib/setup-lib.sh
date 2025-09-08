@@ -369,8 +369,12 @@ get_config_value() {
     
     if [[ -f "$config_file" ]]; then
         local value
-        value=$(grep "^${key}=" "$config_file" 2>/dev/null | cut -d'=' -f2- || echo "$default")
-        echo "$value"
+        value=$(grep "^${key}=" "$config_file" 2>/dev/null | cut -d'=' -f2-)
+        if [[ -z "$value" ]]; then
+            echo "$default"
+        else
+            echo "$value"
+        fi
     else
         echo "$default"
     fi
