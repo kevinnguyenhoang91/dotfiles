@@ -29,6 +29,9 @@ stow:
 	mkdir -p ~/.config/opencode
 	@stow -t ~/.config/opencode opencode
 
+	mkdir -p ~/.claude
+	@stow -t ~/.claude claude
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig brew iterm p10k tmuxp
@@ -40,6 +43,7 @@ unstow:
 	@stow -D -t ~/Library/Application\ Support/k9s k9s
 	@stow -D -t ~/Library/Application\ Support/lazydocker lazydocker
 	@stow -D -t ~/.config/opencode opencode
+	@stow -D -t ~/.claude claude
 
 .PHONY: setup
 setup:
