@@ -1,5 +1,5 @@
 session_name: frontend
-start_directory: /Volumes/DATA/Projects_GHN
+start_directory: /Volumes/DEV_DRIVE/Projects
 # before_script: ./scripts/poetry-before-script.sh
 # shell_command_before:
 #   - poetry install --no-interaction --no-ansi --quiet
@@ -12,42 +12,51 @@ windows:
       - focus: "true"
         shell_command:
           - nvim -c 'lua require("persistence").load()'
-    start_directory: ./app-driver
-    window_name: app-driver
-  - layout: main-horizontal
-    options:
-      main-pane-height: 75%
-    panes:
-      - focus: "true"
-        shell_command:
-          - nvim -c 'lua require("persistence").load()'
-    start_directory: ./employeeapp
-    window_name: employeeapp
-  - layout: main-horizontal
-    options:
-      main-pane-height: 75%
-    panes:
-      - focus: "true"
-        shell_command:
-          - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
-    start_directory: ./app-driver
-    window_name: app-driver (devcontainer)
-  - layout: main-horizontal
-    options:
-      main-pane-height: 75%
-    panes:
-      - focus: "true"
-        shell_command:
-          - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
-    start_directory: ./employeeapp
-    window_name: employeeapp (devcontainer)
-  - focus: "true"
-    layout: main-horizontal
-    options:
-      main-pane-height: 75%
-    panes:
-      - focus: "true"
-        shell_command:
-          - nvim -c 'lua require("persistence").load()'
-    start_directory: ./singleapp-web-download
-    window_name: singleapp-web-download
+    start_directory: ./stalwart/twake/twake-flutter
+    window_name: twake-flutter
+  # - layout: main-horizontal
+  #   options:
+  #     main-pane-height: 75%
+  #   panes:
+  #     - focus: "true"
+  #       shell_command:
+  #         - nvim -c 'lua require("persistence").load()'
+  #   start_directory: ./app-driver
+  #   window_name: app-driver
+  # - layout: main-horizontal
+  #   options:
+  #     main-pane-height: 75%
+  #   panes:
+  #     - focus: "true"
+  #       shell_command:
+  #         - nvim -c 'lua require("persistence").load()'
+  #   start_directory: ./employeeapp
+  #   window_name: employeeapp
+  # - layout: main-horizontal
+  #   options:
+  #     main-pane-height: 75%
+  #   panes:
+  #     - focus: "true"
+  #       shell_command:
+  #         - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+  #   start_directory: ./app-driver
+  #   window_name: app-driver (devcontainer)
+  # - layout: main-horizontal
+  #   options:
+  #     main-pane-height: 75%
+  #   panes:
+  #     - focus: "true"
+  #       shell_command:
+  #         - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+  #   start_directory: ./employeeapp
+  #   window_name: employeeapp (devcontainer)
+  # - focus: "true"
+  #   layout: main-horizontal
+  #   options:
+  #     main-pane-height: 75%
+  #   panes:
+  #     - focus: "true"
+  #       shell_command:
+  #         - nvim -c 'lua require("persistence").load()'
+  #   start_directory: ./singleapp-web-download
+  #   window_name: singleapp-web-download

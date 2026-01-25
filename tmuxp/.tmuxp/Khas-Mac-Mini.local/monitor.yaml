@@ -27,3 +27,15 @@ windows:
           - read "response?Enter ssh rpi4.tail70eb.ts.net? (y/n) " && [[ "$response" == [Yy] ]] && ssh khanh@rpi4.tail70eb.ts.net
     start_directory: ./
     window_name: rpi4.local
+  - focus: "true"
+    layout: main-horizontal
+    options:
+      main-pane-height: 75%
+    panes:
+      - focus: "true"
+        shell_command:
+          - read "response?Enter ssh truenas-scale.tail70eb.ts.net (botp)? (y/n) " && [[ "$response" == [Yy] ]] && ssh khanh@truenas-scale.tail70eb.ts.net -t htop
+      - shell_command:
+          - read "response?Enter ssh truenas-scale.tail70eb.ts.net? (y/n) " && [[ "$response" == [Yy] ]] && ssh khanh@truenas-scale.tail70eb.ts.net
+    start_directory: ./
+    window_name: truenas.local
