@@ -166,3 +166,13 @@ export PATH="$PATH:/Users/khanh/.lmstudio/bin"
 # End of LM Studio CLI section
 
 if [ -f "$HOME/.secrets.zsh" ]; then source "$HOME/.secrets.zsh"; fi
+
+# bun completions
+[ -s "/Users/khanh/.bun/_bun" ] && source "/Users/khanh/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/khanh/.antigravity/antigravity/bin:$PATH"
