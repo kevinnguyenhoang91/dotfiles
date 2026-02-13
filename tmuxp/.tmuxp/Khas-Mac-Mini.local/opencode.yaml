@@ -1,0 +1,17 @@
+session_name: opencode
+start_directory: /Volumes/DEV_DRIVE/Projects
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
+windows:
+  - focus: "true"
+    layout: main-horizontal
+    panes:
+      - focus: "true"
+        shell_command:
+          - read "response?Enter opencode with port 4096? (y/n) " && [[ "$response" == [Yy] ]] && opencode --port 4096
+    start_directory: ./
+    window_name: opencode
+    options:
+      main-pane-height: 75%
