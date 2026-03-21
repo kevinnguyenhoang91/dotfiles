@@ -1,358 +1,458 @@
 {
-	"$schema": "https://opencode.ai/config.json",
-	"mcp": {
-		"mcp-shell-server": {
-			"type": "local",
-			"command": ["uvx", "mcp-shell-server"],
-			"enabled": true,
-			"environment": {
-				"ALLOW_COMMANDS": "ls,cat,pwd,grep,wc,touch,find,rm,echo,head,tail,chmod,chown,mkdir,rmdir,cp,mv,ln,ps,kill"
-			}
-		},
-		"mcp-devcontainers": {
-			"command": ["npx", "-y", "@crunchloop/mcp-devcontainers"],
-			"enabled": true,
-			"environment": {},
-			"type": "local"
-		},
-		"context7": {
-			"type": "remote",
-			"url": "https://mcp.context7.com/mcp",
-			"headers": {
-				"CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-			},
-			"enabled": true
-		},
-		"sequential-thinking": {
-			"type": "local",
-			"enabled": true,
-			"command": [
-				"npx",
-				"-y",
-				"@modelcontextprotocol/server-sequential-thinking"
-			]
-		},
-		"github": {
-			"type": "remote",
-			"enabled": true,
-			"url": "https://api.githubcopilot.com/mcp/",
-			"headers": {
-				"Authorization": "Bearer {env:GITHUB_MCP_PAT}"
-			}
-		},
-		"memory": {
-			"type": "local",
-			"enabled": true,
-			"command": ["npx", "-y", "@modelcontextprotocol/server-memory"]
-		},
-		"mcp-compass": {
-			"type": "local",
-			"enabled": true,
-			"command": ["npx", "-y", "@liuyoshio/mcp-compass"]
-		},
-		"serena": {
-			"type": "local",
-			"enabled": true,
-			"command": [
-				"uvx",
-				"--from",
-				"git+https://github.com/oraios/serena",
-				"serena",
-				"start-mcp-server"
-			]
-		},
-		"ddg-search": {
-			"type": "local",
-			"enabled": true,
-			"command": ["uvx", "duckduckgo-mcp-server"]
-		},
-		"everything": {
-			"type": "local",
-			"enabled": true,
-			"command": ["npx", "-y", "@modelcontextprotocol/server-everything"]
-		},
-		"mcp-server-fetch": {
-			"type": "local",
-			"enabled": true,
-			"command": ["uvx", "mcp-server-fetch"]
-		},
-		"mcp-filesystem": {
-			"type": "local",
-			"enabled": true,
-			"command": [
-				"npx",
-				"-y",
-				"@modelcontextprotocol/server-filesystem",
-				"/Users/khanh",
-				"/Volumes/DEV_DRIVE"
-			]
-		},
-		"mcp-server-git": {
-			"type": "local",
-			"enabled": true,
-			"command": ["uvx", "mcp-server-git"]
-		},
-		"mcp-server-time": {
-			"type": "local",
-			"enabled": true,
-			"command": ["uvx", "mcp-server-time"]
-		},
-		"mcp-package-registry-mcp": {
-			"type": "local",
-			"enabled": true,
-			"command": ["npx", "-y", "package-registry-mcp"]
-		},
-		"xcodebuild-mcp": {
-			"type": "local",
-			"enabled": true,
-			"command": ["npx", "-y", "xcodebuildmcp@latest"]
-		},
-		"kit-dev": {
-			"type": "local",
-			"enabled": true,
-			"command": ["uvx", "--from", "cased-kit", "kit-dev-mcp"]
-		},
-		"playwright": {
-			"type": "local",
-			"enabled": true,
-			"command": ["npx", "-y", "@playwright/mcp@latest"]
-		},
-		"MCP_DOCKER": {
-			"type": "local",
-			"enabled": true,
-			"command": ["docker", "mcp", "gateway", "run"]
-		}
-	},
-	"plugin": [
-		"oh-my-opencode",
-		"opencode-openai-codex-auth",
-		"opencode-antigravity-auth",
-		"opencode-devcontainers",
-		"@zenobius/opencode-skillful",
-		"@tarquinen/opencode-dcp"
-	],
-	"provider": {
-		"openai": {
-			"name": "OpenAI",
-			"options": {
-				"reasoningEffort": "medium",
-				"reasoningSummary": "auto",
-				"textVerbosity": "medium",
-				"include": ["reasoning.encrypted_content"],
-				"store": false
-			},
-			"models": {
-				"gpt-5.2": {
-					"name": "GPT 5.2 (OAuth)",
-					"limit": {
-						"context": 272000,
-						"output": 128000
-					},
-					"modalities": {
-						"input": ["text", "image"],
-						"output": ["text"]
-					},
-					"variants": {
-						"none": {
-							"reasoningEffort": "none",
-							"reasoningSummary": "auto",
-							"textVerbosity": "medium"
-						},
-						"low": {
-							"reasoningEffort": "low",
-							"reasoningSummary": "auto",
-							"textVerbosity": "medium"
-						},
-						"medium": {
-							"reasoningEffort": "medium",
-							"reasoningSummary": "auto",
-							"textVerbosity": "medium"
-						},
-						"high": {
-							"reasoningEffort": "high",
-							"reasoningSummary": "detailed",
-							"textVerbosity": "medium"
-						},
-						"xhigh": {
-							"reasoningEffort": "xhigh",
-							"reasoningSummary": "detailed",
-							"textVerbosity": "medium"
-						}
-					}
-				},
-				"gpt-5.2-codex": {
-					"name": "GPT 5.2 Codex (OAuth)",
-					"limit": {
-						"context": 272000,
-						"output": 128000
-					},
-					"modalities": {
-						"input": ["text", "image"],
-						"output": ["text"]
-					},
-					"variants": {
-						"low": {
-							"reasoningEffort": "low",
-							"reasoningSummary": "auto",
-							"textVerbosity": "medium"
-						},
-						"medium": {
-							"reasoningEffort": "medium",
-							"reasoningSummary": "auto",
-							"textVerbosity": "medium"
-						},
-						"high": {
-							"reasoningEffort": "high",
-							"reasoningSummary": "detailed",
-							"textVerbosity": "medium"
-						},
-						"xhigh": {
-							"reasoningEffort": "xhigh",
-							"reasoningSummary": "detailed",
-							"textVerbosity": "medium"
-						}
-					}
-				},
-				"gpt-5.1-codex-max": {
-					"name": "GPT 5.1 Codex Max (OAuth)",
-					"limit": {
-						"context": 272000,
-						"output": 128000
-					},
-					"modalities": {
-						"input": ["text", "image"],
-						"output": ["text"]
-					},
-					"variants": {
-						"low": {
-							"reasoningEffort": "low",
-							"reasoningSummary": "detailed",
-							"textVerbosity": "medium"
-						},
-						"medium": {
-							"reasoningEffort": "medium",
-							"reasoningSummary": "detailed",
-							"textVerbosity": "medium"
-						},
-						"high": {
-							"reasoningEffort": "high",
-							"reasoningSummary": "detailed",
-							"textVerbosity": "medium"
-						},
-						"xhigh": {
-							"reasoningEffort": "xhigh",
-							"reasoningSummary": "detailed",
-							"textVerbosity": "medium"
-						}
-					}
-				}
-			}
-		},
-		"google": {
-			"name": "Google",
-			"models": {
-				"antigravity-gemini-3-pro": {
-					"name": "Gemini 3 Pro (Antigravity)",
-					"limit": {
-						"context": 1048576,
-						"output": 65535
-					},
-					"modalities": {
-						"input": ["text", "image", "pdf"],
-						"output": ["text"]
-					},
-					"variants": {
-						"low": {
-							"thinkingLevel": "low"
-						},
-						"high": {
-							"thinkingLevel": "high"
-						}
-					}
-				},
-				"antigravity-gemini-3-flash": {
-					"name": "Gemini 3 Flash (Antigravity)",
-					"limit": {
-						"context": 1048576,
-						"output": 65536
-					},
-					"modalities": {
-						"input": ["text", "image", "pdf"],
-						"output": ["text"]
-					},
-					"variants": {
-						"minimal": {
-							"thinkingLevel": "minimal"
-						},
-						"low": {
-							"thinkingLevel": "low"
-						},
-						"medium": {
-							"thinkingLevel": "medium"
-						},
-						"high": {
-							"thinkingLevel": "high"
-						}
-					}
-				},
-				"antigravity-claude-sonnet-4-5": {
-					"name": "Claude Sonnet 4.5 (Antigravity)",
-					"limit": {
-						"context": 200000,
-						"output": 64000
-					},
-					"modalities": {
-						"input": ["text", "image", "pdf"],
-						"output": ["text"]
-					}
-				},
-				"antigravity-claude-sonnet-4-5-thinking": {
-					"name": "Claude Sonnet 4.5 Thinking (Antigravity)",
-					"limit": {
-						"context": 200000,
-						"output": 64000
-					},
-					"modalities": {
-						"input": ["text", "image", "pdf"],
-						"output": ["text"]
-					},
-					"variants": {
-						"low": {
-							"thinkingConfig": {
-								"thinkingBudget": 8192
-							}
-						},
-						"max": {
-							"thinkingConfig": {
-								"thinkingBudget": 32768
-							}
-						}
-					}
-				},
-				"antigravity-claude-opus-4-5-thinking": {
-					"name": "Claude Opus 4.5 Thinking (Antigravity)",
-					"limit": {
-						"context": 200000,
-						"output": 64000
-					},
-					"modalities": {
-						"input": ["text", "image", "pdf"],
-						"output": ["text"]
-					},
-					"variants": {
-						"low": {
-							"thinkingConfig": {
-								"thinkingBudget": 8192
-							}
-						},
-						"max": {
-							"thinkingConfig": {
-								"thinkingBudget": 32768
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "mcp-shell-server": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "mcp-shell-server"
+      ],
+      "enabled": true,
+      "environment": {
+        "ALLOW_COMMANDS": "ls,cat,pwd,grep,wc,touch,find,rm,echo,head,tail,chmod,chown,mkdir,rmdir,cp,mv,ln,ps,kill"
+      }
+    },
+    "mcp-devcontainers": {
+      "command": [
+        "npx",
+        "-y",
+        "@crunchloop/mcp-devcontainers"
+      ],
+      "enabled": true,
+      "environment": {},
+      "type": "local"
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      },
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "github": {
+      "type": "remote",
+      "enabled": true,
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer {env:GITHUB_MCP_PAT}"
+      }
+    },
+    "memory": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "mcp-compass": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "@liuyoshio/mcp-compass"
+      ]
+    },
+    "serena": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
+      ]
+    },
+    "ddg-search": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "uvx",
+        "duckduckgo-mcp-server"
+      ]
+    },
+    "everything": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-everything"
+      ]
+    },
+    "mcp-server-fetch": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "uvx",
+        "mcp-server-fetch"
+      ]
+    },
+    "mcp-filesystem": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/khanh",
+        "/Volumes/DEV_DRIVE"
+      ]
+    },
+    "mcp-server-git": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "uvx",
+        "mcp-server-git"
+      ]
+    },
+    "mcp-server-time": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "uvx",
+        "mcp-server-time"
+      ]
+    },
+    "mcp-package-registry-mcp": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "package-registry-mcp"
+      ]
+    },
+    "xcodebuild-mcp": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "xcodebuildmcp@latest"
+      ]
+    },
+    "kit-dev": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "uvx",
+        "--from",
+        "cased-kit",
+        "kit-dev-mcp"
+      ]
+    },
+    "playwright": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp@latest"
+      ]
+    },
+    "MCP_DOCKER": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "docker",
+        "mcp",
+        "gateway",
+        "run"
+      ]
+    }
+  },
+  "plugin": [
+    "oh-my-opencode@latest",
+    "opencode-openai-codex-auth",
+    "opencode-antigravity-auth",
+    "opencode-devcontainers",
+    "@zenobius/opencode-skillful",
+    "@tarquinen/opencode-dcp"
+  ],
+  "provider": {
+    "openai": {
+      "name": "OpenAI",
+      "options": {
+        "reasoningEffort": "medium",
+        "reasoningSummary": "auto",
+        "textVerbosity": "medium",
+        "include": [
+          "reasoning.encrypted_content"
+        ],
+        "store": false
+      },
+      "models": {
+        "gpt-5.2": {
+          "name": "GPT 5.2 (OAuth)",
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "none": {
+              "reasoningEffort": "none",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "low": {
+              "reasoningEffort": "low",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.2-codex": {
+          "name": "GPT 5.2 Codex (OAuth)",
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "reasoningEffort": "low",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "auto",
+              "textVerbosity": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        },
+        "gpt-5.1-codex-max": {
+          "name": "GPT 5.1 Codex Max (OAuth)",
+          "limit": {
+            "context": 272000,
+            "output": 128000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "reasoningEffort": "low",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "medium": {
+              "reasoningEffort": "medium",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "high": {
+              "reasoningEffort": "high",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            },
+            "xhigh": {
+              "reasoningEffort": "xhigh",
+              "reasoningSummary": "detailed",
+              "textVerbosity": "medium"
+            }
+          }
+        }
+      }
+    },
+    "google": {
+      "name": "Google",
+      "models": {
+        "antigravity-gemini-3-pro": {
+          "name": "Gemini 3 Pro (Antigravity)",
+          "limit": {
+            "context": 1048576,
+            "output": 65535
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "antigravity-gemini-3-flash": {
+          "name": "Gemini 3 Flash (Antigravity)",
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "minimal": {
+              "thinkingLevel": "minimal"
+            },
+            "low": {
+              "thinkingLevel": "low"
+            },
+            "medium": {
+              "thinkingLevel": "medium"
+            },
+            "high": {
+              "thinkingLevel": "high"
+            }
+          }
+        },
+        "antigravity-claude-sonnet-4-5": {
+          "name": "Claude Sonnet 4.5 (Antigravity)",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "antigravity-claude-sonnet-4-5-thinking": {
+          "name": "Claude Sonnet 4.5 Thinking (Antigravity)",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingConfig": {
+                "thinkingBudget": 8192
+              }
+            },
+            "max": {
+              "thinkingConfig": {
+                "thinkingBudget": 32768
+              }
+            }
+          }
+        },
+        "antigravity-claude-opus-4-5-thinking": {
+          "name": "Claude Opus 4.5 Thinking (Antigravity)",
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "variants": {
+            "low": {
+              "thinkingConfig": {
+                "thinkingBudget": 8192
+              }
+            },
+            "max": {
+              "thinkingConfig": {
+                "thinkingBudget": 32768
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

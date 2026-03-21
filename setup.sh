@@ -9,7 +9,8 @@ if ! command -v brew &> /dev/null; then
 fi
 
 # Install Homebrew packages
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -f /usr/local/Homebrew/bin/brew ] && eval "$(/usr/local/Homebrew/bin/brew shellenv)"
 cd brew && brew bundle
 cd "${HOME}"
 
@@ -32,6 +33,7 @@ cp -RLf xcode/themes/Catppuccin\ Frappé.xccolortheme ~/Library/Developer/Xcode/
 rm -rf xcode
 
 # GPG
+mkdir -p ~/.gnupg
 echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
 killall gpg-agent
 
