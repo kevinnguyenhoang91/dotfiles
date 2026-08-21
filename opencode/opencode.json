@@ -177,12 +177,12 @@
     }
   },
   "plugin": [
-    "oh-my-opencode@latest",
     "opencode-openai-codex-auth",
     "opencode-antigravity-auth",
     "opencode-devcontainers",
     "@zenobius/opencode-skillful",
-    "@tarquinen/opencode-dcp"
+    "@tarquinen/opencode-dcp",
+    "oh-my-openagent@latest"
   ],
   "provider": {
     "openai": {

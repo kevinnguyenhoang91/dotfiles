@@ -1,0 +1,29 @@
+session_name: monitor
+start_directory: /Users/khanh
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
+windows:
+  - layout: main-horizontal
+    options:
+      main-pane-height: 75%
+    panes:
+      - focus: "true"
+        shell_command:
+          - btop
+      - blank
+    start_directory: ./
+    window_name: khas-macbook-pro-ghn.local
+  - focus: "true"
+    layout: main-horizontal
+    options:
+      main-pane-height: 75%
+    panes:
+      - focus: "true"
+        shell_command:
+          - read "response?Enter ssh rpi4.tail70eb.ts.net (botp)? (y/n) " && [[ "$response" == [Yy] ]] && ssh khanh@rpi4.tail70eb.ts.net -t btop
+      - shell_command:
+          - read "response?Enter ssh rpi4.tail70eb.ts.net? (y/n) " && [[ "$response" == [Yy] ]] && ssh khanh@rpi4.tail70eb.ts.net
+    start_directory: ./
+    window_name: rpi4.tail70eb.ts.net

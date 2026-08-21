@@ -26,6 +26,7 @@ export HISTFILE=${HOME}/.zsh_history
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 export HISTTIMEFORMAT="[%F %T] "
+export EDITOR="nvim"
 
 # Paths
 export PATH="${HOME}/.local/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:${GOPATH}/bin:${HOME}/.cargo/bin:/usr/local/opt/rust/bin:/usr/local/opt/ruby/bin:${GEM_HOME}/bin:${NPM_CONFIG_PREFIX}/bin:${JAVA_HOME}/bin:${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${HOME}/.pub-cache/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
@@ -47,6 +48,7 @@ alias ls='ls -G'
 alias ll='ls -lG'
 alias lsa='ls -lahG'
 alias nv='nvim -c "lua require\"persistence\".load()"'
+alias python='python3'
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"'
@@ -176,3 +178,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Added by Antigravity
 export PATH="/Users/khanh/.antigravity/antigravity/bin:$PATH"
+
+# Homebrew Python 3.14
+export PATH="/opt/homebrew/opt/python@3.14/libexec/bin:$PATH"
