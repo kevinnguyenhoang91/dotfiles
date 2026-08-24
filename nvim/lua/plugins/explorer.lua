@@ -24,18 +24,12 @@ return {
   "folke/snacks.nvim",
   opts = {
     picker = {
+      hidden = true,
+      ignored = true,
       sources = {
-        files = {
-          hidden = true,
-          ignore = true,
-        },
         explorer = {
-          files = {
-            hidden = true,
-            ignore = true,
-          },
-          cycle = true,
           layout = {
+            cycle = false,
             preview = "main",
             layout = {
               position = "right",
