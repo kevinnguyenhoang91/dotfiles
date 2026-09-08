@@ -298,6 +298,8 @@ cask "font-fira-code-nerd-font"
 cask "iterm2"
 # Open-source keystroke visualiser
 cask "keycastr"
+# Fast, GPU-based terminal emulator
+cask "kitty"
 # Free and open-source media player
 #cask "kodi"
 # Kubernetes IDE

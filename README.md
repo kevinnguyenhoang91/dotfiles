@@ -58,7 +58,7 @@ make unstow
 These dotfiles include configurations for the following tools:
 
 - **Shell:** Zsh, Bash, Oh My Zsh, Powerlevel10k
-- **Terminal:** Alacritty, iTerm2
+- **Terminal:** Alacritty, iTerm2, Kitty
 - **Editors:** Neovim, VSCode
 - **Multiplexers:** Tmux, tmuxp
 - **Git:** Git, Lazygit, Gitmux
