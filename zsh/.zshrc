@@ -181,3 +181,8 @@ export PATH="/Users/khanh/.antigravity/antigravity/bin:$PATH"
 
 # Homebrew Python 3.14
 export PATH="/opt/homebrew/opt/python@3.14/libexec/bin:$PATH"
+
+# mise
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh)"
+fi

@@ -11,10 +11,10 @@ windows:
       - focus: "true"
         shell_command:
           - nvim -c 'lua require("persistence").load()'
-      - shell_command:
+          # - shell_command:
           # - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
           # - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
-          - lazygit
+      - blank
     start_directory: ./devops-jenkins-pipeline-hermes
     window_name: devops-jenkins-pipeline-hermes
     options:
@@ -25,12 +25,68 @@ windows:
       - focus: "true"
         shell_command:
           - nvim -c 'lua require("persistence").load()'
-      - shell_command:
+          # - shell_command:
           # - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
           # - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
-          - lazygit
+      - blank
     start_directory: ./devops-jenkins-library
     window_name: devops-jenkins-library
+    options:
+      main-pane-height: 75%
+  - focus: "true"
+    layout: main-horizontal
+    panes:
+      - focus: "true"
+        shell_command:
+          - nvim -c 'lua require("persistence").load()'
+          # - shell_command:
+          # - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+          # - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+      - blank
+    start_directory: ./devops-gitlab-pipeline-hermes
+    window_name: devops-gitlab-pipeline-hermes
+    options:
+      main-pane-height: 75%
+  - focus: "true"
+    layout: main-horizontal
+    panes:
+      - focus: "true"
+        shell_command:
+          - nvim -c 'lua require("persistence").load()'
+          # - shell_command:
+          # - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+          # - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+      - blank
+    start_directory: ./terraform-aws-vchat-infra-prod
+    window_name: terraform-aws-vchat-infra-prod
+    options:
+      main-pane-height: 75%
+  - focus: "true"
+    layout: main-horizontal
+    panes:
+      - focus: "true"
+        shell_command:
+          - nvim -c 'lua require("persistence").load()'
+          # - shell_command:
+          # - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+          # - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+      - blank
+    start_directory: ./devops-operation
+    window_name: devops-operation
+    options:
+      main-pane-height: 75%
+  - focus: "true"
+    layout: main-horizontal
+    panes:
+      - focus: "true"
+        shell_command:
+          - nvim -c 'lua require("persistence").load()'
+          # - shell_command:
+          # - devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+          # - read "response?Start devcontainer? (y/n) " && [[ "$response" == [Yy] ]] && devcontainer up --workspace-folder . && devcontainer exec --workspace-folder . zsh
+      - blank
+    start_directory: ./terraform-aws-vchat-infra-uat
+    window_name: terraform-aws-vchat-infra-uat
     options:
       main-pane-height: 75%
   # - layout: main-horizontal
