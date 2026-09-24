@@ -1,0 +1,5 @@
+return {
+  {
+    "Juksuu/worktrees.nvim",
+  },
+}
