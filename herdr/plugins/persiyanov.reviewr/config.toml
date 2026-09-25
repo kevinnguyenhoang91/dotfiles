@@ -1,0 +1,17 @@
+# persiyanov/herdr-reviewr — mark lines, comment, send the comments back to the
+# agent in the pane. Linked into `herdr plugin config-dir persiyanov.reviewr`
+# by ai/setup.sh. Note the plugin id is `persiyanov.reviewr`.
+
+# Review the branch by default: matches the one-branch-per-PR workflow.
+default_scope = "branch"
+navigator_position = "left"
+# Don't steal a pane on every new workspace; open it when reviewing.
+auto_open = false
+# nvim is $EDITOR (zsh/config.zsh).
+editor = "nvim +{line} {file}"
+
+# Dark Gruvbox, matching herdr/config.toml, the iTerm2 preset and omp's
+# dark-gruvbox. The pane keeps the terminal's background and the plugin has no
+# light/dark autodetect, so this has to be set by hand; `gruvbox-light` is the
+# light half of the pair.
+theme = "gruvbox"
