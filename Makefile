@@ -41,6 +41,9 @@ stow:
 	mkdir -p ~/.omp
 	@stow -t ~/.omp omp
 
+	mkdir -p ~/.omo
+	@stow -t ~/.omo omo
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig brew iterm p10k tmuxp
@@ -56,6 +59,7 @@ unstow:
 	@stow -D -t ~/.config/opencode opencode
 	@stow -D -t ~/.claude claude
 	@stow -D -t ~/.omp omp
+	@stow -D -t ~/.omo omo
 
 .PHONY: setup
 setup:
