@@ -56,3 +56,9 @@ unstow:
 .PHONY: setup
 setup:
 	@./setup.sh
+
+# Re-links herdr after a plugin rewrites ~/.config/herdr/config.toml as a real file:
+# adopts the current target content into the package, then re-symlinks.
+.PHONY: herdr-sync
+herdr-sync:
+	@stow --adopt -t ~/.config/herdr herdr
