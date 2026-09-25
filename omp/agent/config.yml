@@ -27,7 +27,6 @@ retry:
       - openrouter/deepseek/deepseek-v4.1-flash:high
     web:
       - web/perplexity
-      - google-gemini-cli/gemini-2.5-flash
       - google-antigravity/gemini-2.5-flash
       - google/gemini-2.5-flash
       - anthropic/claude-haiku-4-5
