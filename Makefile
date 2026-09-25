@@ -38,6 +38,9 @@ stow:
 	mkdir -p ~/.claude
 	@stow -t ~/.claude claude
 
+	mkdir -p ~/.omp
+	@stow -t ~/.omp omp
+
 .PHONY: unstow
 unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig brew iterm p10k tmuxp
@@ -52,6 +55,7 @@ unstow:
 	@stow -D -t ~/Library/Application\ Support/lazydocker lazydocker
 	@stow -D -t ~/.config/opencode opencode
 	@stow -D -t ~/.claude claude
+	@stow -D -t ~/.omp omp
 
 .PHONY: setup
 setup:
