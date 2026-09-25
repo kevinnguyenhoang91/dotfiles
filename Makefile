@@ -11,6 +11,9 @@ stow:
 	mkdir -p ~/.config/nvim
 	@stow -t ~/.config/nvim nvim
 
+	mkdir -p ~/.config/herdr
+	@stow -t ~/.config/herdr herdr
+
 	mkdir -p ~/.config/kitty
 	@stow -t ~/.config/kitty kitty
 
@@ -40,6 +43,7 @@ unstow:
 	@stow -D -t ~ tmux gitmux git ruby ripgrep bazel shellcheck netrc zsh bash tig brew iterm p10k tmuxp
 	@stow -D -t ~/.config/alacritty alacritty
 	@stow -D -t ~/.config/nvim nvim
+	@stow -D -t ~/.config/herdr herdr
 	@stow -D -t ~/.config/kitty kitty
 	@stow -D -t ~/.ssh ssh
 	@stow -D -t ~/.ctags.d ctags
