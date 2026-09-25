@@ -1,151 +1,55 @@
-# herdr — terminal workspace manager for coding agents.
-# Linked to ~/.config/herdr/config.toml by ai/setup.sh.
-# Defaults: `herdr --default-config`. Apply edits: `herdr server reload-config`.
-
-# Onboarding ran once; do not show it again.
 onboarding = false
 
 [theme]
-# Matches the iTerm2 Gruvbox preset and omp's dark-gruvbox.
-name = "gruvbox"
+name = "catppuccin"
+auto_switch = false
+
+[terminal]
+default_shell = "zsh"
 
 [update]
-# Homebrew owns the binary (brew/Brewfile). `herdr update` would fight it, so
-# don't nag about new versions; the agent-detection manifest still updates.
-version_check = false
+version_check = true
 
 [ui]
-# Distinct static glyphs for blocked / working / done / idle instead of
-# color-only dots, so a row still reads where the theme's colors sit close.
+mouse_capture = false
 status_indicators = "symbols"
-
-# One pane per agent (docs/herdr.md), so put the agent on its split border rather than
-# making the sidebar the only place that says who is where.
 show_agent_labels_on_pane_borders = true
-
-# The layout here is workspace → panes; the tab level is unused. Navigation is
-# already two-dimensional (prefix+shift+N picks the repo, prefix+alt+N the
-# agent row), so a tab row showing one auto-named tab was a line of chrome
-# saying "1". Hidden, not disabled: a second tab brings the row back, which is
-# what a dev server or a test watcher would want.
-hide_tab_bar_when_single_tab = true
-
-[ui.toast]
-# iTerm2 raises a real macOS notification, so a finished agent is visible from
-# another window. Requires iTerm2 > Settings > Profiles > Terminal >
-# "Send notifications".
-delivery = "terminal"
+hide_tab_bar_when_single_tab = false
+tab_bar_right = [
+  { type = "command", command = "/Users/khanh9/dotfiles/herdr/plugins/github/herdr-projects-b1278ffb803c/target/release/herdr-projects --root /Users/khanh9/.herdr-projects needs-you --line", interval_seconds = 15, timeout_seconds = 5 },
+  { type = 'command', command = 'cat "/Users/khanh9/.local/state/herdr/plugins/hhdebb.herdr-radar/tabbar.txt"', interval_seconds = 6, timeout_seconds = 2 },
+]
 
 [ui.sound]
 enabled = true
 
-# Sidebar rows. `$*` tokens come from the usagebar plugin (plugins.list), the
-# rest are herdr built-ins.
-#
-# `workspace` and `tab` are the built-ins, and they say different things:
-# team.sh labels the workspace after the agent and the tab after its branch.
-# They get a line each rather than sharing one. herdr joins tokens on a row
-# with `·` and has no separator setting, so `exec-1 · feat/team-json` put two
-# identities of different kinds on one line and truncated the branch first —
-# and a branch is the one field where the tail (`…/team-json`) is what
-# distinguishes it. Stacked, the name is the heading and the branch is a full
-# line of its own.
-#
-# usagebar's `$title` was here first, because a tab keeping its auto-assigned
-# number renders the built-in `tab` blank. That is no longer reachable:
-# team.sh names the tab it creates, and `prompt_new_tab_name` (herdr's
-# default) asks for a name on a hand-made one. `$title` was also not
-# deterministic — it resolved to the tab label on one pane and the workspace
-# label on another — and it is cached, so it lagged a rename until the plugin
-# next refreshed.
-#
-# `terminal_title_stripped` is what names the agent. Claude Code keeps the
-# terminal title as a live summary of what it is doing ("Herdr config PR"), so
-# it is both the only token that separates two panes in one tab and the only
-# one that says anything about the work. Dimmed: it is the subtitle of the row
-# above, not a second heading.
-#
-# `$provider` is what says which billing identity a pane is on. It reports the
-# quota provider on a subscription pane (`claude`) and the backend actually
-# billed on a pay-as-you-go one, so a `ccd` pane reads `deepseek · Σ 425k
-# $0.04` where a `cc` pane reads `claude · 5h 60%`. That is the cc/ccd split
-# the sidebar could not show before, and the reason the row is worth its
-# width; `$limit`'s Pro-window fallback is no longer the only thing on it.
-#
-# `$limit` is the shortest provider window (`5h 60%`) on a subscription pane
-# and the session burn on its backend on a pay-as-you-go one. Shortest is not
-# a setting: the plugin takes the minimum window it has and formats one, so
-# the 7d number cannot reach this sidebar. It is in the Agent Usage pane
-# (ctrl+shift+u), the status line, and ~/.claude/cache/pro-quota.json.
-#
-# No row carries an icon of its own. herdr rejects a literal in `rows`
-# (`unknown sidebar token; custom tokens must start with $`) and keeps the
-# previous settings, so a glyph has to be baked into a token's value by
-# whoever publishes it — the plugin for `$*`, or `herdr pane report-metadata
-# --token` for one of ours. `state_icon` and `$context`'s ⛁ are the only two.
-#
-# The `$cache_*` trio is one row: the plugin sets exactly one of high/mid/low
-# by the session hit rate, so listing all three renders a single value in the
-# band's colour. Gruvbox yellow below 80%, red below 50% — the number only
-# matters when it is bad, and a red `cache hit 35.0% · ttl≈20m` is the cue to
-# stop growing the prefix and let it rotate. The TTL only appears when the
-# plugin has a recorded expiry.
-[ui.sidebar.agents]
-# One blank line between agents; gap 0 ran the entries together.
-row_gap = 1
-rows = [
-  ["state_icon", "workspace"],
-  ["tab"],
-  [{ token = "terminal_title_stripped", dim = true }],
-  ["$provider", "$limit"],
-  [
-    "$cache_high",
-    { token = "$cache_mid", fg = "#fabd2f" },
-    { token = "$cache_low", fg = "#fb4934" },
-  ],
-  ["$context"],
-]
+[ui.toast]
+delivery = "terminal"
 
 [session]
-# Resume claude/omp conversations after a server restart. Needs the
-# integrations installed by ai/setup.sh.
 resume_agents_on_restore = true
+# auto_save_interval = "30s"
+# save_scrollback = true
 
 [keys]
-# One workspace per repository (docs/herdr.md): a repo is one prefix+shift+N away, and
-# prefix+alt+N lands on the Nth agent row.
 switch_workspace = "prefix+shift+1..9"
 focus_agent = "prefix+alt+1..9"
-
-# A worktree is a workspace in herdr, so `New worktree` (prefix+shift+g, a
-# default) mints a fresh space every time it is pressed — correct for a new
-# branch, a duplicate for one that already has a checkout. `Open worktree...`
-# is the one that reuses: it lists the repo's checkouts and focuses the space
-# an open one already has. herdr leaves it unbound, which is why the duplicates
-# were the only path anyone found.
 open_worktree = "prefix+shift+o"
 
-# Diff review in a popup, the equivalent of tmux's `prefix g` scratch popup
-# (tmux/tmux.conf). lazygit is already in brew/Brewfile.
 [[keys.command]]
 key = "prefix+alt+g"
 type = "popup"
-command = "lazygit"
+command = "zsh -c -i 'lazygit'"
 width = "90%"
 height = "90%"
 
-# Team roster and outstanding handoffs at a glance. `zsh -ic` because team.sh
-# is read through the repo, not $PATH, and `read -k` holds the popup open.
 [[keys.command]]
 key = "prefix+alt+t"
 type = "popup"
-command = "zsh -ic '~/.dotfiles/ai/herdr/team.sh status; read -k'"
+command = "export DISABLE_OMZ_PLUGINS=1; exec \"${SHELL:-sh}\""
 width = "70%"
 height = "50%"
 
-# Agent Usage (usagebar). Single chords, deliberately outside prefix mode: a
-# quota check is a glance, not a command. Neither collides with the prefix
-# bindings above.
 [[keys.command]]
 key = "ctrl+shift+u"
 type = "plugin_action"
@@ -158,22 +62,540 @@ type = "plugin_action"
 command = "usagebar.refresh"
 description = "Agent Usage: refresh sidebar meters"
 
+# herdr-nvim block
+[[keys.command]]
+key = "prefix+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "nvim sidebar"
+
+[[keys.command]]
+key = "prefix+o"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.pick-file"
+description = "open file from agent output"
+# <<< herdr-nvim block
+
 [worktrees]
-# Where `New worktree` puts a checkout. herdr's default is ~/.herdr/worktrees;
-# `git wta` (git/gitconfig) has always used ~/.worktrees. The rest of the
-# layout below the root is already identical — <repo>/<branch with / as ->,
-# and the repo name comes out `.dotfiles` on both sides — so pointing herdr at
-# the same root makes the two produce the *same* directory for a branch
-# instead of two checkouts that only look alike. That is what lets
-# `Open worktree...` find a tree `git wta` made, and vice versa.
 directory = "~/.worktrees"
 
-[experimental]
-# Keep pane screen history across a full server restart, so a restarted server
-# brings back the scrollback behind the conversations that
-# session.resume_agents_on_restore already resumes.
-pane_history = true
+# [performance]
+# pane_render_optimization = true
+# enable_gpu_acceleration = true
+# cache_size = "2GB"
 
-# Prefix mode swaps the macOS input source for an ASCII-capable layout and
-# restores it on exit, so prefix commands still register under a Vietnamese IME.
+# [startup]
+# restore_workspace = true
+# lazy_load_plugins = true
+# preload_recent_agents = 3
+
+# [ui.animations]
+# enabled = true
+# duration_ms = 200
+
+# [debug]
+# log_level = "warn"
+# log_file = "~/.herdr/logs/herdr.log"
+
+[experimental]
+pane_history = true
 switch_ascii_input_source_in_prefix = true
+
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "hhdebb.herdr-radar.view-flip" # order: active <-> recent
+
+[[keys.command]]
+key = "prefix+comma"
+type = "plugin_action"
+command = "hhdebb.herdr-radar.settings" # settings popup
+
+[[keys.command]]
+key = "ctrl+shift+r"
+type = "plugin_action"
+command = "usagebar.refresh"
+description = "Refresh agent usage sidebar"
+
+[[keys.command]]
+key = "prefix+shift+e"
+type = "plugin_action"
+command = "chmarax.herdr-nvim.toggle"
+description = "Toggle nvim sidebar"
+
+[[keys.command]]
+key = "prefix+shift+a"
+type = "plugin_action"
+command = "herdr-projects.open-popup"
+description = "Projects"
+
+# >>> herdr-radar theme block
+[theme.custom]
+active_row_bg = "#414868"
+# <<< herdr-radar theme block
+
+# >>> herdr-radar tab-bar block
+# tab_bar_right_separator = " · "
+# tab_bar_right = [
+# { type = 'command', command = 'cat "/Users/khanh9/.local/state/herdr/plugins/hhdebb.herdr-radar/tabbar.txt"', interval_seconds = 6, timeout_seconds = 2 },
+# ]
+# <<< herdr-radar tab-bar block
+
+# >>> herdr-radar sidebar block
+[ui.sidebar.agents]
+# logo glyphs: font
+rows = [
+  [
+    { token = "$group_parent", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$group", fg = "#a8abbd", bold = true, dim = false },
+    { token = "$group_stale", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$split_mark", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$logo", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_working", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_working", fg = "#c78a1f", bold = true, dim = false },
+    { token = "$title_done", fg = "#4c9a5a", bold = false, dim = false },
+    { token = "$title_blocked", fg = "#c04a4a", bold = false, dim = false },
+    { token = "$title_idle_fresh", fg = "#95bba2", bold = false, dim = false },
+    { token = "$title_idle", fg = "#a99e92", bold = false, dim = false },
+    { token = "$title_idle_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_unknown", fg = "#907aa9", bold = false, dim = false },
+  ],
+  [
+    "$gap",
+  ],
+  [
+    { token = "$hp_state", rules = [
+      { starts_with = "needs you", fg = "#f38ba8", bold = true },
+      { starts_with = "review", fg = "#f9e2af" },
+    ] },
+  ],
+  [
+    { token = "$hp_activity", dim = true },
+  ],
+]
+
+[ui.sidebar.agents.rows_by_agent]
+claude = [
+  [
+    { token = "$group_parent", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$group", fg = "#a8abbd", bold = true, dim = false },
+    { token = "$group_stale", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$split_mark", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$logo", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_working", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_working", fg = "#d97757", bold = true, dim = false },
+    { token = "$title_done", fg = "#4c9a5a", bold = false, dim = false },
+    { token = "$title_blocked", fg = "#c04a4a", bold = false, dim = false },
+    { token = "$title_idle_fresh", fg = "#95bba2", bold = false, dim = false },
+    { token = "$title_idle", fg = "#a99e92", bold = false, dim = false },
+    { token = "$title_idle_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_unknown", fg = "#907aa9", bold = false, dim = false },
+  ],
+  [
+    "$gap",
+  ],
+  [
+    { token = "$hp_state", rules = [
+      { starts_with = "needs you", fg = "#f38ba8", bold = true },
+      { starts_with = "review", fg = "#f9e2af" },
+    ] },
+  ],
+  [
+    { token = "$hp_activity", dim = true },
+  ],
+]
+gemini = [
+  [
+    { token = "$group_parent", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$group", fg = "#a8abbd", bold = true, dim = false },
+    { token = "$group_stale", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$split_mark", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$logo", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_working", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_working", fg = "#4285f4", bold = true, dim = false },
+    { token = "$title_done", fg = "#4c9a5a", bold = false, dim = false },
+    { token = "$title_blocked", fg = "#c04a4a", bold = false, dim = false },
+    { token = "$title_idle_fresh", fg = "#95bba2", bold = false, dim = false },
+    { token = "$title_idle", fg = "#a99e92", bold = false, dim = false },
+    { token = "$title_idle_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_unknown", fg = "#907aa9", bold = false, dim = false },
+  ],
+  [
+    "$gap",
+  ],
+  [
+    { token = "$hp_state", rules = [
+      { starts_with = "needs you", fg = "#f38ba8", bold = true },
+      { starts_with = "review", fg = "#f9e2af" },
+    ] },
+  ],
+  [
+    { token = "$hp_activity", dim = true },
+  ],
+]
+kimi = [
+  [
+    { token = "$group_parent", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$group", fg = "#a8abbd", bold = true, dim = false },
+    { token = "$group_stale", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$split_mark", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$logo", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_working", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_working", fg = "#1783ff", bold = true, dim = false },
+    { token = "$title_done", fg = "#4c9a5a", bold = false, dim = false },
+    { token = "$title_blocked", fg = "#c04a4a", bold = false, dim = false },
+    { token = "$title_idle_fresh", fg = "#95bba2", bold = false, dim = false },
+    { token = "$title_idle", fg = "#a99e92", bold = false, dim = false },
+    { token = "$title_idle_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_unknown", fg = "#907aa9", bold = false, dim = false },
+  ],
+  [
+    "$gap",
+  ],
+  [
+    { token = "$hp_state", rules = [
+      { starts_with = "needs you", fg = "#f38ba8", bold = true },
+      { starts_with = "review", fg = "#f9e2af" },
+    ] },
+  ],
+  [
+    { token = "$hp_activity", dim = true },
+  ],
+]
+qwen = [
+  [
+    { token = "$group_parent", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$group", fg = "#a8abbd", bold = true, dim = false },
+    { token = "$group_stale", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$split_mark", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$logo", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_working", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_working", fg = "#615ced", bold = true, dim = false },
+    { token = "$title_done", fg = "#4c9a5a", bold = false, dim = false },
+    { token = "$title_blocked", fg = "#c04a4a", bold = false, dim = false },
+    { token = "$title_idle_fresh", fg = "#95bba2", bold = false, dim = false },
+    { token = "$title_idle", fg = "#a99e92", bold = false, dim = false },
+    { token = "$title_idle_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_unknown", fg = "#907aa9", bold = false, dim = false },
+  ],
+  [
+    "$gap",
+  ],
+  [
+    { token = "$hp_state", rules = [
+      { starts_with = "needs you", fg = "#f38ba8", bold = true },
+      { starts_with = "review", fg = "#f9e2af" },
+    ] },
+  ],
+  [
+    { token = "$hp_activity", dim = true },
+  ],
+]
+kiro = [
+  [
+    { token = "$group_parent", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$group", fg = "#a8abbd", bold = true, dim = false },
+    { token = "$group_stale", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$split_mark", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$logo", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_working", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_working", fg = "#9046ff", bold = true, dim = false },
+    { token = "$title_done", fg = "#4c9a5a", bold = false, dim = false },
+    { token = "$title_blocked", fg = "#c04a4a", bold = false, dim = false },
+    { token = "$title_idle_fresh", fg = "#95bba2", bold = false, dim = false },
+    { token = "$title_idle", fg = "#a99e92", bold = false, dim = false },
+    { token = "$title_idle_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_unknown", fg = "#907aa9", bold = false, dim = false },
+  ],
+  [
+    "$gap",
+  ],
+  [
+    { token = "$hp_state", rules = [
+      { starts_with = "needs you", fg = "#f38ba8", bold = true },
+      { starts_with = "review", fg = "#f9e2af" },
+    ] },
+  ],
+  [
+    { token = "$hp_activity", dim = true },
+  ],
+]
+cline = [
+  [
+    { token = "$group_parent", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$group", fg = "#a8abbd", bold = true, dim = false },
+    { token = "$group_stale", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$split_mark", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$logo", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_working", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_working", fg = "#586876", bold = true, dim = false },
+    { token = "$title_done", fg = "#4c9a5a", bold = false, dim = false },
+    { token = "$title_blocked", fg = "#c04a4a", bold = false, dim = false },
+    { token = "$title_idle_fresh", fg = "#95bba2", bold = false, dim = false },
+    { token = "$title_idle", fg = "#a99e92", bold = false, dim = false },
+    { token = "$title_idle_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_unknown", fg = "#907aa9", bold = false, dim = false },
+  ],
+  [
+    "$gap",
+  ],
+  [
+    { token = "$hp_state", rules = [
+      { starts_with = "needs you", fg = "#f38ba8", bold = true },
+      { starts_with = "review", fg = "#f9e2af" },
+    ] },
+  ],
+  [
+    { token = "$hp_activity", dim = true },
+  ],
+]
+kilo = [
+  [
+    { token = "$group_parent", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$group", fg = "#a8abbd", bold = true, dim = false },
+    { token = "$group_stale", fg = "#8b8e9c", bold = true, dim = false },
+  ],
+  [
+    { token = "$split_mark", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$logo", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_working", fg = "#e9e9f0", bold = false, dim = false, rules = [
+      { contains = "", fg = "#d97757" },
+      { contains = "", fg = "#4285f4" },
+      { contains = "", fg = "#1783ff" },
+      { contains = "", fg = "#4d6bfe" },
+      { contains = "", fg = "#615ced" },
+      { contains = "", fg = "#9046ff" },
+      { contains = "", fg = "#586876" },
+      { contains = "", fg = "#9a9808" },
+    ] },
+    { token = "$logo_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_working", fg = "#9a9808", bold = true, dim = false },
+    { token = "$title_done", fg = "#4c9a5a", bold = false, dim = false },
+    { token = "$title_blocked", fg = "#c04a4a", bold = false, dim = false },
+    { token = "$title_idle_fresh", fg = "#95bba2", bold = false, dim = false },
+    { token = "$title_idle", fg = "#a99e92", bold = false, dim = false },
+    { token = "$title_idle_stale", fg = "#8b8e9c", bold = false, dim = false },
+    { token = "$title_unknown", fg = "#907aa9", bold = false, dim = false },
+  ],
+  [
+    "$gap",
+  ],
+  [
+    { token = "$hp_state", rules = [
+      { starts_with = "needs you", fg = "#f38ba8", bold = true },
+      { starts_with = "review", fg = "#f9e2af" },
+    ] },
+  ],
+  [
+    { token = "$hp_activity", dim = true },
+  ],
+]
+
+[ui.sidebar.spaces]
+row_gap = 0
+rows = [
+  [
+    { token = "$space_blocked", fg = "#c04a4a", bold = true, dim = false },
+    { token = "$space_working_claude", fg = "#d97757", bold = true, dim = false },
+    { token = "$space_working_gemini", fg = "#4285f4", bold = true, dim = false },
+    { token = "$space_working_kimi", fg = "#1783ff", bold = true, dim = false },
+    { token = "$space_working_deepseek", fg = "#4d6bfe", bold = true, dim = false },
+    { token = "$space_working_qwen", fg = "#615ced", bold = true, dim = false },
+    { token = "$space_working_kiro", fg = "#9046ff", bold = true, dim = false },
+    { token = "$space_working_cline", fg = "#586876", bold = true, dim = false },
+    { token = "$space_working_kilo", fg = "#9a9808", bold = true, dim = false },
+    { token = "$space_working_other", fg = "#c78a1f", bold = true, dim = false },
+    { token = "$space_done", fg = "#4c9a5a", bold = true, dim = false },
+    { token = "$space_idle", fg = "#8f95ab", bold = false, dim = false },
+    { token = "$space_unknown", fg = "#907aa9", bold = false, dim = false },
+    { token = "$space_none", fg = "#9a9eb3", bold = false, dim = false },
+    { token = "$space_label", fg = "#9a9eb3", bold = false, dim = false },
+  ],
+  [
+    { token = "$space_logo_claude", fg = "#d97757", bold = false, dim = false },
+    { token = "$space_logo_gemini", fg = "#4285f4", bold = false, dim = false },
+    { token = "$space_logo_kimi", fg = "#1783ff", bold = false, dim = false },
+    { token = "$space_logo_deepseek", fg = "#4d6bfe", bold = false, dim = false },
+    { token = "$space_logo_qwen", fg = "#615ced", bold = false, dim = false },
+    { token = "$space_logo_kiro", fg = "#9046ff", bold = false, dim = false },
+    { token = "$space_logo_cline", fg = "#586876", bold = false, dim = false },
+    { token = "$space_logo_kilo", fg = "#9a9808", bold = false, dim = false },
+    { token = "$space_logo_other", fg = "#e9e9f0", bold = false, dim = false },
+  ],
+  [
+    { token = "$hp" },
+  ],
+]
+# <<< herdr-radar sidebar block
