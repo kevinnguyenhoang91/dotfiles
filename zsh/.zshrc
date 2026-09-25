@@ -58,7 +58,11 @@ alias python='python3'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"'
 
 # oh-my-zsh
-[[ -s "${ZSH}/oh-my-zsh.sh" ]] && . "${ZSH}/oh-my-zsh.sh"
+# Skip in pi-herdsman agent panes (PI_SUBAGENT_CHILD=1): oh-my-zsh's async
+# prompt forks zsh children that fail herdsman's pane readiness proof
+if [[ -z "$PI_SUBAGENT_CHILD" && -s "${ZSH}/oh-my-zsh.sh" ]]; then
+  . "${ZSH}/oh-my-zsh.sh"
+fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=121'
 
 # History settings
@@ -187,6 +191,8 @@ export PATH="/Users/khanh/.antigravity/antigravity/bin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.14/libexec/bin:$PATH"
 
 # mise
+# --shims: no precmd hook-env fork after every command (trips pi-herdsman's
+# pane readiness proof); shims still resolve tools per-directory
 if command -v mise &> /dev/null; then
-  eval "$(mise activate zsh)"
+  eval "$(mise activate zsh --shims)"
 fi
