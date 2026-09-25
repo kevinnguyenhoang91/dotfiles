@@ -1,3 +1,0 @@
-# Review-side quick action; the merge decision stays with /code-review and a PR.
-name = "PR diff"
-command = "zsh -ic 'gh pr diff --color=always | less -R'"
