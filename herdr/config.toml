@@ -25,8 +25,8 @@ delivery = "terminal"
 
 [session]
 resume_agents_on_restore = true
-auto_save_interval = "30s"
-save_scrollback = true
+# auto_save_interval = "30s"
+# save_scrollback = true
 
 [keys]
 switch_workspace = "prefix+shift+1..9"
@@ -76,23 +76,23 @@ description = "open file from agent output"
 [worktrees]
 directory = "~/.worktrees"
 
-[performance]
-pane_render_optimization = true
-enable_gpu_acceleration = true
-cache_size = "2GB"
+# [performance]
+# pane_render_optimization = true
+# enable_gpu_acceleration = true
+# cache_size = "2GB"
 
-[startup]
-restore_workspace = true
-lazy_load_plugins = true
-preload_recent_agents = 3
+# [startup]
+# restore_workspace = true
+# lazy_load_plugins = true
+# preload_recent_agents = 3
 
-[ui.animations]
-enabled = true
-duration_ms = 200
+# [ui.animations]
+# enabled = true
+# duration_ms = 200
 
-[debug]
-log_level = "warn"
-log_file = "~/.herdr/logs/herdr.log"
+# [debug]
+# log_level = "warn"
+# log_file = "~/.herdr/logs/herdr.log"
 
 [experimental]
 pane_history = true
@@ -510,8 +510,8 @@ rows = [
 # <<< herdr-radar sidebar block
 
 # >>> herdr-radar tab-bar block
-tab_bar_right_separator = " · "
-tab_bar_right = [
-  { type = 'command', command = 'cat "/Users/khanh9/.local/state/herdr/plugins/hhdebb.herdr-radar/tabbar.txt"', interval_seconds = 6, timeout_seconds = 2 },
-]
+# tab_bar_right_separator = " · "
+# tab_bar_right = [
+#   { type = 'command', command = 'cat "/Users/khanh9/.local/state/herdr/plugins/hhdebb.herdr-radar/tabbar.txt"', interval_seconds = 6, timeout_seconds = 2 },
+# ]
 # <<< herdr-radar tab-bar block
