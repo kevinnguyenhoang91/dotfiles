@@ -60,12 +60,59 @@ These dotfiles include configurations for the following tools:
 - **Shell:** Zsh, Bash, Oh My Zsh, Powerlevel10k
 - **Terminal:** Alacritty, iTerm2, Kitty
 - **Editors:** Neovim, VSCode
-- **Multiplexers:** Tmux, tmuxp
+- **Multiplexers:** Tmux, tmuxp, Herdr
 - **Git:** Git, Lazygit, Gitmux
 - **Containerization:** Lazydocker
 - **Kubernetes:** k9s
+- **AI Agents:** Herdr (terminal workspace manager for coding agents)
 - **Languages & Runtimes:** Managed via `asdf` (e.g., Node.js, Python, Go, Ruby, Rust, and many more)
 - **Other Tools:** Ripgrep, Tig, Bazel, Shellcheck, and more.
+
+## Herdr Configuration
+
+This dotfiles repository includes a comprehensive **Herdr** setup for managing multiple AI agents in a terminal workspace:
+
+### Herdr Directory Structure
+
+```
+herdr/
+├── config.toml              # Herdr terminal workspace configuration
+├── team.toml                # Team configuration with profiles, roles, and routing
+├── team.sh                  # Team management and orchestration script
+├── providers.toml           # Credentials and billing configuration
+├── pyproject.toml           # Python project setup
+├── plugins.list             # Installed plugins registry
+├── plugins.json             # Plugin metadata
+├── lib/herdr_team/          # Python libraries for team management
+│   ├── config.py            # Configuration parsing
+│   ├── plan.py              # Plan verification and dispatch
+│   ├── loop.py              # Execution loop and retry logic
+│   ├── handoff.py           # Agent-to-agent context transfer
+│   └── ...                  # Additional helper modules
+└── plugins/                 # Plugin configurations
+    ├── cloudmanic.herdr-plus/
+    ├── persiyanov.reviewr/
+    └── usagebar/
+```
+
+### Key Features
+
+- **Multi-Agent Management:** Define profiles for different AI providers (Claude Pro, DeepSeek, OMP, etc.)
+- **Team Roles:** Six role types: orchestrator, spec, research, plan, exec, review
+- **Cost-Based Routing:** Automatic fallback and cost-aware agent selection
+- **Workspace Management:** One workspace per repository with agent panes
+- **Plugin Ecosystem:** Integrated plugins for code review, usage tracking, and workspace optimization
+- **Session Persistence:** Resume agent conversations after server restarts
+
+### Keybindings
+
+- `prefix+shift+1..9`: Switch workspace by repo
+- `prefix+alt+1..9`: Focus agent row
+- `prefix+shift+o`: Open worktree
+- `prefix+alt+g`: Launch lazygit popup
+- `prefix+e`: Toggle nvim sidebar
+- `ctrl+shift+u`: Open Agent Usage pane
+- `prefix+a`: Toggle agent view (active/recent)
 
 ## Customization
 
@@ -73,6 +120,7 @@ You can customize the setup by:
 
 - **Adding or removing Homebrew packages:** Modify the `brew/Brewfile` and rerun `brew bundle` from within the `brew` directory.
 - **Adding or removing `asdf` plugins:** Edit the `setup.sh` script to include or exclude `asdf` plugins for the languages and tools you need.
+- **Customizing Herdr:** Modify `herdr/config.toml` for themes, keybindings, and UI settings. Edit `herdr/team.toml` for agent profiles and roles.
 - **Customizing tool configurations:** Most configurations are located in their respective directories (e.g., `nvim/`, `alacritty/`). You can edit these files to match your preferences.
 
 ## Acknowledgement
