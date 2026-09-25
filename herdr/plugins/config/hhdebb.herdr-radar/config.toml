@@ -1,0 +1,17 @@
+reorder_workspaces = true
+variant = "font"
+done_hold = 60
+blocked_hold = true
+idle_grace_seconds = 2.5
+activity_fresh_minutes = 15
+activity_stale_minutes = 120
+group_indent = 4
+group_gap = true
+show_tab = true
+trim_group_prefix = true
+worktree_mark = ""
+follow_appearance = true
+
+[colors]
+active_row_bg_light = "#b9cdf2"
+active_row_bg_dark = "#414868"
