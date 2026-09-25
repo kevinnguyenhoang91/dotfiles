@@ -32,13 +32,17 @@ export EDITOR="nvim"
 export PATH="${HOME}/.local/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:${GOPATH}/bin:${HOME}/.cargo/bin:/usr/local/opt/rust/bin:/usr/local/opt/ruby/bin:${GEM_HOME}/bin:${NPM_CONFIG_PREFIX}/bin:${JAVA_HOME}/bin:${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${HOME}/.pub-cache/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
 
 # Plugins
-plugins=(
-  git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases
-  1password argocd battery bazel branch colorize command-not-found direnv fzf
-  kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent
-  thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode
-  yarn zsh-navigation-tools encode64
-)
+if [[ -z "$DISABLE_OMZ_PLUGINS" ]]; then
+  plugins=(git zsh-autosuggestions zsh-syntax-highlighting)  # your normal plugins
+else
+  plugins=(
+    git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases
+    1password argocd battery bazel branch colorize command-not-found direnv fzf
+    kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent
+    thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode
+    yarn zsh-navigation-tools encode64
+  )
+fi
 
 # Aliases
 alias v='$EDITOR'
