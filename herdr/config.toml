@@ -126,10 +126,10 @@ active_row_bg = "#414868"
 # <<< herdr-radar theme block
 
 # >>> herdr-radar tab-bar block
-tab_bar_right_separator = " · "
-tab_bar_right = [
-  { type = 'command', command = 'cat "/Users/khanh9/.local/state/herdr/plugins/hhdebb.herdr-radar/tabbar.txt"', interval_seconds = 6, timeout_seconds = 2 },
-]
+# tab_bar_right_separator = " · "
+# tab_bar_right = [
+#   { type = 'command', command = 'cat "/Users/khanh9/.local/state/herdr/plugins/hhdebb.herdr-radar/tabbar.txt"', interval_seconds = 6, timeout_seconds = 2 },
+# ]
 # <<< herdr-radar tab-bar block
 
 # >>> herdr-radar sidebar block
