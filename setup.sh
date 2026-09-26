@@ -7,7 +7,7 @@ fi
 [ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Install Homebrew packages
-eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
 cd brew && brew bundle
 cd "$HOME"
 
@@ -18,7 +18,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 mkdir -p ~/.zsh
 git clone https://github.com/catppuccin/zsh-syntax-highlighting.git
-cp -RLf zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh ~/.zsh/
+cp -RLf zsh-syntax-highlighting/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh ~/.zsh/
 rm -rf zsh-syntax-highlighting
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -32,6 +32,9 @@ getnf -i 'Noto,FiraMono,FiraCode,Meslo'
 if command -v atuin &> dev/null; then
   eval "$(atuin init zsh)"
 fi
+
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # superfile
 bash -c "$(curl -sLo- https://superfile.netlify.app/install.sh)"

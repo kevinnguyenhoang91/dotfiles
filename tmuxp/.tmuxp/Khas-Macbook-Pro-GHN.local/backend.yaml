@@ -1,0 +1,44 @@
+session_name: backend
+start_directory: /Users/khanh/Projects
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
+windows:
+  - layout: main-horizontal
+    options:
+      main-pane-height: 75%
+    panes:
+      - focus: "true"
+        shell_command:
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./unify-identity-service
+    window_name: unify-identity-service
+  - focus: "true"
+    layout: main-horizontal
+    options:
+      main-pane-height: 75%
+    panes:
+      - focus: "true"
+        shell_command:
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./gobase-library
+    window_name: gobase-library
+  - layout: main-horizontal
+    options:
+      main-pane-height: 75%
+    panes:
+      - focus: "true"
+        shell_command:
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./consumer-service
+    window_name: consumer-service
+  - layout: main-horizontal
+    options:
+      main-pane-height: 75%
+    panes:
+      - focus: "true"
+        shell_command:
+          - nvim -c 'lua require("persistence").load()'
+    start_directory: ./chatbot-service
+    window_name: chatbot-service

@@ -15,3 +15,5 @@ tmp/**/*
 !tmp/cache/.keep
 *.pyc
 .secrets.zsh
+herdr/plugins/github/
+.omc/

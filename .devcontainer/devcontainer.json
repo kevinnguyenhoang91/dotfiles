@@ -1,0 +1,40 @@
+{
+	"name": "dotfiles",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "devcontainer",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "lts",
+			"installYarnUsingApt": false
+		},
+		"ghcr.io/devcontainers-extra/features/direnv:1": {},
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"configureZshAsDefaultShell": true
+		},
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			"packages": "build-essential,g++,libsqlite3-dev,postgresql-client,libkrb5-dev,gcc,openssl,libssh2-1-dev,g++,make,curl,jq"
+		},
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {}
+	},
+	"mounts": [
+		{
+			"source": "${localEnv:HOME}/.ssh/",
+			"target": "/home/vscode/.ssh",
+			"type": "bind"
+		},
+		{
+			"source": "${localEnv:HOME}/.gitconfig.local",
+			"target": "/home/vscode/.gitconfig.local",
+			"type": "bind"
+		}
+	],
+	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder} && python3 -m venv /home/vscode/.venv && export VIRTUAL_ENV=/home/vscode/.venv && echo 'export PATH=/home/vscode/.venv/bin:$PATH' >> /home/vscode/.zshrc && echo 'export VIRTUAL_ENV=/home/vscode/.venv' >> /home/vscode/.zshrc && echo 'export PATH=/home/vscode/.venv/bin:$PATH' >> /home/vscode/.bashrc && echo 'export VIRTUAL_ENV=/home/vscode/.venv' >> /home/vscode/.bashrc",
+	"remoteUser": "vscode",
+	"containerEnv": {
+		"LANG": "en_US.UTF-8",
+		"LANGUAGE": "en_US:en",
+		"LC_ALL": "en_US.UTF-8"
+	}
+}

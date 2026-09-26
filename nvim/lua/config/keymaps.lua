@@ -7,3 +7,16 @@
 -- vim.api.nvim_set_keymap("n", "<C-k>", ":TmuxNavigateUp<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<C-l>", ":TmuxNavigateRight<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("n", "<C-\\>", ":TmuxNavigatePrevious<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ao", function()
+  Snacks.terminal.toggle("omp", {
+    win = {
+      position = "right",
+      width = 0.4,
+    },
+  })
+end, { desc = "Toggle Oh My Pi" })
+
+vim.keymap.set({ "n", "x" }, "<leader>ahc", "<CMD>Herdr comment<CR>", { desc = "Comment" })
+vim.keymap.set({ "n", "x" }, "<leader>ahl", "<CMD>Herdr list<CR>", { desc = "List" })
+vim.keymap.set({ "n", "x" }, "<leader>ahs", "<CMD>Herdr send<CR>", { desc = "Send" })
+vim.keymap.set({ "n", "x" }, "<leader>ahS", "<CMD>Herdr submit<CR>", { desc = "Submit" })

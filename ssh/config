@@ -1,3 +1,33 @@
-
 Host *
 	IdentityAgent ~/.1password/agent.sock
+
+# DevSpace Start app.backstage.devspace
+Host app.backstage.devspace
+  HostName localhost
+  LogLevel error
+  Port 11867
+  IdentityFile "~/.devspace/ssh/id_devspace_ecdsa"
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  User devspace
+# DevSpace End app.backstage.devspace
+
+Host khas-mac-mini-2018.tail70eb.ts.net
+    HostName khas-mac-mini-2018.tail70eb.ts.net
+    User admin
+    IdentityFile ~/.ssh/id_rsa
+
+Host khas-mac-mini-2018.local
+    HostName khas-mac-mini-2018.local
+    User admin
+    IdentityFile ~/.ssh/id_rsa
+
+Host khas-mac-mini-m4.tail70eb.ts.net
+    HostName khas-mac-mini-m4.tail70eb.ts.net
+    User khanh
+    IdentityFile ~/.ssh/id_rsa
+
+Host khas-mac-mini-m4.local
+    HostName khas-mac-mini-m4.local
+    User khanh
+    IdentityFile ~/.ssh/id_rsa

@@ -1,0 +1,55 @@
+modelRoles:
+  default: openrouter/z-ai/glm-5.3-flash:high
+  smol: openrouter/z-ai/glm-5.3-flash
+  tiny: openrouter/z-ai/glm-5.3-flash
+  slow: anthropic/claude-opus-5.5:high
+  plan: openrouter/deepseek/deepseek-v4.1-flash:high
+  task: openrouter/deepseek/deepseek-v4.1-flash
+  vision: google/gemini-3.8-flash
+  commit: openrouter/z-ai/glm-5.3-flash
+  memory: openrouter/z-ai/glm-5.3-flash
+  web: web/google
+  advisor: openrouter/deepseek/deepseek-v4.1-flash:high
+symbolPreset: nerd
+composer:
+  shape: band
+theme:
+  dark: titanium
+  light: light
+provider:
+  appendOnlyContext: "on" # prefix-cache friendly for OpenRouter/DeepSeek
+secrets:
+  enabled: true # redact credential-shaped tokens before they hit providers
+setupVersion: 2
+retry:
+  fallbackChains:
+    slow:
+      - openrouter/deepseek/deepseek-v4.1-flash:high
+    web:
+      - web/perplexity
+      - google-antigravity/gemini-2.5-flash
+      - google/gemini-2.5-flash
+      - anthropic/claude-haiku-4-5
+      - openai-codex/gpt-5.6-luna
+      - xai/grok-4.5
+      - web/zai
+      - web/exa
+      - web/tinyfish
+      - web/jina
+      - web/kagi
+      - web/tavily
+      - web/firecrawl
+      - web/brave
+      - web/kimi
+      - web/parallel
+      - web/synthetic
+      - web/searxng
+      - web/startpage
+      - web/duckduckgo
+      - web/ecosia
+      - web/mojeek
+      - web/public
+      - openai-codex/gpt-5.6
+      - openai-codex/gpt-5.5
+      - xai-oauth/grok-4.5
+      - web/ollama

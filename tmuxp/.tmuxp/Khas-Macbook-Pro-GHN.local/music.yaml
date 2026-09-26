@@ -1,0 +1,17 @@
+session_name: music
+start_directory: /Users/khanh
+# before_script: ./scripts/poetry-before-script.sh
+# shell_command_before:
+#   - poetry install --no-interaction --no-ansi --quiet
+#   - source $(poetry env info -p)/bin/activate; reset
+windows:
+  - focus: "true"
+    layout: main-horizontal
+    options:
+      main-pane-height: 75%
+    panes:
+      - focus: "true"
+        shell_command:
+          - read "response?Enter yewtube? (y/n) " && [[ "$response" == [Yy] ]] && /opt/homebrew/bin/yt
+    start_directory: ./
+    window_name: yewtube
