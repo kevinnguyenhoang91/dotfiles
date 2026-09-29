@@ -3,14 +3,21 @@
   "mcp": {
     "mcp-shell-server": {
       "type": "local",
-      "command": ["uvx", "mcp-shell-server"],
+      "command": [
+        "uvx",
+        "mcp-shell-server"
+      ],
       "enabled": false,
       "environment": {
         "ALLOW_COMMANDS": "ls,cat,pwd,grep,wc,touch,find,rm,echo,head,tail,chmod,chown,mkdir,rmdir,cp,mv,ln,ps,kill"
       }
     },
     "mcp-devcontainers": {
-      "command": ["npx", "-y", "@crunchloop/mcp-devcontainers"],
+      "command": [
+        "npx",
+        "-y",
+        "@crunchloop/mcp-devcontainers"
+      ],
       "enabled": true,
       "environment": {},
       "type": "local"
@@ -43,12 +50,20 @@
     "memory": {
       "type": "local",
       "enabled": true,
-      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"]
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
     },
     "mcp-compass": {
       "type": "local",
       "enabled": false,
-      "command": ["npx", "-y", "@liuyoshio/mcp-compass"]
+      "command": [
+        "npx",
+        "-y",
+        "@liuyoshio/mcp-compass"
+      ]
     },
     "serena": {
       "type": "local",
@@ -64,17 +79,27 @@
     "ddg-search": {
       "type": "local",
       "enabled": true,
-      "command": ["uvx", "duckduckgo-mcp-server"]
+      "command": [
+        "uvx",
+        "duckduckgo-mcp-server"
+      ]
     },
     "everything": {
       "type": "local",
       "enabled": true,
-      "command": ["npx", "-y", "@modelcontextprotocol/server-everything"]
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-everything"
+      ]
     },
     "mcp-server-fetch": {
       "type": "local",
       "enabled": false,
-      "command": ["uvx", "mcp-server-fetch"]
+      "command": [
+        "uvx",
+        "mcp-server-fetch"
+      ]
     },
     "mcp-filesystem": {
       "type": "local",
@@ -90,37 +115,65 @@
     "mcp-server-git": {
       "type": "local",
       "enabled": true,
-      "command": ["uvx", "mcp-server-git"]
+      "command": [
+        "uvx",
+        "mcp-server-git"
+      ]
     },
     "mcp-server-time": {
       "type": "local",
       "enabled": true,
-      "command": ["uvx", "mcp-server-time"]
+      "command": [
+        "uvx",
+        "mcp-server-time"
+      ]
     },
     "mcp-package-registry-mcp": {
       "type": "local",
       "enabled": true,
-      "command": ["npx", "-y", "package-registry-mcp"]
+      "command": [
+        "npx",
+        "-y",
+        "package-registry-mcp"
+      ]
     },
     "xcodebuild-mcp": {
       "type": "local",
       "enabled": true,
-      "command": ["npx", "-y", "xcodebuildmcp@latest"]
+      "command": [
+        "npx",
+        "-y",
+        "xcodebuildmcp@latest"
+      ]
     },
     "kit-dev": {
       "type": "local",
       "enabled": true,
-      "command": ["uvx", "--from", "cased-kit", "kit-dev-mcp"]
+      "command": [
+        "uvx",
+        "--from",
+        "cased-kit",
+        "kit-dev-mcp"
+      ]
     },
     "playwright": {
       "type": "local",
       "enabled": true,
-      "command": ["npx", "-y", "@playwright/mcp@latest"]
+      "command": [
+        "npx",
+        "-y",
+        "@playwright/mcp@latest"
+      ]
     },
     "MCP_DOCKER": {
       "type": "local",
       "enabled": false,
-      "command": ["docker", "mcp", "gateway", "run"]
+      "command": [
+        "docker",
+        "mcp",
+        "gateway",
+        "run"
+      ]
     },
     "GitKraken": {
       "command": [
@@ -148,7 +201,9 @@
         "reasoningEffort": "medium",
         "reasoningSummary": "auto",
         "textVerbosity": "medium",
-        "include": ["reasoning.encrypted_content"],
+        "include": [
+          "reasoning.encrypted_content"
+        ],
         "store": false
       },
       "models": {
@@ -159,8 +214,13 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "variants": {
             "none": {
@@ -197,8 +257,13 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "variants": {
             "low": {
@@ -230,8 +295,13 @@
             "output": 128000
           },
           "modalities": {
-            "input": ["text", "image"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "variants": {
             "low": {
@@ -268,8 +338,14 @@
             "output": 65535
           },
           "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "variants": {
             "low": {
@@ -287,8 +363,14 @@
             "output": 65536
           },
           "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "variants": {
             "minimal": {
@@ -312,8 +394,14 @@
             "output": 64000
           },
           "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
           }
         },
         "antigravity-claude-sonnet-4-5-thinking": {
@@ -323,8 +411,14 @@
             "output": 64000
           },
           "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "variants": {
             "low": {
@@ -346,8 +440,14 @@
             "output": 64000
           },
           "modalities": {
-            "input": ["text", "image", "pdf"],
-            "output": ["text"]
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
           },
           "variants": {
             "low": {

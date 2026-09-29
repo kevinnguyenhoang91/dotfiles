@@ -1,5 +1,64 @@
 // OMO configuration
 {
+  // Harness-agnostic routing. Applies to every harness including senpi/native
+  // (which maps to "[native]"); the "[opencode]" block below is only read by
+  // the opencode harness. Model specifiers must name a provider the registry
+  // actually serves (here: openrouter), or omo refuses to bill them and
+  // delegated agents fail with "No available model ... (attempted none)".
+  "agents": {
+    // Built-in omo subagents carry no model of their own, so they need one here.
+    "explore": {
+      "model": "openrouter/~deepseek/deepseek-flash-latest",
+      "variant": "high",
+    },
+    "librarian": {
+      "model": "openrouter/~deepseek/deepseek-flash-latest",
+      "variant": "high",
+    },
+    "plan-consultant": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "xhigh",
+    },
+  },
+  "categories": {
+    "quick": {
+      "model": "openrouter/~deepseek/deepseek-flash-latest",
+      "variant": "high",
+    },
+    "unspecified-low": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "high",
+    },
+    "unspecified-high": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "xhigh",
+    },
+    "deep-low": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "high",
+    },
+    "deep-high": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "xhigh",
+    },
+    "ultrabrain": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "xhigh",
+    },
+    "architect": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "xhigh",
+    },
+    "artistry": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "xhigh",
+    },
+    "visual-engineering": {
+      "model": "openrouter/openai/gpt-5.6-luna",
+      "variant": "high",
+    },
+    "writing": { "model": "openrouter/openai/gpt-5.6-luna", "variant": "high" },
+  },
   "[opencode]": {
     "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/omo.schema.json",
     "agents": {
@@ -8,183 +67,172 @@
         "variant": "max",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "max"
+            "model": "github-copilot/claude-opus-5",
+            "variant": "max",
           },
           {
             "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
+            "variant": "medium",
           },
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
-          }
-        ]
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "medium",
+          },
+        ],
       },
       "hephaestus": {
         "model": "openrouter/openai/gpt-5.6-sol",
         "variant": "medium",
         "fallback_models": [
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
-          }
-        ]
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "medium",
+          },
+        ],
       },
       "oracle": {
         "model": "openrouter/openai/gpt-5.6-sol",
         "variant": "xhigh",
         "fallback_models": [
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "high"
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "high",
           },
           {
             "model": "openrouter/google/gemini-3.1-pro-preview",
-            "variant": "high"
-          },
-          {
-            "model": "openrouter/google/gemini-3.1-pro-preview",
-            "variant": "high"
+            "variant": "high",
           },
           {
             "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "max"
+            "variant": "max",
           },
           {
-            "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "max"
-          }
-        ]
+            "model": "github-copilot/claude-opus-5",
+            "variant": "max",
+          },
+        ],
       },
       "librarian": {
         "model": "openrouter/openai/gpt-5.6-luna",
         "variant": "low",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-haiku-4.5"
+            "model": "openrouter/anthropic/claude-haiku-4.5",
           },
           {
-            "model": "openrouter/anthropic/claude-haiku-4.5"
+            "model": "github-copilot/claude-haiku-4.5",
           },
           {
-            "model": "openrouter/openai/gpt-5.4-nano"
-          }
-        ]
+            "model": "openrouter/openai/gpt-5.4-nano",
+          },
+        ],
       },
       "explore": {
         "model": "openrouter/openai/gpt-5.6-luna",
         "variant": "low",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-haiku-4.5"
+            "model": "openrouter/anthropic/claude-haiku-4.5",
           },
           {
-            "model": "openrouter/anthropic/claude-haiku-4.5"
+            "model": "github-copilot/claude-haiku-4.5",
           },
           {
-            "model": "openrouter/openai/gpt-5.4-nano"
-          }
-        ]
+            "model": "openrouter/openai/gpt-5.4-nano",
+          },
+        ],
       },
       "multimodal-looker": {
         "model": "openrouter/openai/gpt-5.6-sol",
         "variant": "low",
         "fallback_models": [
           {
-            "model": "openrouter/openai/gpt-5-nano"
+            "model": "openrouter/openai/gpt-5-nano",
           },
-          {
-            "model": "openrouter/openai/gpt-5-nano"
-          }
-        ]
+        ],
       },
       "prometheus": {
         "model": "openrouter/anthropic/claude-fable-5",
         "variant": "high",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-fable-5",
-            "variant": "high"
-          }
-        ]
+            "model": "github-copilot/claude-fable-5",
+            "variant": "high",
+          },
+        ],
       },
       "metis": {
         "model": "openrouter/anthropic/claude-opus-5",
         "variant": "high",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "high"
-          }
-        ]
+            "model": "github-copilot/claude-opus-5",
+            "variant": "high",
+          },
+        ],
       },
       "momus": {
         "model": "openrouter/openai/gpt-5.6-terra",
         "variant": "high",
         "fallback_models": [
           {
-            "model": "openrouter/openai/gpt-5.6-terra",
-            "variant": "high"
+            "model": "github-copilot/gpt-5.6-terra",
+            "variant": "high",
           },
           {
             "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "xhigh"
+            "variant": "xhigh",
           },
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "high"
-          },
-          {
-            "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "max"
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "high",
           },
           {
             "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "max"
+            "variant": "max",
+          },
+          {
+            "model": "github-copilot/claude-opus-5",
+            "variant": "max",
           },
           {
             "model": "openrouter/google/gemini-3.1-pro-preview",
-            "variant": "high"
+            "variant": "high",
           },
-          {
-            "model": "openrouter/google/gemini-3.1-pro-preview",
-            "variant": "high"
-          }
-        ]
+        ],
       },
       "atlas": {
         "model": "openrouter/anthropic/claude-sonnet-5",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-sonnet-5"
+            "model": "github-copilot/claude-sonnet-5",
           },
           {
             "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
+            "variant": "medium",
           },
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
-          }
-        ]
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "medium",
+          },
+        ],
       },
       "sisyphus-junior": {
         "model": "openrouter/anthropic/claude-sonnet-5",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-sonnet-5"
+            "model": "github-copilot/claude-sonnet-5",
           },
           {
             "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
+            "variant": "medium",
           },
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
-          }
-        ]
-      }
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "medium",
+          },
+        ],
+      },
     },
     "categories": {
       "visual-engineering": {
@@ -192,117 +240,117 @@
         "variant": "max",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "max"
+            "model": "github-copilot/claude-opus-5",
+            "variant": "max",
           },
           {
             "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
+            "variant": "medium",
           },
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
-          }
-        ]
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "medium",
+          },
+        ],
       },
       "ultrabrain": {
         "model": "openrouter/openai/gpt-5.6-sol",
         "variant": "xhigh",
         "fallback_models": [
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "high"
-          }
-        ]
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "high",
+          },
+        ],
       },
       "deep": {
         "model": "openrouter/openai/gpt-5.6-sol",
         "variant": "medium",
         "fallback_models": [
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "medium"
-          }
-        ]
+            "model": "github-copilot/gpt-5.6-sol",
+            "variant": "medium",
+          },
+        ],
       },
       "artistry": {
         "model": "openrouter/anthropic/claude-fable-5",
         "variant": "high",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-fable-5",
-            "variant": "high"
+            "model": "github-copilot/claude-fable-5",
+            "variant": "high",
           },
           {
             "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "high"
+            "variant": "high",
           },
           {
-            "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "high"
-          }
-        ]
+            "model": "github-copilot/claude-opus-5",
+            "variant": "high",
+          },
+        ],
       },
       "quick": {
         "model": "openrouter/anthropic/claude-haiku-4.5",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-haiku-4.5"
-          }
-        ]
+            "model": "github-copilot/claude-haiku-4.5",
+          },
+        ],
       },
       "unspecified-low": {
         "model": "openrouter/openai/gpt-5.6-terra",
         "variant": "high",
         "fallback_models": [
           {
-            "model": "openrouter/openai/gpt-5.6-terra",
-            "variant": "high"
+            "model": "github-copilot/gpt-5.6-terra",
+            "variant": "high",
           },
           {
             "model": "openrouter/anthropic/claude-sonnet-5",
-            "variant": "low"
+            "variant": "low",
           },
           {
-            "model": "openrouter/anthropic/claude-sonnet-5",
-            "variant": "low"
-          }
-        ]
+            "model": "github-copilot/claude-sonnet-5",
+            "variant": "low",
+          },
+        ],
       },
       "unspecified-high": {
-        "model": "openrouter/anthropic/claude-opus-5",
+        "model": "openrouter/openai/gpt-5.6-terra",
         "variant": "high",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "high"
+            "model": "github-copilot/gpt-5.6-terra",
+            "variant": "high",
           },
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "high"
+            "model": "openrouter/anthropic/claude-sonnet-5",
+            "variant": "low",
           },
           {
-            "model": "openrouter/openai/gpt-5.6-sol",
-            "variant": "high"
-          }
-        ]
+            "model": "github-copilot/claude-sonnet-5",
+            "variant": "low",
+          },
+        ],
       },
       "writing": {
         "model": "openrouter/anthropic/claude-opus-5",
         "variant": "low",
         "fallback_models": [
           {
-            "model": "openrouter/anthropic/claude-opus-5",
-            "variant": "low"
+            "model": "github-copilot/claude-opus-5",
+            "variant": "low",
           },
           {
-            "model": "openrouter/google/gemini-3.6-flash"
+            "model": "openrouter/google/gemini-3.6-flash",
           },
           {
-            "model": "openrouter/google/gemini-3.6-flash"
-          }
-        ]
-      }
-    }
-  }
+            "model": "github-copilot/gemini-3.6-flash",
+          },
+        ],
+      },
+    },
+  },
 }

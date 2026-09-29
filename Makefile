@@ -70,3 +70,7 @@ setup:
 .PHONY: herdr-sync
 herdr-sync:
 	@stow --adopt -t ~/.config/herdr herdr
+
+.PHONY: omo-sync
+omo-sync:
+	@stow --adopt -t ~/.omo omo
