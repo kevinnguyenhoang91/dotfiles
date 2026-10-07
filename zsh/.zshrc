@@ -196,3 +196,8 @@ export PATH="/opt/homebrew/opt/python@3.14/libexec/bin:$PATH"
 if command -v mise &> /dev/null; then
   eval "$(mise activate zsh --shims)"
 fi
+
+# herdr-automatic-rename: live tab naming hook
+for _f in $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
+  source $_f; break
+done
