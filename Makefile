@@ -74,3 +74,7 @@ herdr-sync:
 .PHONY: omo-sync
 omo-sync:
 	@stow --adopt -t ~/.omo omo
+
+.PHONY: omp-sync
+omp-sync:
+	@stow --adopt -t ~/.omp omp

@@ -1,30 +1,29 @@
 modelRoles:
-  default: openrouter/z-ai/glm-5.3-flash:high
-  smol: openrouter/z-ai/glm-5.3-flash
-  tiny: openrouter/z-ai/glm-5.3-flash
-  slow: anthropic/claude-opus-5.5:high
-  plan: openrouter/deepseek/deepseek-v4.1-flash:high
-  task: openrouter/deepseek/deepseek-v4.1-flash
-  vision: google/gemini-3.8-flash
-  commit: openrouter/z-ai/glm-5.3-flash
-  memory: openrouter/z-ai/glm-5.3-flash
-  web: web/google
-  advisor: openrouter/deepseek/deepseek-v4.1-flash:high
-symbolPreset: nerd
+  default: anthropic/claude-sonnet-5.5:medium
+  smol: anthropic/claude-haiku-4-5:medium
+  tiny: anthropic/claude-haiku-4-5:low
+  slow: anthropic/claude-opus-5-5:medium
+  plan: openai-codex/gpt-5.6-luna:high
+  task: openai-codex/gpt-5.6-luna:medium
+  commit: openai-codex/gpt-5.6-luna:low
+  memory: openai-codex/gpt-5.6-luna:low
+  advisor: openai-codex/gpt-6-sol:medium
+symbolPreset: unicode
 composer:
   shape: band
+  tokenRate: true
 theme:
   dark: titanium
   light: light
 provider:
-  appendOnlyContext: "on" # prefix-cache friendly for OpenRouter/DeepSeek
+  appendOnlyContext: "on"
 secrets:
-  enabled: true # redact credential-shaped tokens before they hit providers
+  enabled: true
 setupVersion: 2
 retry:
   fallbackChains:
     slow:
-      - openrouter/deepseek/deepseek-v4.1-flash:high
+      - openrouter/deepseek/deepseek-v4.1-flash
     web:
       - web/perplexity
       - google-antigravity/gemini-2.5-flash
@@ -53,3 +52,24 @@ retry:
       - openai-codex/gpt-5.5
       - xai-oauth/grok-4.5
       - web/ollama
+statusLine:
+  preset: nerd
+  separator: ascii
+  contextLine: embedded
+  transparent: true
+tui:
+  resizeScrollback: rebuild
+  textSizing: false
+  codexResetFireworks: true
+  tight: false
+  imeSafeCursor: false
+terminal:
+  showProgress: true
+display:
+  pinnedAgents: full
+  subagentLivePreview: true
+  showTokenUsage: true
+  showTurnTime: true
+  cacheMissMarker: true
+codexResets:
+  autoRedeem: "no"
