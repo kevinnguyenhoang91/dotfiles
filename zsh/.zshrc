@@ -63,7 +63,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.
 if [[ -z "$PI_SUBAGENT_CHILD" && -s "${ZSH}/oh-my-zsh.sh" ]]; then
   . "${ZSH}/oh-my-zsh.sh"
 fi
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=121'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
 # History settings
 setopt extended_history share_history
@@ -97,7 +97,8 @@ zstyle ':completion:*' menu select
 # Plugin sources
 [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -f ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh ]] && source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-[[ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
+# [[ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
+[[ -f ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
 
 # tmuxp
 tmuxpp() {

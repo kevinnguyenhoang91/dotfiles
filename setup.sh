@@ -22,6 +22,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 mkdir -p ~/.zsh
 git clone https://github.com/catppuccin/zsh-syntax-highlighting.git
 cp -RLf zsh-syntax-highlighting/themes/catppuccin_frappe-zsh-syntax-highlighting.zsh ~/.zsh/
+cp -RLf zsh-syntax-highlighting/themes/catppuccin_latte-zsh-syntax-highlighting.zsh ~/.zsh/
 rm -rf zsh-syntax-highlighting
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
