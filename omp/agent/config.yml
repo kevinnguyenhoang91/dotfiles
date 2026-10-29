@@ -1,0 +1,75 @@
+modelRoles:
+  default: anthropic/claude-sonnet-5.5:medium
+  smol: anthropic/claude-haiku-4-5:medium
+  tiny: anthropic/claude-haiku-4-5:low
+  slow: anthropic/claude-opus-5-5:medium
+  plan: openai-codex/gpt-5.6-luna:high
+  task: openai-codex/gpt-5.6-luna:medium
+  commit: openai-codex/gpt-5.6-luna:low
+  memory: openai-codex/gpt-5.6-luna:low
+  advisor: openai-codex/gpt-6-sol:medium
+symbolPreset: unicode
+composer:
+  shape: band
+  tokenRate: true
+theme:
+  dark: titanium
+  light: light
+provider:
+  appendOnlyContext: "on"
+secrets:
+  enabled: true
+setupVersion: 2
+retry:
+  fallbackChains:
+    slow:
+      - openrouter/deepseek/deepseek-v4.1-flash
+    web:
+      - web/perplexity
+      - google-antigravity/gemini-2.5-flash
+      - google/gemini-2.5-flash
+      - anthropic/claude-haiku-4-5
+      - openai-codex/gpt-5.6-luna
+      - xai/grok-4.5
+      - web/zai
+      - web/exa
+      - web/tinyfish
+      - web/jina
+      - web/kagi
+      - web/tavily
+      - web/firecrawl
+      - web/brave
+      - web/kimi
+      - web/parallel
+      - web/synthetic
+      - web/searxng
+      - web/startpage
+      - web/duckduckgo
+      - web/ecosia
+      - web/mojeek
+      - web/public
+      - openai-codex/gpt-5.6
+      - openai-codex/gpt-5.5
+      - xai-oauth/grok-4.5
+      - web/ollama
+statusLine:
+  preset: nerd
+  separator: ascii
+  contextLine: embedded
+  transparent: true
+tui:
+  resizeScrollback: rebuild
+  textSizing: false
+  codexResetFireworks: true
+  tight: false
+  imeSafeCursor: false
+terminal:
+  showProgress: true
+display:
+  pinnedAgents: full
+  subagentLivePreview: true
+  showTokenUsage: true
+  showTurnTime: true
+  cacheMissMarker: true
+codexResets:
+  autoRedeem: "no"

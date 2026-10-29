@@ -26,18 +26,23 @@ export HISTFILE=${HOME}/.zsh_history
 export HISTFILESIZE=50000
 export HISTSIZE=50000
 export HISTTIMEFORMAT="[%F %T] "
+export EDITOR="nvim"
 
 # Paths
-export PATH="${HOME}/.local/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:${GOPATH}/bin:${HOME}/.cargo/bin:/usr/local/opt/rust/bin:${GEM_HOME}/bin:${NPM_CONFIG_PREFIX}/bin:${JAVA_HOME}/bin:${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${HOME}/.pub-cache/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
+export PATH="${HOME}/.local/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:${GOPATH}/bin:${HOME}/.cargo/bin:/usr/local/opt/rust/bin:/usr/local/opt/ruby/bin:${GEM_HOME}/bin:${NPM_CONFIG_PREFIX}/bin:${JAVA_HOME}/bin:${FVM_HOME}/versions/${FLUTTER_VERSION}/bin:${HOME}/.pub-cache/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:${PATH}"
 
 # Plugins
-plugins=(
-  git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases
-  1password argocd battery bazel branch colorize command-not-found direnv fzf
-  kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent
-  thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode
-  yarn zsh-navigation-tools encode64
-)
+if [[ -z "$DISABLE_OMZ_PLUGINS" ]]; then
+  plugins=(git zsh-autosuggestions zsh-syntax-highlighting)  # your normal plugins
+else
+  plugins=(
+    git docker-compose zsh-autosuggestions zsh-syntax-highlighting aliases
+    1password argocd battery bazel branch colorize command-not-found direnv fzf
+    kubectl jira macos man node pip pipenv python qrcode repo rsync ssh ssh-agent
+    thefuck tldr torrent transfer vi-mode vscode virtualenv vim-interaction xcode
+    yarn zsh-navigation-tools encode64
+  )
+fi
 
 # Aliases
 alias v='$EDITOR'
@@ -47,13 +52,18 @@ alias ls='ls -G'
 alias ll='ls -lG'
 alias lsa='ls -lahG'
 alias nv='nvim -c "lua require\"persistence\".load()"'
+alias python='python3'
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --smart-case --glob "!.git/*" --glob "!node_modules/*"'
 
 # oh-my-zsh
-[[ -s "${ZSH}/oh-my-zsh.sh" ]] && . "${ZSH}/oh-my-zsh.sh"
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=121'
+# Skip in pi-herdsman agent panes (PI_SUBAGENT_CHILD=1): oh-my-zsh's async
+# prompt forks zsh children that fail herdsman's pane readiness proof
+if [[ -z "$PI_SUBAGENT_CHILD" && -s "${ZSH}/oh-my-zsh.sh" ]]; then
+  . "${ZSH}/oh-my-zsh.sh"
+fi
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
 # History settings
 setopt extended_history share_history
@@ -68,7 +78,7 @@ zle -N edit-command-line
 bindkey '^X^E' edit-command-line
 
 # Moving around line
-bindkey '^A' beginning-of-line '^E' end-of-line '^F' backward-kill-word '^W' forward-word
+bindkey '^A' beginning-of-line '^E' end-of-line '^W' forward-word '^F' backward-kill-word
 
 # Completions
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
@@ -87,7 +97,8 @@ zstyle ':completion:*' menu select
 # Plugin sources
 [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 [[ -f ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh ]] && source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
-[[ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
+# [[ -f ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_frappe-zsh-syntax-highlighting.zsh
+[[ -f ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh ]] && source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
 
 # tmuxp
 tmuxpp() {
@@ -153,7 +164,7 @@ if command -v atuin &> /dev/null; then
 fi
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/khanh/.docker/completions $fpath)
+fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
@@ -162,7 +173,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/khanh/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 if [ -f "$HOME/.secrets.zsh" ]; then source "$HOME/.secrets.zsh"; fi
@@ -172,3 +183,22 @@ if [ -f '/home/user/google-cloud-sdk/path.zsh.inc' ]; then . '/home/user/google-
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/user/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/user/google-cloud-sdk/completion.zsh.inc'; fi
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# mise
+# --shims: no precmd hook-env fork after every command (trips pi-herdsman's
+# pane readiness proof); shims still resolve tools per-directory
+if command -v mise &> /dev/null; then
+  eval "$(mise activate zsh --shims)"
+fi
+
+# herdr-automatic-rename: live tab naming hook
+for _f in $HOME/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
+  source $_f; break
+done
