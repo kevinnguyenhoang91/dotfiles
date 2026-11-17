@@ -1,0 +1,48 @@
+# Light macOS-style terminal palette for the Apple theme.
+[colors.primary]
+background = "#f7f7f5"
+foreground = "#1d1d1f"
+
+[colors.cursor]
+text = "#ffffff"
+cursor = "#007aff"
+
+[colors.vi_mode_cursor]
+text = "#ffffff"
+cursor = "#007aff"
+
+[colors.search.matches]
+foreground = "#1d1d1f"
+background = "#ffd60a"
+
+[colors.search.focused_match]
+foreground = "#ffffff"
+background = "#007aff"
+
+[colors.footer_bar]
+foreground = "#ffffff"
+background = "#007aff"
+
+[colors.selection]
+text = "#1d1d1f"
+background = "#d7e7ff"
+
+[colors.normal]
+black = "#1d1d1f"
+red = "#d70015"
+green = "#248a3d"
+yellow = "#a17600"
+blue = "#007aff"
+magenta = "#8944ab"
+cyan = "#008999"
+white = "#6e6e73"
+
+[colors.bright]
+black = "#55555a"
+red = "#ff3b30"
+green = "#34c759"
+yellow = "#ff9f0a"
+blue = "#0a84ff"
+magenta = "#bf5af2"
+cyan = "#30b0c7"
+white = "#1d1d1f"

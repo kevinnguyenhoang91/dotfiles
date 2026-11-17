@@ -1,0 +1,6 @@
+[Unit]
+Description=Apply the Apple theme for the local time
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/mac-style check
