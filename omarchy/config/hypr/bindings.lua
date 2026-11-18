@@ -25,3 +25,15 @@
 -- Logitech MX Keys examples:
 -- o.bind("SUPER + H", nil, "voxtype record toggle")
 -- o.bind("SUPER + PERIOD", nil, { panel = "omarchy.emojis" })
+
+-- Vim-style window navigation. Arrow-key bindings are kept as aliases.
+-- h = left, j = down, k = up, l = right
+o.bind("ALT + H", "Focus window left", hl.dsp.focus({ direction = "l" }))
+o.bind("ALT + J", "Focus window below", hl.dsp.focus({ direction = "d" }))
+o.bind("ALT + K", "Focus window above", hl.dsp.focus({ direction = "u" }))
+o.bind("ALT + L", "Focus window right", hl.dsp.focus({ direction = "r" }))
+
+o.bind("ALT + SHIFT + H", "Swap window left", hl.dsp.window.swap({ direction = "l" }))
+o.bind("ALT + SHIFT + J", "Swap window down", hl.dsp.window.swap({ direction = "d" }))
+o.bind("ALT + SHIFT + K", "Swap window up", hl.dsp.window.swap({ direction = "u" }))
+o.bind("ALT + SHIFT + L", "Swap window right", hl.dsp.window.swap({ direction = "r" }))
