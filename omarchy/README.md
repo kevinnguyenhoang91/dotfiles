@@ -25,6 +25,10 @@ keyrings, credentials/tokens, caches, notification/clipboard history, and the
 generated `~/.local/state/omarchy/current/theme/` tree (it is recreated when
 you re-apply a theme).
 
+## Hardware notes
+
+- [Mac mini (2018): Bluetooth keyboard at the LUKS prompt](mac-mini-2018-omarchy-bluetooth-boot.md) — early-boot Bluetooth setup for the Intel + T2 Mac mini.
+
 ## Restore on a fresh install
 
 1. Install Omarchy, log in, and clone this repo's `linux` branch.
