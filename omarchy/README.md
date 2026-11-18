@@ -28,6 +28,7 @@ you re-apply a theme).
 ## Hardware notes
 
 - [Mac mini (2018): Bluetooth keyboard at the LUKS prompt](mac-mini-2018-omarchy-bluetooth-boot.md) — early-boot Bluetooth setup for the Intel + T2 Mac mini.
+- [Mac mini (2018): passwordless LUKS boot with a keyfile on `/boot`](mac-mini-2018-omarchy-passwordless-luks-boot.md) — skip the disk passphrase while keeping it as a fallback keyslot.
 
 ## Restore on a fresh install
 
